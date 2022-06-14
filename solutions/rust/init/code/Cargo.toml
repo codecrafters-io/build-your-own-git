@@ -1,0 +1,27 @@
+# DON'T EDIT THIS!
+#
+# Codecrafters relies on this file being intact to run tests successfully. Any changes
+# here will not reflect when CodeCrafters tests your code, and might even cause build
+# failures.
+#
+# DON'T EDIT THIS!
+[package]
+name = "docker-starter-rust"
+version = "0.1.0"
+authors = ["Codecrafters <hello@codecrafters.io>"]
+edition = "2018"
+
+# DON'T EDIT THIS!
+#
+# Codecrafters relies on this file being intact to run tests successfully. Any changes
+# here will not reflect when CodeCrafters tests your code, and might even cause build
+# failures.
+#
+# DON'T EDIT THIS!
+[dependencies]
+reqwest = { version = "0.10", features = ["json", "blocking"] } # http requests
+bytes = "0.5" # helps wrap responses from reqwest
+tokio = { version = "0.2", features = ["full"] } # async http requests
+libc = "0.2.103" # for syscalls like chroot
+serde = "1.0.136" # for json mangling
+serde_json = "1.0.79" # for json mangling

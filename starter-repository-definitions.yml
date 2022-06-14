@@ -1,0 +1,85 @@
+- language: c
+  file_mappings:
+    - source: starter_templates/README.md
+      target: README.md
+    - source: starter_templates/codecrafters.yml
+      target: codecrafters.yml
+    - source: starter_templates/c/app/main.c
+      target: app/main.c
+    - source: starter_templates/c/Dockerfile
+      target: Dockerfile
+    - source: starter_templates/c/your_docker.sh
+      target: your_docker.sh
+  template_attributes:
+    required_executable: "gcc"
+    user_editable_file: "app/main.c"
+
+- language: go
+  file_mappings:
+    - source: starter_templates/README.md
+      target: README.md
+    - source: starter_templates/codecrafters.yml
+      target: codecrafters.yml
+    - source: starter_templates/go/app/main.go
+      target: app/main.go
+    - source: starter_templates/go/Dockerfile
+      target: Dockerfile
+    - source: starter_templates/go/your_docker.sh
+      target: your_docker.sh
+  template_attributes:
+    required_executable: "go"
+    user_editable_file: "app/main.go"
+
+- language: php
+  file_mappings:
+    - source: starter_templates/README.md
+      target: README.md
+    - source: starter_templates/codecrafters.yml
+      target: codecrafters.yml
+    - source: starter_templates/php/app/main.php
+      target: app/main.php
+    - source: starter_templates/php/Dockerfile
+      target: Dockerfile
+    - source: starter_templates/php/your_docker.sh
+      target: your_docker.sh
+  template_attributes:
+    required_executable: "php (7.4)"
+    user_editable_file: "app/main.php"
+
+- language: nim
+  file_mappings:
+    - source: starter_templates/README.md
+      target: README.md
+    - source: starter_templates/codecrafters.yml
+      target: codecrafters.yml
+    - source: starter_templates/nim/app/main.nim
+      target: app/main.nim
+    - source: starter_templates/nim/Dockerfile
+      target: Dockerfile
+    - source: starter_templates/nim/your_docker.sh
+      target: your_docker.sh
+  template_attributes:
+    required_executable: "nim (1.0)"
+    user_editable_file: "app/main.nim"
+
+- language: rust
+  file_mappings:
+    - source: starter_templates/README.md
+      target: README.md
+    - source: starter_templates/codecrafters.yml
+      target: codecrafters.yml
+    - source: starter_templates/rust/.gitignore
+      target: .gitignore
+    - source: starter_templates/rust/src/main.rs
+      target: src/main.rs
+    - source: starter_templates/rust/Cargo.toml
+      target: Cargo.toml
+    - source: starter_templates/rust/Cargo.lock
+      target: Cargo.lock
+    - source: starter_templates/rust/Dockerfile
+      target: Dockerfile
+    - source: starter_templates/rust/your_docker.sh
+      target: your_docker.sh
+  template_attributes:
+    required_executable: "cargo (1.54)"
+    user_editable_file: "src/main.rs"
