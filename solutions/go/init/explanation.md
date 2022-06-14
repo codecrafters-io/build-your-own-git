@@ -1,27 +1,33 @@
-The entry point for your Docker implementation is in `app/main.go`.
+The entry point for your Git implementation is in `app/main.go`.
 
 Study and uncomment the relevant code: 
 
 ```go
 // Uncomment this block to pass the first stage!
+ "io/ioutil"
  "os"
- "os/exec"
 ```
 
 ```go
 // Uncomment this block to pass the first stage!
 
-command := os.Args[3]
-args := os.Args[4:len(os.Args)]
+switch command := os.Args[1]; command {
+case "init":
+    for _, dir := range []string{".git", ".git/objects", ".git/refs"} {
+        if err := os.Mkdir(dir, 0755); err != nil {
+            fmt.Printf("Error creating directory: %s\n", err)
+        }
+    }
+    headFileContents := []byte("ref: refs/heads/master\n")
+    if err := ioutil.WriteFile(".git/HEAD", headFileContents, 0644); err != nil {
+	       fmt.Printf("Error writing file: %s\n", err)
+	   }
+    fmt.Println("Initialized git directory")
 
-cmd := exec.Command(command, args...)
-output, err := cmd.Output()
-if err != nil {
-	fmt.Printf("Err: %v", err)
-	os.Exit(1)
+default:
+    fmt.Println("Unknown command %s", command)
+    os.Exit(1)
 }
-
-fmt.Println(string(output))
 ```
 
 Push your changes to pass the first stage:

@@ -1,35 +1,32 @@
 @@ -1,21 +1,17 @@
- // Usage: your_docker.sh run <image> <command> <arg1> <arg2> ...
+ #[allow(unused_imports)]
+ use std::env;
+ #[allow(unused_imports)]
+ use std::fs;
+
  fn main() {
 -    // You can use print statements as follows for debugging, they'll be visible when running tests.
 -    println!("Logs from your program will appear here!");
-+    let args: Vec<_> = std::env::args().collect();
-+    let command = &args[3];
-+    let command_args = &args[4..];
-+    let output = std::process::Command::new(command)
-+        .args(command_args)
-+        .output()
-+        .unwrap();
-
--    // Uncomment this block to pass the first stage!
--    // let args: Vec<_> = std::env::args().collect();
--    // let command = &args[3];
--    // let command_args = &args[4..];
--    // let output = std::process::Command::new(command)
--    //     .args(command_args)
--    //     .output()
--    //     .unwrap();
--    //
--    // if output.status.success() {
--    //     let std_out = std::str::from_utf8(&output.stdout).unwrap();
--    //     println!("{}", std_out)
+-
+-    // Uncomment this block to pass the first stage
+-    // let args: Vec<String> = env::args().collect();
+-    // if args[1] == "init" {
+-    //     fs::create_dir(".git").unwrap();
+-    //     fs::create_dir(".git/objects").unwrap();
+-    //     fs::create_dir(".git/refs").unwrap();
+-    //     fs::write(".git/HEAD", "ref: refs/heads/master\n").unwrap();
+-    //     println!("Initialized git directory")
 -    // } else {
--    //     std::process::exit(1);
+-    //     println!("unknown command: {}", args[1])
 -    // }
-+    if output.status.success() {
-+        let std_out = std::str::from_utf8(&output.stdout).unwrap();
-+        println!("{}", std_out)
++    let args: Vec<String> = env::args().collect();
++    if args[1] == "init" {
++        fs::create_dir(".git").unwrap();
++        fs::create_dir(".git/objects").unwrap();
++        fs::create_dir(".git/refs").unwrap();
++        fs::write(".git/HEAD", "ref: refs/heads/master\n").unwrap();
++        println!("Initialized git directory")
 +    } else {
-+        std::process::exit(1);
++        println!("unknown command: {}", args[1])
 +    }
  }

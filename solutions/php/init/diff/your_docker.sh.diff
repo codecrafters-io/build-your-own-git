@@ -1,0 +1,3 @@
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec php app/main.php "$@"

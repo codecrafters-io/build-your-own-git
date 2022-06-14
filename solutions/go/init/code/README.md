@@ -1,18 +1,17 @@
 This is a starting point for Go solutions to the
-["Build Your Own Docker" Challenge](https://codecrafters.io/challenges/docker).
+["Build Your Own Git" Challenge](https://codecrafters.io/challenges/git).
 
-In this challenge, you'll build a program that can pull an image from
-[Docker Hub](https://hub.docker.com/) and execute commands in it. Along the way,
-we'll learn about [chroot](https://en.wikipedia.org/wiki/Chroot),
-[kernel namespaces](https://en.wikipedia.org/wiki/Linux_namespaces), the
-[docker registry API](https://docs.docker.com/registry/spec/api/) and much more.
+In this challenge, you'll build a small Git implementation that's capable of
+initializing a repository, creating commits and cloning a public repository.
+Along the way we'll learn about the `.git` directory, Git objects (blobs,
+commits, trees etc.), Git's transfer protocols and more.
 
 **Note**: If you're viewing this repo on GitHub, head over to
 [codecrafters.io](https://codecrafters.io) to signup for early access.
 
 # Passing the first stage
 
-The entry point for your Docker implementation is `app/main.go`. Study and
+The entry point for your Git implementation is in `app/main.go`. Study and
 uncomment the relevant code, and push your changes to pass the first stage:
 
 ```sh
@@ -27,23 +26,33 @@ That's all!
 
 Note: This section is for stages 2 and beyond.
 
-You'll use linux-specific syscalls in this challenge. so we'll run your code
-_inside_ a Docker container.
+1. Ensure you have `go` installed locally
+1. Run `./your_git.sh` to run your Git implementation, which is implemented in
+   `app/main.go`.
+1. Commit your changes and run `git push origin master` to submit your solution
+   to CodeCrafters. Test output will be streamed to your terminal.
 
-Please ensure you have [Docker installed](https://docs.docker.com/get-docker/)
-locally.
+# Testing locally
 
-Next, add a [shell alias](https://shapeshed.com/unix-alias/):
+The `your_git.sh` script is expected to operate on the `.git` folder inside the
+current working directory. If you're running this inside the root of this
+repository, you might end up accidentally damaging your repository's `.git`
+folder.
+
+We suggest executing `your_git.sh` in a different folder when testing locally.
+For example:
 
 ```sh
-alias mydocker='docker build -t mydocker . && docker run --cap-add="SYS_ADMIN" mydocker'
+mkdir -p /tmp/testing && cd /tmp/testing
+/path/to/your/repo/your_git.sh init
 ```
 
-(The `--cap-add="SYS_ADMIN"` flag is required to create
-[PID Namespaces](https://man7.org/linux/man-pages/man7/pid_namespaces.7.html))
-
-You can now execute your program like this:
+To make this easier to type out, you could add a
+[shell alias](https://shapeshed.com/unix-alias/):
 
 ```sh
-mydocker run ubuntu:latest /usr/local/bin/docker-explorer echo hey
+alias mygit=/path/to/your/repo/your_git.sh
+
+mkdir -p /tmp/testing && cd /tmp/testing
+mygit init
 ```

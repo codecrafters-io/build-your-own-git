@@ -5,7 +5,4 @@
 # CodeCrafters uses this file to test your code. Don't make any changes here!
 #
 # DON'T EDIT THIS!
-set -e
-tmpFile=$(mktemp)
-go build -o "$tmpFile" app/*.go
-exec "$tmpFile" "$@"
+PYTHONPATH=$(dirname $0) exec python3 -m app.main "$@"
