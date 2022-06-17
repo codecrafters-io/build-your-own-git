@@ -1,4 +1,4 @@
-@@ -1,34 +1,28 @@
+@@ -1,36 +1,30 @@
  package main
 
  import (
@@ -21,11 +21,6 @@
 +	            fmt.Printf("Error creating directory: %s\n", err)
 +	        }
 +	    }
-+	    headFileContents := []byte("ref: refs/heads/master\n")
-+	    if err := ioutil.WriteFile(".git/HEAD", headFileContents, 0644); err != nil {
-+		       fmt.Printf("Error writing file: %s\n", err)
-+		   }
-+	    fmt.Println("Initialized git directory")
 
 -	// Uncomment this block to pass the first stage!
 -	//
@@ -36,16 +31,25 @@
 -	//             fmt.Printf("Error creating directory: %s\n", err)
 -	//         }
 -	//     }
+-	//
 -	//     headFileContents := []byte("ref: refs/heads/master\n")
 -	//     if err := ioutil.WriteFile(".git/HEAD", headFileContents, 0644); err != nil {
 -	// 	       fmt.Printf("Error writing file: %s\n", err)
 -	// 	   }
+-	//
 -	//     fmt.Println("Initialized git directory")
 -	//
 -	// default:
 -	//     fmt.Println("Unknown command %s", command)
 -	//     os.Exit(1)
 -	// }
++	    headFileContents := []byte("ref: refs/heads/master\n")
++	    if err := ioutil.WriteFile(".git/HEAD", headFileContents, 0644); err != nil {
++		       fmt.Printf("Error writing file: %s\n", err)
++		   }
++
++	    fmt.Println("Initialized git directory")
++
 +	default:
 +	    fmt.Println("Unknown command %s", command)
 +	    os.Exit(1)
