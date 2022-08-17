@@ -1,4 +1,4 @@
-FROM rust:1.54-buster
+FROM rust:1.62-buster
 
 RUN apt-get -y remove git
 
