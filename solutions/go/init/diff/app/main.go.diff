@@ -40,7 +40,7 @@
 -	//     fmt.Println("Initialized git directory")
 -	//
 -	// default:
--	//     fmt.Println("Unknown command %s", command)
+-	//     fmt.Printf("Unknown command %s\n", command)
 -	//     os.Exit(1)
 -	// }
 +	    headFileContents := []byte("ref: refs/heads/master\n")
@@ -51,7 +51,7 @@
 +	    fmt.Println("Initialized git directory")
 +
 +	default:
-+	    fmt.Println("Unknown command %s", command)
++	    fmt.Printf("Unknown command %s\n", command)
 +	    os.Exit(1)
 +	}
  }

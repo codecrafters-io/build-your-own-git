@@ -27,7 +27,7 @@ case "init":
     fmt.Println("Initialized git directory")
 
 default:
-    fmt.Println("Unknown command %s", command)
+    fmt.Printf("Unknown command %s\n", command)
     os.Exit(1)
 }
 ```

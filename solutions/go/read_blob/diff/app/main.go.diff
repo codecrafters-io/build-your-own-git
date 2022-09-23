@@ -31,7 +31,7 @@
 +	case "cat-file":
 +		err = CatFile(os.Args[2:])
  	default:
--	    fmt.Println("Unknown command %s", command)
+-	    fmt.Printf("Unknown command %s\n", command)
 -	    os.Exit(1)
 +		fmt.Println("Unknown command %s", command)
 +		os.Exit(1)
