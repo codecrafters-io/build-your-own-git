@@ -4,6 +4,8 @@ Content for the "Build your own Git" challenge
 
 ### Setup
 
+Ensure that you have a working copy of [Ruby](https://www.ruby-lang.org/en/) installed. If `ruby -v` returns ruby 3.x, you're good to go. 
+
 Run the following command to download the files required to validate/test solutions.
 
 ```sh
@@ -22,6 +24,6 @@ $ git clone https://github.com/codecrafters-io/course-definition-tester course_d
 $ (cd course_definition_tester && make compile && ruby scripts/test_solulutions.rb go)
 ```
 
-- If your solutions passes all tests, open a pull request on GitHub. GitHub actions will run a bunch of automated checks to ensure everything is correct.
+- If your solutions pass all tests, open a pull request on GitHub. GitHub actions will run a bunch of automated checks to ensure everything is correct.
 
 Once all tests are passing, tag @rohitpaulk for review. 
