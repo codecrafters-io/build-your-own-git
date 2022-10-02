@@ -4,13 +4,15 @@
       target: README.md
     - source: starter_templates/codecrafters.yml
       target: codecrafters.yml
-    - source: starter_templates/go/app/main.go
-      target: app/main.go
+    - source: starter_templates/go/go.mod
+      target: go.mod
+    - source: starter_templates/go/cmd/mygit/main.go
+      target: cmd/mygit/main.go
     - source: starter_templates/go/your_git.sh
       target: your_git.sh
   template_attributes:
     required_executable: "go"
-    user_editable_file: "app/main.go"
+    user_editable_file: "cmd/mygit/main.go"
 
 - language: python
   file_mappings:
