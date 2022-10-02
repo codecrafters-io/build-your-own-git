@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	// Uncomment this block to pass the first stage!
-	//  "io/ioutil"
 	//  "os"
 )
 
@@ -23,7 +22,7 @@ func main() {
 	//     }
 	//
 	//     headFileContents := []byte("ref: refs/heads/master\n")
-	//     if err := ioutil.WriteFile(".git/HEAD", headFileContents, 0644); err != nil {
+	//     if err := os.WriteFile(".git/HEAD", headFileContents, 0644); err != nil {
 	// 	       fmt.Printf("Error writing file: %s\n", err)
 	// 	   }
 	//
