@@ -1,15 +1,18 @@
-@@ -1,29 +0,0 @@
--package main
--
--import (
--	"fmt"
--	"os"
--)
--
+@@ -1,29 +1,26 @@
+ package main
+
+ import (
+ 	"fmt"
+ 	"os"
+ )
+
 -// Usage: your_git.sh <command> <arg1> <arg2> ...
--func main() {
--	switch command := os.Args[1]; command {
--	case "init":
++// Usage: your_git.sh run <image> <command> <arg1> <arg2> ...
+ func main() {
++	var err error
++
+ 	switch command := os.Args[1]; command {
+ 	case "init":
 -		for _, dir := range []string{".git", ".git/objects", ".git/refs"} {
 -			if err := os.Mkdir(dir, 0755); err != nil {
 -				fmt.Printf("Error creating directory: %s\n", err)
@@ -23,8 +26,17 @@
 -
 -		fmt.Println("Initialized git directory")
 -
--	default:
++		err = Init()
++	case "cat-file":
++		err = CatFile(os.Args[2:])
+ 	default:
 -		fmt.Printf("Unknown command %s\n", command)
--		os.Exit(1)
--	}
--}
++		fmt.Println("Unknown command %s", command)
++		os.Exit(1)
++	}
++
++	if err != nil {
++		fmt.Println(err.Error())
+ 		os.Exit(1)
+ 	}
+ }

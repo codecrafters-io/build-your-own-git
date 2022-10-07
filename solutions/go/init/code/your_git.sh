@@ -8,8 +8,8 @@
 set -e
 
 tmpFile=$(mktemp)
-trap 'rm -f -- "$tmpFile"' EXIT
 
-( cd $(dirname "$0") && go build -o "$tmpFile" ./cmd/mygit )
+( cd $(dirname "$0") &&
+	go build -o "$tmpFile" ./cmd/mygit )
 
-"$tmpFile" "$@"
+exec "$tmpFile" "$@"
