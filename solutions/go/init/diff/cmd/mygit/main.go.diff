@@ -27,7 +27,7 @@
 -	// switch command := os.Args[1]; command {
 -	// case "init":
 -	// 	for _, dir := range []string{".git", ".git/objects", ".git/refs"} {
--	// 		if err := os.Mkdir(dir, 0755); err != nil {
+-	// 		if err := os.MkdirAll(dir, 0755); err != nil {
 -	// 			fmt.Fprintf(os.Stderr, "Error creating directory: %s\n", err)
 -	// 		}
 -	// 	}
