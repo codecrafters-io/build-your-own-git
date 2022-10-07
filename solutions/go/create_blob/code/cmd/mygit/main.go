@@ -5,24 +5,28 @@ import (
 	"os"
 )
 
-// Usage: your_git.sh run <image> <command> <arg1> <arg2> ...
+// Usage: your_git.sh <command> <arg1> <arg2> ...
 func main() {
+	if len(os.Args) < 2 {
+		fmt.Fprintf(os.Stderr, "usage: mygit <command> [<args>...]\n")
+		os.Exit(1)
+	}
+
 	var err error
 
 	switch command := os.Args[1]; command {
 	case "init":
-		err = Init()
+		err = initCmd()
 	case "cat-file":
-		err = CatFile(os.Args[2:])
+		err = catFileCmd(os.Args[1:])
 	case "hash-object":
 		err = HashObject(os.Args[2:])
 	default:
-		fmt.Println("Unknown command %s", command)
-		os.Exit(1)
+		err = fmt.Errorf("Unknown command %s", command)
 	}
 
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Fprintf(os.Stderr, "%v\n", err.Error())
 		os.Exit(1)
 	}
 }
