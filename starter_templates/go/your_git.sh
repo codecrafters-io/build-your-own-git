@@ -6,6 +6,10 @@
 #
 # DON'T EDIT THIS!
 set -e
+
 tmpFile=$(mktemp)
-go build -o "$tmpFile" $(dirname "$0")/app/*.go
+
+( cd $(dirname "$0") &&
+	go build -o "$tmpFile" ./cmd/mygit )
+
 exec "$tmpFile" "$@"

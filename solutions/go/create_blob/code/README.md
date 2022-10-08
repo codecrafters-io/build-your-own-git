@@ -11,7 +11,7 @@ commits, trees etc.), Git's transfer protocols and more.
 
 # Passing the first stage
 
-The entry point for your Git implementation is in `app/main.go`. Study and
+The entry point for your Git implementation is in `cmd/mygit/main.go`. Study and
 uncomment the relevant code, and push your changes to pass the first stage:
 
 ```sh
@@ -28,7 +28,7 @@ Note: This section is for stages 2 and beyond.
 
 1. Ensure you have `go` installed locally
 1. Run `./your_git.sh` to run your Git implementation, which is implemented in
-   `app/main.go`.
+   `cmd/mygit/main.go`.
 1. Commit your changes and run `git push origin master` to submit your solution
    to CodeCrafters. Test output will be streamed to your terminal.
 
