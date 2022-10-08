@@ -20,7 +20,7 @@ func main() {
 	case "cat-file":
 		err = catFileCmd(os.Args[1:])
 	case "hash-object":
-		err = HashObject(os.Args[2:])
+		err = hashObjectCmd(os.Args[1:])
 	default:
 		err = fmt.Errorf("unknown command %s", command)
 	}
