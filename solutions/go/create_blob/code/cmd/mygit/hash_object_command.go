@@ -55,7 +55,35 @@ func hashObjectCmd(args []string) (err error) {
 func hashObject(src io.Reader, typ string, size int64) (name string, err error) {
 	tmpPath := filepath.Join(".git", "objects", "tmpfile")
 
-	file, err := os.Create(tmpPath)
+	name, err = hashObjectToFile(tmpPath, src, typ, size)
+	if err != nil {
+		return "", err
+	}
+
+	defer func() {
+		if err != nil {
+			_ = os.Remove(tmpPath) // best effort
+		}
+	}()
+
+	objPath := filepath.Join(".git", "objects", name[:2], name[2:])
+	dirPath := filepath.Dir(objPath)
+
+	err = os.MkdirAll(dirPath, 0755)
+	if err != nil {
+		return "", fmt.Errorf("mkdir: %w", err)
+	}
+
+	err = os.Rename(tmpPath, objPath)
+	if err != nil {
+		return "", fmt.Errorf("rename: %w", err)
+	}
+
+	return name, nil
+}
+
+func hashObjectToFile(filePath string, src io.Reader, typ string, size int64) (name string, err error) {
+	file, err := os.Create(filePath)
 	if err != nil {
 		return "", fmt.Errorf("create file: %w", err)
 	}
@@ -67,7 +95,7 @@ func hashObject(src io.Reader, typ string, size int64) (name string, err error) 
 		}
 
 		if err != nil {
-			_ = os.Remove(tmpPath) // best effort
+			_ = os.Remove(filePath) // best effort
 		}
 	}()
 
@@ -90,19 +118,6 @@ func hashObject(src io.Reader, typ string, size int64) (name string, err error) 
 
 	sum := hash.Sum(nil)
 	name = hex.EncodeToString(sum)
-
-	objPath := filepath.Join(".git", "objects", name[:2], name[2:])
-	dirPath := filepath.Dir(objPath)
-
-	err = os.MkdirAll(dirPath, 0755)
-	if err != nil {
-		return "", fmt.Errorf("mkdir: %w", err)
-	}
-
-	err = os.Rename(tmpPath, objPath)
-	if err != nil {
-		return "", fmt.Errorf("rename: %w", err)
-	}
 
 	return name, nil
 }
