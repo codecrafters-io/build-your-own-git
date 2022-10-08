@@ -35,7 +35,7 @@
 +		err = catFileCmd(os.Args[1:])
  	default:
 -		fmt.Fprintf(os.Stderr, "Unknown command %s\n", command)
-+		err = fmt.Errorf("Unknown command %s", command)
++		err = fmt.Errorf("unknown command %s", command)
 +	}
 +
 +	if err != nil {

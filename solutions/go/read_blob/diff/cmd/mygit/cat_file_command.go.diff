@@ -1,9 +1,11 @@
-@@ -0,0 +1,96 @@
+@@ -0,0 +1,103 @@
 +package main
 +
 +import (
 +	"bufio"
 +	"compress/zlib"
++	"crypto/sha1"
++	"errors"
 +	"fmt"
 +	"io"
 +	"os"
@@ -12,21 +14,26 @@
 +)
 +
 +func catFileCmd(args []string) (err error) {
-+	if len(args) < 3 {
++	// Assuming that args is ["cat-file", "-p", "hash"], just like os.Args
++
++	if len(args) < 3 || args[1] != "-p" {
 +		fmt.Fprintf(os.Stderr, "usage: mygit cat-file -p <blob_hash>\n")
 +
 +		return fmt.Errorf("bad usage")
 +	}
 +
-+	blobSha := args[2] // Assuming that args is ["cat-file", "-p", "hash"], just like os.Args
++	blobSha := args[2]
 +
-+	if len(blobSha) < 4 {
-+		return fmt.Errorf("bad object: %v", blobSha)
++	if len(blobSha) != 2*sha1.Size { // size of hash in hex format
++		return fmt.Errorf("not a valid object name: %v", blobSha)
 +	}
 +
 +	path := filepath.Join(".git", "objects", blobSha[:2], blobSha[2:])
 +
 +	file, err := os.Open(path)
++	if errors.Is(err, os.ErrNotExist) {
++		return fmt.Errorf("not a valid object name: %v", blobSha)
++	}
 +	if err != nil {
 +		return fmt.Errorf("read file: %w", err)
 +	}

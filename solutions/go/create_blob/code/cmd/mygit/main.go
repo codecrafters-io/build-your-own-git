@@ -22,7 +22,7 @@ func main() {
 	case "hash-object":
 		err = HashObject(os.Args[2:])
 	default:
-		err = fmt.Errorf("Unknown command %s", command)
+		err = fmt.Errorf("unknown command %s", command)
 	}
 
 	if err != nil {

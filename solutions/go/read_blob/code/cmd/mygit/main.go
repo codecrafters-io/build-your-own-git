@@ -20,7 +20,7 @@ func main() {
 	case "cat-file":
 		err = catFileCmd(os.Args[1:])
 	default:
-		err = fmt.Errorf("Unknown command %s", command)
+		err = fmt.Errorf("unknown command %s", command)
 	}
 
 	if err != nil {

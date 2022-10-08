@@ -24,7 +24,7 @@ func main() {
 	case "ls-tree":
 		err = LsTree(os.Args[2:])
 	default:
-		err = fmt.Errorf("Unknown command %s", command)
+		err = fmt.Errorf("unknown command %s", command)
 	}
 
 	if err != nil {
