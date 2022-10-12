@@ -32,10 +32,10 @@ func lsTreeCmd(args []string) (err error) {
 		return fmt.Errorf("unsupported object type: %v", typ)
 	}
 
-	return dumpTree(content)
+	return lsTree(content)
 }
 
-func dumpTree(d []byte) error {
+func lsTree(d []byte) error {
 	i := 0
 
 	for i < len(d) {
@@ -67,7 +67,7 @@ func dumpTree(d []byte) error {
 	return nil
 }
 
-func dumpTreeBufferedReader(d []byte) error {
+func lsTreeBufferedReader(d []byte) error {
 	r := bufio.NewReader(bytes.NewReader(d))
 
 	for {
