@@ -1,7 +1,8 @@
-@@ -0,0 +1,137 @@
+@@ -0,0 +1,115 @@
 +package main
 +
 +import (
++	"bytes"
 +	"compress/zlib"
 +	"crypto/sha1"
 +	"encoding/hex"
@@ -54,18 +55,17 @@
 +}
 +
 +func hashObject(src io.Reader, typ string, size int64) (name string, err error) {
-+	tmpPath := filepath.Join(".git", "objects", "tmpfile")
++	var buf bytes.Buffer
 +
-+	name, err = hashObjectToFile(tmpPath, src, typ, size)
++	err = encodeObject(&buf, src, typ, size)
++
++	fileContent, err := compress(buf.Bytes())
 +	if err != nil {
-+		return "", err
++		return "", fmt.Errorf("compress: %w", err)
 +	}
 +
-+	defer func() {
-+		if err != nil {
-+			_ = os.Remove(tmpPath) // best effort
-+		}
-+	}()
++	sum := sha1.Sum(buf.Bytes())
++	name = hex.EncodeToString(sum[:])
 +
 +	objPath := filepath.Join(".git", "objects", name[:2], name[2:])
 +	dirPath := filepath.Dir(objPath)
@@ -75,50 +75,10 @@
 +		return "", fmt.Errorf("mkdir: %w", err)
 +	}
 +
-+	err = os.Rename(tmpPath, objPath)
++	err = os.WriteFile(objPath, fileContent, 0644)
 +	if err != nil {
-+		return "", fmt.Errorf("rename: %w", err)
++		return "", fmt.Errorf("write file: %w", err)
 +	}
-+
-+	return name, nil
-+}
-+
-+func hashObjectToFile(filePath string, src io.Reader, typ string, size int64) (name string, err error) {
-+	file, err := os.Create(filePath)
-+	if err != nil {
-+		return "", fmt.Errorf("create file: %w", err)
-+	}
-+
-+	defer func() {
-+		e := file.Close()
-+		if err == nil && e != nil {
-+			err = fmt.Errorf("close file: %w", e)
-+		}
-+
-+		if err != nil {
-+			_ = os.Remove(filePath) // best effort
-+		}
-+	}()
-+
-+	zFile := zlib.NewWriter(file)
-+
-+	defer func() {
-+		e := zFile.Close()
-+		if err == nil && e != nil {
-+			err = fmt.Errorf("close zlib writer: %w", e)
-+		}
-+	}()
-+
-+	hash := sha1.New()
-+	w := io.MultiWriter(hash, zFile)
-+
-+	err = encodeObject(w, src, typ, size)
-+	if err != nil {
-+		return "", err
-+	}
-+
-+	sum := hash.Sum(nil)
-+	name = hex.EncodeToString(sum)
 +
 +	return name, nil
 +}
@@ -135,4 +95,22 @@
 +	}
 +
 +	return nil
++}
++
++func compress(data []byte) ([]byte, error) {
++	var buf bytes.Buffer
++
++	w := zlib.NewWriter(&buf)
++
++	_, err := w.Write(data)
++	if err != nil {
++		return nil, err
++	}
++
++	err = w.Close()
++	if err != nil {
++		return nil, err
++	}
++
++	return buf.Bytes(), nil
 +}
