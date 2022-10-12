@@ -1,9 +1,13 @@
-@@ -0,0 +1,64 @@
+@@ -0,0 +1,98 @@
 +package main
 +
 +import (
++	"bufio"
 +	"bytes"
++	"crypto/sha1"
++	"errors"
 +	"fmt"
++	"io"
 +	"os"
 +
 +	"github.com/codecrafters-io/git-starter-go/object"
@@ -41,24 +45,54 @@
 +			return fmt.Errorf("malformed tree")
 +		}
 +
-+		// d[i:space] - mode
++		// d[i:space] is mode
 +
 +		zero := space + bytes.IndexByte(d[space:], '\000')
-+		if zero < space {
++		if zero < space { // IndexByte returned -1
 +			return fmt.Errorf("malformed tree")
 +		}
 +
 +		name := d[space+1 : zero] // after space until zero
 +
-+		if zero+20 > len(d) {
++		if zero+sha1.Size > len(d) {
 +			return fmt.Errorf("malformed tree")
 +		}
 +
-+		// d[zero:zero+20] - hash sum
++		// d[zero:zero+sha1.Size] is hash sum
 +
 +		fmt.Printf("%s\n", name)
 +
-+		i = zero + 20 // next line
++		i = zero + sha1.Size // next line
++	}
++
++	return nil
++}
++
++func dumpTreeBufferedReader(d []byte) error {
++	r := bufio.NewReader(bytes.NewReader(d))
++
++	for {
++		_, err := r.ReadString(' ') // mode
++		if errors.Is(err, io.EOF) {
++			break
++		}
++		if err != nil {
++			return err
++		}
++
++		name, err := r.ReadString('\000')
++		if err != nil {
++			return err
++		}
++
++		name = name[:len(name)-1] // cut delimiter
++
++		_, err = r.Discard(sha1.Size) // hash sum
++		if err != nil {
++			return err
++		}
++
++		fmt.Printf("%s\n", name)
 +	}
 +
 +	return nil
