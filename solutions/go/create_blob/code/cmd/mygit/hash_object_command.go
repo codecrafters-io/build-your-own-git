@@ -53,10 +53,10 @@ func hashObjectCmd(args []string) (err error) {
 	return nil
 }
 
-func hashObject(src io.Reader, typ string, size int64) (name string, err error) {
+func hashObject(src io.Reader, typ string, size int64) (string, error) {
 	var buf bytes.Buffer
 
-	err = encodeObject(&buf, src, typ, size)
+	err := encodeObject(&buf, src, typ, size)
 
 	fileContent, err := compress(buf.Bytes())
 	if err != nil {
@@ -64,7 +64,7 @@ func hashObject(src io.Reader, typ string, size int64) (name string, err error) 
 	}
 
 	sum := sha1.Sum(buf.Bytes())
-	name = hex.EncodeToString(sum[:])
+	name := hex.EncodeToString(sum[:])
 
 	objPath := filepath.Join(".git", "objects", name[:2], name[2:])
 	dirPath := filepath.Dir(objPath)
