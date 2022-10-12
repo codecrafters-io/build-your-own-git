@@ -1,49 +1,63 @@
 package main
 
 import (
-	"bufio"
 	"bytes"
 	"fmt"
-	"io"
+	"os"
+
+	"github.com/codecrafters-io/git-starter-go/object"
 )
 
-func LsTree(args []string) error {
-	treeSha := args[1] // Assuming that args[0] is --name-only
+func lsTreeCmd(args []string) (err error) {
+	// Assuming that args is ["ls-tree", "--name-only", "hash"], just like os.Args
 
-	objectReader, err := NewGitObjectReader(treeSha)
-	if err != nil {
-		return err
+	if len(args) < 3 || args[1] != "--name-only" {
+		fmt.Fprintf(os.Stderr, "usage: mygit ls-tree --name-only <hash>\n")
+
+		return fmt.Errorf("bad usage")
 	}
 
-	contents, err := objectReader.ReadContents()
+	blobSha := args[2]
+
+	typ, content, err := object.LoadByHash(blobSha)
 	if err != nil {
-		return err
+		return fmt.Errorf("load by hash: %w", err)
 	}
 
-	contentsReader := bufio.NewReader(bytes.NewReader(contents))
+	if typ != "tree" {
+		return fmt.Errorf("unsupported object type: %v", typ)
+	}
 
-	for {
-		// Read the mode of the entry (including the space character after)
-		_, err = contentsReader.ReadString(' ')
-		if err == io.EOF {
-			break // We've reached the end of the file
-		} else if err != nil {
-			return err
+	return dumpTree(content)
+}
+
+func dumpTree(d []byte) error {
+	i := 0
+
+	for i < len(d) {
+		space := i + bytes.IndexByte(d[i:], ' ')
+		if space < i { // IndexByte returned -1
+			return fmt.Errorf("malformed tree")
 		}
 
-		// Read the name of the entry (including the null-byte character after)
-		entryName, err := contentsReader.ReadString(0)
-		if err != nil {
-			return err
+		// d[i:space] - mode
+
+		zero := space + bytes.IndexByte(d[space:], '\000')
+		if zero < space {
+			return fmt.Errorf("malformed tree")
 		}
 
-		entryName = entryName[:len(entryName)-1] // Trim the null-byte character
-		fmt.Println(entryName)
+		name := d[space+1 : zero] // after space until zero
 
-		_, err = contentsReader.Discard(20) // Discard the SHA-1 hash
-		if err != nil {
-			return err
+		if zero+20 > len(d) {
+			return fmt.Errorf("malformed tree")
 		}
+
+		// d[zero:zero+20] - hash sum
+
+		fmt.Printf("%s\n", name)
+
+		i = zero + 20 // next line
 	}
 
 	return nil
