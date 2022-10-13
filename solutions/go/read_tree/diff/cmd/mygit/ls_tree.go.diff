@@ -1,4 +1,4 @@
-@@ -0,0 +1,98 @@
+@@ -0,0 +1,68 @@
 +package main
 +
 +import (
@@ -37,41 +37,11 @@
 +}
 +
 +func lsTree(d []byte) error {
-+	i := 0
-+
-+	for i < len(d) {
-+		space := i + bytes.IndexByte(d[i:], ' ')
-+		if space < i { // IndexByte returned -1
-+			return fmt.Errorf("malformed tree")
-+		}
-+
-+		// d[i:space] is mode
-+
-+		zero := space + bytes.IndexByte(d[space:], '\000')
-+		if zero < space { // IndexByte returned -1
-+			return fmt.Errorf("malformed tree")
-+		}
-+
-+		name := d[space+1 : zero] // after space until zero
-+
-+		if zero+sha1.Size > len(d) {
-+			return fmt.Errorf("malformed tree")
-+		}
-+
-+		// d[zero:zero+sha1.Size] is hash sum
-+
-+		fmt.Printf("%s\n", name)
-+
-+		i = zero + sha1.Size // next line
-+	}
-+
-+	return nil
-+}
-+
-+func lsTreeBufferedReader(d []byte) error {
 +	r := bufio.NewReader(bytes.NewReader(d))
 +
 +	for {
++		// row format: 100644<space>file_name.txt<null_byte><20_byte_sha1>
++
 +		_, err := r.ReadString(' ') // mode
 +		if errors.Is(err, io.EOF) {
 +			break
@@ -87,7 +57,7 @@
 +
 +		name = name[:len(name)-1] // cut delimiter
 +
-+		_, err = r.Discard(sha1.Size) // hash sum
++		_, err = r.Discard(sha1.Size) // sha1
 +		if err != nil {
 +			return err
 +		}
