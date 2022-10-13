@@ -3,47 +3,65 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"crypto/sha1"
+	"errors"
 	"fmt"
 	"io"
+	"os"
+
+	"github.com/codecrafters-io/git-starter-go/object"
 )
 
-func LsTree(args []string) error {
-	treeSha := args[1] // Assuming that args[0] is --name-only
+func lsTreeCmd(args []string) (err error) {
+	// Assuming that args is ["ls-tree", "--name-only", "hash"], just like os.Args
 
-	objectReader, err := NewGitObjectReader(treeSha)
-	if err != nil {
-		return err
+	if len(args) < 3 || args[1] != "--name-only" {
+		fmt.Fprintf(os.Stderr, "usage: mygit ls-tree --name-only <hash>\n")
+
+		return fmt.Errorf("bad usage")
 	}
 
-	contents, err := objectReader.ReadContents()
+	blobSha := args[2]
+
+	typ, content, err := object.LoadByHash(blobSha)
 	if err != nil {
-		return err
+		return fmt.Errorf("load by hash: %w", err)
 	}
 
-	contentsReader := bufio.NewReader(bytes.NewReader(contents))
+	if typ != "tree" {
+		return fmt.Errorf("unsupported object type: %v", typ)
+	}
+
+	return lsTree(content)
+}
+
+func lsTree(d []byte) error {
+	r := bufio.NewReader(bytes.NewReader(d))
 
 	for {
-		// Read the mode of the entry (including the space character after)
-		_, err = contentsReader.ReadString(' ')
-		if err == io.EOF {
-			break // We've reached the end of the file
-		} else if err != nil {
-			return err
-		}
+		// row format: 100644<space>file_name.txt<null_byte><20_byte_sha1>
 
-		// Read the name of the entry (including the null-byte character after)
-		entryName, err := contentsReader.ReadString(0)
+		_, err := r.ReadString(' ') // mode
+		if errors.Is(err, io.EOF) {
+			break
+		}
 		if err != nil {
 			return err
 		}
 
-		entryName = entryName[:len(entryName)-1] // Trim the null-byte character
-		fmt.Println(entryName)
-
-		_, err = contentsReader.Discard(20) // Discard the SHA-1 hash
+		name, err := r.ReadString('\000')
 		if err != nil {
 			return err
 		}
+
+		name = name[:len(name)-1] // cut delimiter
+
+		_, err = r.Discard(sha1.Size) // sha1
+		if err != nil {
+			return err
+		}
+
+		fmt.Printf("%s\n", name)
 	}
 
 	return nil
