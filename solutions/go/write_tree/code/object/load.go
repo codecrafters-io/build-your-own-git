@@ -3,7 +3,6 @@ package object
 import (
 	"bufio"
 	"compress/zlib"
-	"crypto/sha1"
 	"errors"
 	"fmt"
 	"io"
@@ -12,16 +11,14 @@ import (
 	"strconv"
 )
 
-func LoadByHash(blobSha string) (typ string, content []byte, err error) {
-	if len(blobSha) != 2*sha1.Size { // size of hash in hex format
-		return "", nil, fmt.Errorf("not a valid object name: %v", blobSha)
-	}
+func LoadByHash(h Hash) (typ string, content []byte, err error) {
+	name := h.String()
 
-	path := filepath.Join(".git", "objects", blobSha[:2], blobSha[2:])
+	path := filepath.Join(".git", "objects", name[:2], name[2:])
 
 	file, err := os.Open(path)
 	if errors.Is(err, os.ErrNotExist) {
-		return "", nil, fmt.Errorf("not a valid object name: %v", blobSha)
+		return "", nil, fmt.Errorf("not a valid object name")
 	}
 	if err != nil {
 		return "", nil, fmt.Errorf("read file: %w", err)

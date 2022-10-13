@@ -23,6 +23,8 @@ func main() {
 		err = hashObjectCmd(os.Args[1:])
 	case "ls-tree":
 		err = lsTreeCmd(os.Args[1:])
+	case "write-tree":
+		err = writeTreeCmd(os.Args[1:])
 	default:
 		err = fmt.Errorf("unknown command %s", command)
 	}
