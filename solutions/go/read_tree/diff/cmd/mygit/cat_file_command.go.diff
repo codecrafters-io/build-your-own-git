@@ -1,4 +1,4 @@
-@@ -1,103 +1,33 @@
+@@ -1,103 +1,36 @@
  package main
 
  import (
@@ -25,8 +25,8 @@
  		return fmt.Errorf("bad usage")
  	}
 
- 	blobSha := args[2]
-
+-	blobSha := args[2]
+-
 -	if len(blobSha) != 2*sha1.Size { // size of hash in hex format
 -		return fmt.Errorf("not a valid object name: %v", blobSha)
 -	}
@@ -65,10 +65,12 @@
 -	}()
 -
 -	err = parseObject(zr)
--	if err != nil {
++	hash, err := object.HashFromString(args[2])
+ 	if err != nil {
 -		return fmt.Errorf("parse object: %w", err)
--	}
--
++		return fmt.Errorf("%w: %v", err, args[2])
+ 	}
+
 -	return nil
 -}
 -
@@ -76,7 +78,7 @@
 -	br := bufio.NewReader(r)
 -
 -	typ, err := br.ReadString(' ')
-+	typ, content, err := object.LoadByHash(blobSha)
++	typ, content, err := object.LoadByHash(hash)
  	if err != nil {
 -		return err
 +		return fmt.Errorf("load by hash: %w", err)
@@ -86,8 +88,9 @@
 -
  	if typ != "blob" {
 -		return fmt.Errorf("unsupported type: %v", typ)
--	}
--
++		return fmt.Errorf("unsupported object type: %v", typ)
+ 	}
+
 -	sizeStr, err := br.ReadString('\000')
 -	if err != nil {
 -		return err
@@ -98,9 +101,8 @@
 -	size, err := strconv.ParseInt(sizeStr, 10, 64)
 -	if err != nil {
 -		return fmt.Errorf("parse size: %w", err)
-+		return fmt.Errorf("unsupported object type: %v", typ)
- 	}
-
+-	}
+-
 -	_, err = io.CopyN(os.Stdout, br, size)
 -	if err != nil {
 -		return err
