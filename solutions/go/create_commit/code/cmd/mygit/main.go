@@ -25,6 +25,8 @@ func main() {
 		err = lsTreeCmd(os.Args[1:])
 	case "write-tree":
 		err = writeTreeCmd(os.Args[1:])
+	case "commit-tree":
+		err = commitTreeCmd(os.Args[1:])
 	default:
 		err = fmt.Errorf("unknown command %s", command)
 	}
