@@ -11,13 +11,13 @@ import (
 	"path/filepath"
 )
 
-func StoreFromFile(name, typ string, size int64) (Hash, error) {
+func StoreFromFile(name, typ string) (Hash, error) {
 	content, err := os.ReadFile(name)
 	if err != nil {
 		return Hash{}, fmt.Errorf("read src file: %w", err)
 	}
 
-	return Store(bytes.NewReader(content), typ, size)
+	return Store(bytes.NewReader(content), typ, int64(len(content)))
 }
 
 func Store(src io.Reader, typ string, size int64) (Hash, error) {
@@ -55,9 +55,13 @@ func encodeObject(dst io.Writer, src io.Reader, typ string, size int64) error {
 		return err
 	}
 
-	_, err = io.Copy(dst, src)
+	n, err := io.Copy(dst, src)
 	if err != nil {
 		return err
+	}
+
+	if n != size {
+		return fmt.Errorf("file size mismatch, got %v, content %v", size, n)
 	}
 
 	return nil

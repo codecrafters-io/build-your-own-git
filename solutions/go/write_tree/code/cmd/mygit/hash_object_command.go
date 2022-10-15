@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"os"
 
@@ -17,29 +16,9 @@ func hashObjectCmd(args []string) (err error) {
 		return fmt.Errorf("bad usage")
 	}
 
-	filePath := args[2]
+	file := args[2]
 
-	fileInfo, err := os.Stat(filePath)
-	if errors.Is(err, os.ErrNotExist) {
-		return fmt.Errorf("no such file: %v", filePath)
-	}
-	if err != nil {
-		return fmt.Errorf("get file info: %w", err)
-	}
-
-	file, err := os.Open(filePath)
-	if err != nil {
-		return fmt.Errorf("read file: %w", err)
-	}
-
-	defer func() {
-		e := file.Close()
-		if err == nil && e != nil {
-			err = fmt.Errorf("close file: %w", e)
-		}
-	}()
-
-	name, err := object.Store(file, "blob", fileInfo.Size())
+	name, err := object.StoreFromFile(file, "blob")
 	if err != nil {
 		return err
 	}

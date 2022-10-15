@@ -68,7 +68,7 @@ func writeTree(dir string) (object.Hash, error) {
 			gitMode |= ModeBlob
 			gitMode |= int(mode) & 0o777 // the actual git logic is a bit more complex
 
-			hash, err = object.StoreFromFile(filePath, "blob", inf.Size())
+			hash, err = object.StoreFromFile(filePath, "blob")
 			if err != nil {
 				return object.Hash{}, fmt.Errorf("store file %v: %w", filePath, err)
 			}
