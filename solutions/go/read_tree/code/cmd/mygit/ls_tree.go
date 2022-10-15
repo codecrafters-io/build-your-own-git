@@ -21,9 +21,12 @@ func lsTreeCmd(args []string) (err error) {
 		return fmt.Errorf("bad usage")
 	}
 
-	blobSha := args[2]
+	hash, err := object.HashFromString(args[2])
+	if err != nil {
+		return fmt.Errorf("%w: %v", err, args[2])
+	}
 
-	typ, content, err := object.LoadByHash(blobSha)
+	typ, content, err := object.LoadByHash(hash)
 	if err != nil {
 		return fmt.Errorf("load by hash: %w", err)
 	}
