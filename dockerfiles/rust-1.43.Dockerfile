@@ -1,7 +1,5 @@
 FROM rust:1.43-buster
 
-ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="Cargo.toml,Cargo.lock"
-
 RUN apt-get -y remove git
 
 COPY Cargo.toml /app/Cargo.toml
@@ -23,3 +21,5 @@ RUN rm -f /tmp/codecrafters-git-target/release/.fingerprint/*git_starter_rust*
 RUN rm -f /tmp/codecrafters-git-target/release/.fingerprint/git_starter_rust*
 
 RUN rm -rf /app/src
+ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="Cargo.toml,Cargo.lock"
+

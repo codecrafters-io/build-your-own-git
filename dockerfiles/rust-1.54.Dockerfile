@@ -1,7 +1,5 @@
 FROM rust:1.54-buster
 
-ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="Cargo.toml,Cargo.lock"
-
 RUN apt-get -y remove git
 
 COPY Cargo.toml /app/Cargo.toml
@@ -26,3 +24,6 @@ RUN rm -rf /app/src
 
 RUN echo "cd \${CODECRAFTERS_SUBMISSION_DIR} && cargo build --release --target-dir=/tmp/codecrafters-git-target --manifest-path Cargo.toml" > /codecrafters-precompile.sh
 RUN chmod +x /codecrafters-precompile.sh
+
+ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="Cargo.toml,Cargo.lock"
+
