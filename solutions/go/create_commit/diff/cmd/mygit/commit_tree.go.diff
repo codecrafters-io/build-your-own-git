@@ -1,8 +1,9 @@
-@@ -0,0 +1,95 @@
+@@ -0,0 +1,97 @@
 +package main
 +
 +import (
 +	"bytes"
++	"flag"
 +	"fmt"
 +	"os"
 +	"strings"
@@ -11,24 +12,18 @@
 +	"github.com/codecrafters-io/git-starter-go/object"
 +)
 +
-+type commitTreeParams struct {
-+	Tree    string
-+	Parent  string
-+	Message string
-+}
-+
 +func commitTreeCmd(args []string) error {
-+	params, err := parseCommitTreeFlags(args)
++	tree, parent, message, err := parseCommitTreeFlags(args)
 +	if err != nil {
 +		return err
 +	}
 +
 +	var buf []byte
 +
-+	buf = fmt.Appendf(buf, "tree %s\n", params.Tree)
++	buf = fmt.Appendf(buf, "tree %s\n", tree)
 +
-+	if params.Parent != "" {
-+		buf = fmt.Appendf(buf, "parent %s\n", params.Parent)
++	if parent != "" {
++		buf = fmt.Appendf(buf, "parent %s\n", parent)
 +	}
 +
 +	// git loads name and email from a config file
@@ -36,13 +31,10 @@
 +	email := "your_email@example.com"
 +	now := time.Now()
 +
-+	buf = fmt.Appendf(buf, "author %s <%s> %d", name, email, now.Unix())
-+	buf = now.AppendFormat(buf, " -0700\n")
-+
-+	message := params.Message
++	buf = fmt.Appendf(buf, "author %s <%s> %d %s\n", name, email, now.Unix(), now.Format("-0700"))
 +
 +	buf = fmt.Appendf(buf, "\n%s", message)
-+	if message != "" && message[len(message)-1] != '\n' {
++	if !strings.HasSuffix(message, "\n") {
 +		buf = append(buf, '\n')
 +	}
 +
@@ -56,41 +48,51 @@
 +	return nil
 +}
 +
-+func parseCommitTreeFlags(args []string) (commitTreeParams, error) {
-+	// Assuming that args is ["commit-tree", "<tree_root>", "-p", "<parent_hash>", "-m", "<message>"], just like os.Args
++func parseCommitTreeFlags(args []string) (tree, parent, message string, err error) {
++	// Assuming that args is ["commit-tree", "<tree_hash>", "-p", "<parent_hash>", "-m", "<message>"]
 +
-+	var params commitTreeParams
++	fs := flag.NewFlagSet(args[0], flag.ContinueOnError)
 +
-+	for i := 1; i < len(args); i++ {
-+		if !strings.HasPrefix(args[i], "-") { // non-flag argument: tree_root
-+			params.Tree = args[i]
++	if len(args) < 2 {
++		commitTreeUsage()
 +
-+			continue
-+		}
-+
-+		flag := args[i]
-+
-+		i++ // go to flag value
-+
-+		if i >= len(args) { // check it is given
-+			return commitTreeParams{}, fmt.Errorf("value for flag %v expected", flag)
-+		}
-+
-+		switch flag {
-+		case "-p":
-+			params.Parent = args[i]
-+		case "-m":
-+			params.Message = args[i]
-+		default:
-+			return commitTreeParams{}, fmt.Errorf("unsupported flag: %v", flag)
-+		}
++		err = fmt.Errorf("bad usage: tree_hash required")
++		return
 +	}
 +
-+	if params.Tree == "" || params.Message == "" {
-+		fmt.Fprintf(os.Stderr, "usage: mygit commit-tree <tree_root> -p <parent_hash> -m <message>\n")
++	// flag package doesn't support flags after arguments.
++	// So assuming tree_hash is always the first.
++	tree = args[1]
 +
-+		return commitTreeParams{}, fmt.Errorf("tree_hash and message required")
++	fs.StringVar(&parent, "p", "", "parent commit")
++	fs.StringVar(&message, "m", "", "commit message")
++
++	// Flags
++	err = fs.Parse(args[2:])
++	if err != nil {
++		commitTreeUsage()
++
++		err = fmt.Errorf("bad usage: %w", err)
++		return
 +	}
 +
-+	return params, nil
++	if message == "" {
++		commitTreeUsage()
++
++		err = fmt.Errorf("bad usage: message required")
++		return
++	}
++
++	if fs.NArg() != 0 {
++		commitTreeUsage()
++
++		err = fmt.Errorf("bad usage: unexpected args: %q", fs.Args())
++		return
++	}
++
++	return
++}
++
++func commitTreeUsage() {
++	fmt.Fprintf(os.Stderr, "usage: mygit commit-tree <tree_hash> -p <parent_hash> -m <message>\n")
 +}
