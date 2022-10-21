@@ -66,7 +66,7 @@ func parseCommitTreeFlags(args []string) (tree, parent, message string, err erro
 	fs.StringVar(&parent, "p", "", "parent commit")
 	fs.StringVar(&message, "m", "", "commit message")
 
-	// Flags
+	// Flags only
 	err = fs.Parse(args[2:])
 	if err != nil {
 		commitTreeUsage()
