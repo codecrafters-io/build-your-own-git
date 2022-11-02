@@ -14,6 +14,8 @@ func main() {
 
 	var err error
 
+	// some line changed
+
 	switch command := os.Args[1]; command {
 	case "init":
 		err = initCmd()
