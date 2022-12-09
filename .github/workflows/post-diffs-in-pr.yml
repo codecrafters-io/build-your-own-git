@@ -10,6 +10,6 @@ concurrency:
 
 jobs:
   post_diffs:
-    uses: codecrafters-io/course-sdk/.github/workflows/post-diffs-in-pr.yml@nikandfor/post_diffs_update
+    uses: codecrafters-io/course-sdk/.github/workflows/post-diffs-in-pr.yml@nikandfor/post_diffs_fix3
     with:
-      sdkRef: nikandfor/post_diffs_update
+      sdkRef: nikandfor/post_diffs_fix3
