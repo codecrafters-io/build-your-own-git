@@ -1,14 +1,25 @@
+#[allow(unused_imports)]
 use std::fs;
-use cli::Cli;
-use clap::Parser;
+use clap::{Parser, Subcommand};
 
-mod cli;
+#[derive(Parser)]
+pub struct Cli {
+    #[command(subcommand)]
+    pub command: SubCommands,
+}
+
+#[derive(Subcommand)]
+pub enum SubCommands {
+    /// Initialise a new repository
+    Init,
+}
+
 
 // Usage: your_git.sh <command> <arg1> <arg2> ...
 fn main() {
     let git_cli = Cli::parse();
     match git_cli.command {
-        cli::SubCommands::Init => {
+        SubCommands::Init => {
             fs::create_dir(".git").unwrap();
             fs::create_dir(".git/objects").unwrap();
             fs::create_dir(".git/refs").unwrap();

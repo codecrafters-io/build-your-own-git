@@ -7,6 +7,7 @@ use anyhow::{anyhow, Result};
 
 mod cli;
 mod cat_file;
+mod hash_object;
 
 // Usage: your_git.sh <command> <arg1> <arg2> ...
 fn main() -> Result<()> {
@@ -25,6 +26,14 @@ fn main() -> Result<()> {
             }
 
             cat_file::pretty_cat_file(object)?;
+        }
+        cli::SubCommands::HashObject { write, file } => {
+            if !write {
+                return Err(anyhow!("The `-w` flag is required"));
+            }
+
+            let sha = hash_object::hash_and_write_file(file)?;
+            println!("{}", sha);
         }
     }
 

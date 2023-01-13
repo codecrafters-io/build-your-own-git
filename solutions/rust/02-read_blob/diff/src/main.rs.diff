@@ -41,7 +41,7 @@
 +                return Err(anyhow!("The `-p` flag is required"));
 +            }
 +
-+            cat_file::pretty_cat_object(object)?;
++            cat_file::pretty_cat_file(object)?;
 +        }
      }
 +
