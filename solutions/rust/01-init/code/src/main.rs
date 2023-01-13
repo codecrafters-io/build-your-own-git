@@ -1,6 +1,6 @@
+use clap::{Parser, Subcommand};
 #[allow(unused_imports)]
 use std::fs;
-use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
 pub struct Cli {
@@ -13,7 +13,6 @@ pub enum SubCommands {
     /// Initialise a new repository
     Init,
 }
-
 
 // Usage: your_git.sh <command> <arg1> <arg2> ...
 fn main() {

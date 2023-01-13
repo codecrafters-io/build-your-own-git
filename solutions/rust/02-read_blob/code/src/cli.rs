@@ -18,5 +18,5 @@ pub enum SubCommands {
 
         /// The object to cat
         object: String,
-    }
+    },
 }

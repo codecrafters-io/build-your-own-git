@@ -1,12 +1,12 @@
 extern crate core;
 
-use std::fs;
-use cli::Cli;
-use clap::Parser;
 use anyhow::{anyhow, Result};
+use clap::Parser;
+use cli::Cli;
+use std::fs;
 
-mod cli;
 mod cat_file;
+mod cli;
 mod hash_object;
 
 // Usage: your_git.sh <command> <arg1> <arg2> ...
@@ -20,7 +20,10 @@ fn main() -> Result<()> {
             fs::write(".git/HEAD", "ref: refs/heads/master\n").unwrap();
             println!("Initialized git directory")
         }
-        cli::SubCommands::CatFile { pretty_print, object } => {
+        cli::SubCommands::CatFile {
+            pretty_print,
+            object,
+        } => {
             if !pretty_print {
                 return Err(anyhow!("The `-p` flag is required"));
             }

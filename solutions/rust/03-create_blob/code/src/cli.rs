@@ -1,5 +1,5 @@
-use std::path::PathBuf;
 use clap::{Parser, Subcommand};
+use std::path::PathBuf;
 
 #[derive(Parser)]
 pub struct Cli {
@@ -30,5 +30,5 @@ pub enum SubCommands {
 
         /// The file to hash
         file: PathBuf,
-    }
+    },
 }
