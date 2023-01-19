@@ -19,5 +19,5 @@
 +
 +        /// The object to cat
 +        object: String,
-+    }
++    },
 +}

@@ -1,19 +1,25 @@
-@@ -0,0 +1,47 @@
-+use std::fs::File;
-+use std::io::{BufRead, BufReader, Read, stdout};
-+use std::path::Path;
+@@ -0,0 +1,60 @@
 +use anyhow::{anyhow, Result};
 +use flate2::bufread::ZlibDecoder;
++use std::fs::File;
++use std::io::{stdout, BufRead, BufReader, Read};
++use std::path::Path;
 +
 +pub fn pretty_cat_file(object: String) -> Result<()> {
 +    // Known size of a sha-1 hash, see https://en.wikipedia.org/wiki/SHA-1
 +    if object.len() != 40 {
-+        return Err(anyhow!("object id should be 40 characters but was {}", object.len()));
++        return Err(anyhow!(
++            "object id should be 40 characters but was {}",
++            object.len()
++        ));
 +    }
 +
 +    let sub_directory: String = object.chars().take(2).collect();
 +    let file_name: String = object.chars().skip(2).collect();
-+    let path = Path::new(".git").join("objects").join(sub_directory).join(file_name);
++    let path = Path::new(".git")
++        .join("objects")
++        .join(sub_directory)
++        .join(file_name);
 +
 +    let file = BufReader::new(File::open(path)?);
 +    let decoder = ZlibDecoder::new(file);
@@ -21,7 +27,10 @@
 +    print_file(decoder)
 +}
 +
-+fn print_file<R>(reader: R) -> Result<()> where R : Read {
++fn print_file<R>(reader: R) -> Result<()>
++where
++    R: Read,
++{
 +    let mut reader = BufReader::new(reader);
 +
 +    let mut buffer = Vec::new();
@@ -30,7 +39,7 @@
 +
 +    let object_type = String::from_utf8(buffer.clone())?;
 +    if object_type.as_str() != "blob" {
-+        return Err(anyhow!("Unsupported object type: {}", object_type))
++        return Err(anyhow!("Unsupported object type: {}", object_type));
 +    }
 +
 +    buffer.clear();
@@ -41,7 +50,11 @@
 +
 +    let actual_size = std::io::copy(&mut reader, &mut stdout())?;
 +    if actual_size != size as u64 {
-+        return Err(anyhow!("Incorrect content length, expected {} but was {}", size, actual_size));
++        return Err(anyhow!(
++            "Incorrect content length, expected {} but was {}",
++            size,
++            actual_size
++        ));
 +    }
 +
 +    Ok(())
