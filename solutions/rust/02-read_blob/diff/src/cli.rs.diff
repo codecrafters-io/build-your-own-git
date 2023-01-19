@@ -1,4 +1,4 @@
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,23 @@
 +use clap::{Parser, Subcommand};
 +
 +#[derive(Parser)]
@@ -12,6 +12,7 @@
 +    /// Initialise a new repository
 +    Init,
 +
++    /// Provide content or type and size information for repository objects
 +    CatFile {
 +        /// Pretty print the object
 +        #[arg(short)]

@@ -11,6 +11,7 @@ pub enum SubCommands {
     /// Initialise a new repository
     Init,
 
+    /// Provide content or type and size information for repository objects
     CatFile {
         /// Pretty print the object
         #[arg(short)]

@@ -1,4 +1,4 @@
-@@ -1,22 +1,34 @@
+@@ -1,23 +1,34 @@
  use clap::{Parser, Subcommand};
 +use std::path::PathBuf;
 
@@ -13,7 +13,7 @@
      /// Initialise a new repository
      Init,
 
-+    /// Provide content or type and size information for repository objects
+     /// Provide content or type and size information for repository objects
      CatFile {
          /// Pretty print the object
          #[arg(short)]
