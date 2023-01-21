@@ -1,10 +1,15 @@
+use std::fs::File;
+use std::io::{BufRead, BufReader, Read};
+use std::path::Path;
 use anyhow::{anyhow, Result};
 use flate2::bufread::ZlibDecoder;
-use std::fs::File;
-use std::io::{stdout, BufRead, BufReader, Read};
-use std::path::Path;
 
-pub fn pretty_cat_file(hash: String) -> Result<()> {
+pub struct GitObject {
+    pub object_type: String,
+    pub content: Vec<u8>,
+}
+
+pub fn load_object(hash: String) -> Result<GitObject> {
     // Known size of a sha-1 hash, see https://en.wikipedia.org/wiki/SHA-1
     if hash.len() != 40 {
         return Err(anyhow!(
@@ -23,12 +28,12 @@ pub fn pretty_cat_file(hash: String) -> Result<()> {
     let file = BufReader::new(File::open(path)?);
     let decoder = ZlibDecoder::new(file);
 
-    print_file(decoder)
+    read_object(decoder)
 }
 
-fn print_file<R>(reader: R) -> Result<()>
-where
-    R: Read,
+fn read_object<R>(reader: R) -> Result<GitObject>
+    where
+        R: Read,
 {
     let mut reader = BufReader::new(reader);
 
@@ -37,9 +42,6 @@ where
     buffer.pop();
 
     let object_type = String::from_utf8(buffer.clone())?;
-    if object_type.as_str() != "blob" {
-        return Err(anyhow!("Unsupported object type: {}", object_type));
-    }
 
     buffer.clear();
     reader.read_until(0, &mut buffer)?;
@@ -47,14 +49,18 @@ where
 
     let size = String::from_utf8(buffer.clone())?.parse::<usize>()?;
 
-    let actual_size = std::io::copy(&mut reader, &mut stdout())?;
-    if actual_size != size as u64 {
+    let mut content = Vec::new();
+    reader.read_to_end(&mut content)?;
+    if content.len() != size {
         return Err(anyhow!(
             "Incorrect content length, expected {} but was {}",
             size,
-            actual_size
+            content.len()
         ));
     }
 
-    Ok(())
+    Ok(GitObject {
+        object_type,
+        content,
+    })
 }

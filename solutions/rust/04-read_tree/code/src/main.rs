@@ -7,6 +7,9 @@ use std::fs;
 
 mod cat_file;
 mod cli;
+mod hash_object;
+mod ls_tree;
+mod object;
 
 // Usage: your_git.sh <command> <arg1> <arg2> ...
 fn main() -> Result<()> {
@@ -28,6 +31,21 @@ fn main() -> Result<()> {
             }
 
             cat_file::pretty_cat_file(hash)?;
+        }
+        cli::SubCommands::HashObject { write, file } => {
+            if !write {
+                return Err(anyhow!("The `-w` flag is required"));
+            }
+
+            let sha = hash_object::hash_and_write_file(file)?;
+            println!("{}", sha);
+        }
+        cli::SubCommands::LsTree { name_only, hash } => {
+            if !name_only {
+                return Err(anyhow!("The `--name-only` flag is required"));
+            }
+
+            ls_tree::ls_tree(hash)?;
         }
     }
 

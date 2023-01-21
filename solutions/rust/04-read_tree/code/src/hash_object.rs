@@ -21,15 +21,15 @@ pub fn hash_and_write_file(path: PathBuf) -> Result<String> {
     // Write the content
     reader.read_to_end(&mut buffer)?;
 
-    let hash = calculate_sha1(&mut buffer);
+    let object_id = calculate_sha1(&mut buffer);
 
-    let output_file = create_output_file(&hash)?;
+    let output_file = create_output_file(&object_id)?;
 
     let mut zlib_reader = ZlibEncoder::new(BufReader::new(&buffer[..]), Compression::fast());
 
     std::io::copy(&mut zlib_reader, &mut BufWriter::new(output_file))?;
 
-    Ok(hash)
+    Ok(object_id)
 }
 
 fn calculate_sha1(buffer: &mut Vec<u8>) -> String {
@@ -38,9 +38,9 @@ fn calculate_sha1(buffer: &mut Vec<u8>) -> String {
     hex::encode(hasher.finalize())
 }
 
-fn create_output_file(hash: &String) -> Result<File> {
-    let sub_directory: String = hash.chars().take(2).collect();
-    let file_name: String = hash.chars().skip(2).collect();
+fn create_output_file(object_id: &String) -> Result<File> {
+    let sub_directory: String = object_id.chars().take(2).collect();
+    let file_name: String = object_id.chars().skip(2).collect();
     let mut output_path = Path::new(".git").join("objects").join(sub_directory);
     if !output_path.exists() {
         create_dir(output_path.clone())?;

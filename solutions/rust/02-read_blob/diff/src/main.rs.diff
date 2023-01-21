@@ -35,13 +35,13 @@
 +        }
 +        cli::SubCommands::CatFile {
 +            pretty_print,
-+            object,
++            hash,
 +        } => {
 +            if !pretty_print {
 +                return Err(anyhow!("The `-p` flag is required"));
 +            }
 +
-+            cat_file::pretty_cat_file(object)?;
++            cat_file::pretty_cat_file(hash)?;
 +        }
      }
 +
