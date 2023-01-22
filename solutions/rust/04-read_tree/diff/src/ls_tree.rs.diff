@@ -1,15 +1,21 @@
-@@ -0,0 +1,42 @@
-+use std::io::{BufRead, BufReader, Cursor, Seek};
+@@ -0,0 +1,48 @@
++use crate::object::{load_object, validate_sha1, GitObject};
 +use anyhow::{anyhow, Result};
-+use crate::object::{GitObject, load_object, validate_sha1};
++use std::io::{BufRead, BufReader, Cursor, Seek};
 +
 +pub fn ls_tree(hash: String) -> Result<()> {
 +    validate_sha1(hash.as_str())?;
 +
-+    let GitObject{ object_type, content } = load_object(hash)?;
++    let GitObject {
++        object_type,
++        content,
++    } = load_object(hash)?;
 +
 +    if object_type != "tree" {
-+        return Err(anyhow!("Expected object type 'tree' but was {}", object_type));
++        return Err(anyhow!(
++            "Expected object type 'tree' but was {}",
++            object_type
++        ));
 +    }
 +
 +    print_names(content)?;

@@ -32,7 +32,7 @@ pub fn hash_and_write_file(path: PathBuf) -> Result<String> {
     Ok(hash)
 }
 
-fn calculate_sha1(buffer: &mut Vec<u8>) -> String {
+fn calculate_sha1(buffer: &Vec<u8>) -> String {
     let mut hasher = Sha1::new();
     hasher.update(&buffer);
     hex::encode(hasher.finalize())

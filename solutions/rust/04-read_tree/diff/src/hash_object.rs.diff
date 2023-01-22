@@ -1,19 +1,4 @@
-@@ -1,52 +1,52 @@
- use anyhow::Result;
- use flate2::bufread::ZlibEncoder;
- use flate2::Compression;
- use sha1::{Digest, Sha1};
- use std::fs::{create_dir, File};
- use std::io::{BufReader, BufWriter, Read};
- use std::path::{Path, PathBuf};
-
- pub fn hash_and_write_file(path: PathBuf) -> Result<String> {
-     let source_file = File::open(path)?;
-     let size = source_file.metadata()?.len();
-     let mut reader = BufReader::new(source_file);
-
-     let mut buffer = Vec::new();
-
+@@ -16,37 +16,37 @@
      // Write the header
      buffer.extend("blob ".as_bytes());
      buffer.extend(size.to_string().as_bytes());
@@ -22,21 +7,18 @@
      // Write the content
      reader.read_to_end(&mut buffer)?;
 
--    let hash = calculate_sha1(&mut buffer);
-+    let object_id = calculate_sha1(&mut buffer);
+     let hash = calculate_sha1(&mut buffer);
 
--    let output_file = create_output_file(&hash)?;
-+    let output_file = create_output_file(&object_id)?;
+     let output_file = create_output_file(&hash)?;
 
      let mut zlib_reader = ZlibEncoder::new(BufReader::new(&buffer[..]), Compression::fast());
 
      std::io::copy(&mut zlib_reader, &mut BufWriter::new(output_file))?;
 
--    Ok(hash)
-+    Ok(object_id)
+     Ok(hash)
  }
 
- fn calculate_sha1(buffer: &mut Vec<u8>) -> String {
+ fn calculate_sha1(buffer: &Vec<u8>) -> String {
      let mut hasher = Sha1::new();
      hasher.update(&buffer);
      hex::encode(hasher.finalize())

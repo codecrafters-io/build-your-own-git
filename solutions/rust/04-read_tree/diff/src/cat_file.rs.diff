@@ -1,11 +1,11 @@
-@@ -1,60 +1,23 @@
+@@ -1,60 +1,26 @@
++use crate::object::{load_object, validate_sha1, GitObject};
  use anyhow::{anyhow, Result};
 -use flate2::bufread::ZlibDecoder;
 -use std::fs::File;
 -use std::io::{stdout, BufRead, BufReader, Read};
 -use std::path::Path;
-+use std::io::{stdout, Read, Cursor};
-+use crate::object::{GitObject, load_object, validate_sha1};
++use std::io::{stdout, Cursor, Read};
 
  pub fn pretty_cat_file(hash: String) -> Result<()> {
 -    // Known size of a sha-1 hash, see https://en.wikipedia.org/wiki/SHA-1
@@ -23,7 +23,10 @@
 -        .join("objects")
 -        .join(sub_directory)
 -        .join(file_name);
-+    let GitObject{ object_type, content } = load_object(hash)?;
++    let GitObject {
++        object_type,
++        content,
++    } = load_object(hash)?;
 
 -    let file = BufReader::new(File::open(path)?);
 -    let decoder = ZlibDecoder::new(file);

@@ -1,0 +1,30 @@
+@@ -19,26 +19,29 @@
+         pretty_print: bool,
+
+         /// The object to cat
+         hash: String,
+     },
+
+     /// Compute object ID and optionally creates a blob from a file
+     HashObject {
+         /// Write the object to the database after hashing
+         #[arg(short)]
+         write: bool,
+
+         /// The file to hash
+         file: PathBuf,
+     },
+
+     /// Lists the contents of a given tree object
+     LsTree {
+         /// List only filenames
+         #[arg(long)]
+         name_only: bool,
+
+         /// The id of a tree
+         hash: String,
+     },
++
++    /// Creates a tree object using the current index
++    WriteTree,
+ }

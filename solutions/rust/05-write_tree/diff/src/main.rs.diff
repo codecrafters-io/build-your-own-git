@@ -1,4 +1,4 @@
-@@ -1,44 +1,50 @@
+@@ -1,50 +1,55 @@
  extern crate core;
 
  use anyhow::{anyhow, Result};
@@ -9,8 +9,9 @@
  mod cat_file;
  mod cli;
  mod hash_object;
-+mod ls_tree;
-+mod object;
+ mod ls_tree;
+ mod object;
++mod write_tree;
 
  // Usage: your_git.sh <command> <arg1> <arg2> ...
  fn main() -> Result<()> {
@@ -23,11 +24,7 @@
              fs::write(".git/HEAD", "ref: refs/heads/master\n").unwrap();
              println!("Initialized git directory")
          }
--        cli::SubCommands::CatFile {
--            pretty_print,
--            hash,
--        } => {
-+        cli::SubCommands::CatFile { pretty_print, hash } => {
+         cli::SubCommands::CatFile { pretty_print, hash } => {
              if !pretty_print {
                  return Err(anyhow!("The `-p` flag is required"));
              }
@@ -42,12 +39,16 @@
              let hash = hash_object::hash_and_write_file(file)?;
              println!("{}", hash);
          }
-+        cli::SubCommands::LsTree { name_only, hash } => {
-+            if !name_only {
-+                return Err(anyhow!("The `--name-only` flag is required"));
-+            }
-+
-+            ls_tree::ls_tree(hash)?;
+         cli::SubCommands::LsTree { name_only, hash } => {
+             if !name_only {
+                 return Err(anyhow!("The `--name-only` flag is required"));
+             }
+
+             ls_tree::ls_tree(hash)?;
+         }
++        cli::SubCommands::WriteTree => {
++            let hash = write_tree::write_tree(".")?;
++            println!("{}", hash);
 +        }
      }
 

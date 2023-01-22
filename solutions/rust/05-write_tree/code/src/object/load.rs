@@ -1,13 +1,9 @@
+use crate::object::GitObject;
 use anyhow::{anyhow, Result};
 use flate2::bufread::ZlibDecoder;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Read};
 use std::path::Path;
-
-pub struct GitObject {
-    pub object_type: String,
-    pub content: Vec<u8>,
-}
 
 pub fn load_object(hash: String) -> Result<GitObject> {
     // Known size of a sha-1 hash, see https://en.wikipedia.org/wiki/SHA-1

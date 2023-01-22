@@ -33,5 +33,5 @@
 +
 +        /// The id of a tree
 +        hash: String,
-+    }
++    },
  }

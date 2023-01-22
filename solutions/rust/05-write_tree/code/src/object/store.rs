@@ -1,25 +1,23 @@
+use crate::object::GitObject;
 use anyhow::Result;
 use flate2::bufread::ZlibEncoder;
 use flate2::Compression;
 use sha1::{Digest, Sha1};
 use std::fs::{create_dir, File};
-use std::io::{BufReader, BufWriter, Read};
-use std::path::{Path, PathBuf};
+use std::io::{BufReader, BufWriter};
+use std::path::Path;
 
-pub fn hash_and_write_file(path: PathBuf) -> Result<String> {
-    let source_file = File::open(path)?;
-    let size = source_file.metadata()?.len();
-    let mut reader = BufReader::new(source_file);
-
+pub fn store_object(mut object: GitObject) -> Result<String> {
     let mut buffer = Vec::new();
 
     // Write the header
-    buffer.extend("blob ".as_bytes());
-    buffer.extend(size.to_string().as_bytes());
+    buffer.extend(object.object_type.as_bytes());
+    buffer.extend(" ".as_bytes());
+    buffer.extend(object.content.len().to_string().as_bytes());
     buffer.push(0);
 
     // Write the content
-    reader.read_to_end(&mut buffer)?;
+    buffer.append(&mut object.content);
 
     let hash = calculate_sha1(&mut buffer);
 
