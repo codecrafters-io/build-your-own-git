@@ -1,4 +1,4 @@
-@@ -1,55 +1,60 @@
+@@ -1,55 +1,64 @@
  extern crate core;
 
  use anyhow::{anyhow, Result};
@@ -8,11 +8,11 @@
 
  mod cat_file;
  mod cli;
++mod commit_tree;
  mod hash_object;
  mod ls_tree;
  mod object;
  mod write_tree;
-+mod commit_tree;
 
  // Usage: your_git.sh <command> <arg1> <arg2> ...
  fn main() -> Result<()> {
@@ -51,7 +51,11 @@
              let hash = write_tree::write_tree(".")?;
              println!("{}", hash);
          }
-+        cli::SubCommands::CommitTree { hash, parent_hash, message } => {
++        cli::SubCommands::CommitTree {
++            hash,
++            parent_hash,
++            message,
++        } => {
 +            let hash = commit_tree::commit_tree(hash, parent_hash, message)?;
 +            println!("{}", hash);
 +        }
