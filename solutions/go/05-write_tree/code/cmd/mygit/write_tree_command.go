@@ -74,7 +74,7 @@ func writeTree(dir string) (object.Hash, error) {
 			}
 		}
 
-		table = fmt.Appendf(table, "%06o %v\000%s", gitMode, f.Name(), hash[:])
+		table = fmt.Appendf(table, "%o %v\000%s", gitMode, f.Name(), hash[:])
 	}
 
 	hash, err := object.Store(bytes.NewReader(table), "tree", int64(len(table)))
