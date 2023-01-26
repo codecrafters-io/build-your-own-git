@@ -1,0 +1,39 @@
+name: Validate Git is hidden
+
+on:
+  workflow_call:
+    inputs:
+      sdkRef:
+        required: false
+        type: string
+        default: main
+
+jobs:
+  verify_templates_compiled:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate Git is hidden
+        run: |
+          function tag_name {
+              dockerfile=$1
+              local base = $(basename $dockerfile)
+              base=${base%.*}
+
+              echo git-tester-${base}
+          }
+
+          for f in dockerfiles/*.Dockerfile; do
+              tag=$(tag_name "$f")
+
+              docker build -t "$tag" -f "$f" ./dockerfiles
+
+              if docker run --rm -it "$tag" which git; then
+                  # found git
+                  false
+              else
+                  # ok
+              fi
+
+              docker rmi "$tag"
+          done
