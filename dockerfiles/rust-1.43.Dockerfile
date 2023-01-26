@@ -1,6 +1,8 @@
 FROM rust:1.43-buster
 
-RUN apt-get -y remove git
+ENV CODECRAFTERS_GIT=/usr/bin/codecrafters-secret-git
+
+RUN mv $(which git) $CODECRAFTERS_GIT
 
 COPY Cargo.toml /app/Cargo.toml
 COPY Cargo.lock /app/Cargo.lock
