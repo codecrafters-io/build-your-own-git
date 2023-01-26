@@ -1,15 +1,12 @@
 name: Validate Git is hidden
 
 on:
-  workflow_call:
-    inputs:
-      sdkRef:
-        required: false
-        type: string
-        default: main
+  pull_request:
+  push:
+    branches: [main]
 
 jobs:
-  verify_templates_compiled:
+  test_git_is_unavailable:
     runs-on: ubuntu-latest
 
     steps:
