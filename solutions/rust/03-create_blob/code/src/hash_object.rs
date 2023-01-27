@@ -38,9 +38,9 @@ fn calculate_sha1(buffer: &Vec<u8>) -> String {
     hex::encode(hasher.finalize())
 }
 
-fn create_output_file(object_id: &String) -> Result<File> {
-    let sub_directory: String = object_id.chars().take(2).collect();
-    let file_name: String = object_id.chars().skip(2).collect();
+fn create_output_file(hash: &String) -> Result<File> {
+    let sub_directory: String = hash.chars().take(2).collect();
+    let file_name: String = hash.chars().skip(2).collect();
     let mut output_path = Path::new(".git").join("objects").join(sub_directory);
     if !output_path.exists() {
         create_dir(output_path.clone())?;
