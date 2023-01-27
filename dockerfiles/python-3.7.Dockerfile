@@ -1,3 +1,5 @@
 FROM jfloff/alpine-python:3.7
 
-RUN apk del git
+ENV CODECRAFTERS_GIT=/usr/bin/codecrafters-secret-git
+
+RUN mv $(which git) $CODECRAFTERS_GIT

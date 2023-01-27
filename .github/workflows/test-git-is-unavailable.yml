@@ -1,0 +1,16 @@
+name: Validate Git is hidden
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test_git_is_unavailable:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Validate Git is hidden
+        run: ./scripts/check_git_is_unavailable.sh
