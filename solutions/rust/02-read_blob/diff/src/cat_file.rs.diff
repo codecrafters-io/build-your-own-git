@@ -5,17 +5,17 @@
 +use std::io::{stdout, BufRead, BufReader, Read};
 +use std::path::Path;
 +
-+pub fn pretty_cat_file(object: String) -> Result<()> {
++pub fn pretty_cat_file(hash: String) -> Result<()> {
 +    // Known size of a sha-1 hash, see https://en.wikipedia.org/wiki/SHA-1
-+    if object.len() != 40 {
++    if hash.len() != 40 {
 +        return Err(anyhow!(
 +            "object id should be 40 characters but was {}",
-+            object.len()
++            hash.len()
 +        ));
 +    }
 +
-+    let sub_directory: String = object.chars().take(2).collect();
-+    let file_name: String = object.chars().skip(2).collect();
++    let sub_directory: String = hash.chars().take(2).collect();
++    let file_name: String = hash.chars().skip(2).collect();
 +    let path = Path::new(".git")
 +        .join("objects")
 +        .join(sub_directory)

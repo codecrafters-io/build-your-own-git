@@ -20,23 +20,20 @@ fn main() -> Result<()> {
             fs::write(".git/HEAD", "ref: refs/heads/master\n").unwrap();
             println!("Initialized git directory")
         }
-        cli::SubCommands::CatFile {
-            pretty_print,
-            object,
-        } => {
+        cli::SubCommands::CatFile { pretty_print, hash } => {
             if !pretty_print {
                 return Err(anyhow!("The `-p` flag is required"));
             }
 
-            cat_file::pretty_cat_file(object)?;
+            cat_file::pretty_cat_file(hash)?;
         }
         cli::SubCommands::HashObject { write, file } => {
             if !write {
                 return Err(anyhow!("The `-w` flag is required"));
             }
 
-            let sha = hash_object::hash_and_write_file(file)?;
-            println!("{}", sha);
+            let hash = hash_object::hash_and_write_file(file)?;
+            println!("{}", hash);
         }
     }
 
