@@ -19,7 +19,7 @@ pub enum SubCommands {
         pretty_print: bool,
 
         /// The object to cat
-        object: String,
+        hash: String,
     },
 
     /// Compute object ID and optionally creates a blob from a file

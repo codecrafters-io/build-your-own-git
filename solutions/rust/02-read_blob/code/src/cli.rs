@@ -18,6 +18,6 @@ pub enum SubCommands {
         pretty_print: bool,
 
         /// The object to cat
-        object: String,
+        hash: String,
     },
 }

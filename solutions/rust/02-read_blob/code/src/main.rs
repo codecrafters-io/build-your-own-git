@@ -19,15 +19,12 @@ fn main() -> Result<()> {
             fs::write(".git/HEAD", "ref: refs/heads/master\n").unwrap();
             println!("Initialized git directory")
         }
-        cli::SubCommands::CatFile {
-            pretty_print,
-            object,
-        } => {
+        cli::SubCommands::CatFile { pretty_print, hash } => {
             if !pretty_print {
                 return Err(anyhow!("The `-p` flag is required"));
             }
 
-            cat_file::pretty_cat_file(object)?;
+            cat_file::pretty_cat_file(hash)?;
         }
     }
 
