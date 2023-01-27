@@ -42,6 +42,6 @@ pub enum SubCommands {
         hash: String,
     },
 
-    /// Creates a tree object using the current index
+    /// Creates a tree object
     WriteTree,
 }
