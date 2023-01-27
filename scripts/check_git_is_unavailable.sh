@@ -33,18 +33,26 @@ for f in dockerfiles/*.Dockerfile; do
 	lang=$(lang_slug "$f")
 	tag=$(tag_name "$f")
 
-	docker build -t "$tag" -f "$f" "./starter_templates/$lang/"
+	docker build -q -t "$tag" -f "$f" "./starter_templates/$lang/" >/dev/null
 
-	if in_image "$tag" which sh && ! in_image "$tag" which git; then
+	if in_image "$tag" which sh >/dev/null && ! in_image "$tag" which git; then
 		# ok
-		true
+		echo "ok - $f"
 	else
 		# found git or something failed in general
 		ok=1
+
+		echo "fail - $f"
 	fi
 
-	docker rmi "$tag"
+	docker rmi "$tag" >/dev/null
 done
 
-exit "$ok"
+if test "$ok" -eq 0; then
+	echo OK
+else
+	echo FAIL
+
+	exit "$ok"
+fi
 
