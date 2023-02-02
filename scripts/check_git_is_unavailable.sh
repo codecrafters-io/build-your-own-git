@@ -37,12 +37,12 @@ for f in dockerfiles/*.Dockerfile; do
 
 	if in_image "$tag" which sh >/dev/null && ! in_image "$tag" which git; then
 		# ok
-		echo "ok - $f"
+		echo "ok   $f"
 	else
 		# found git or something failed in general
 		ok=1
 
-		echo "fail - $f"
+		echo "fail $f"
 	fi
 
 	docker rmi "$tag" >/dev/null
