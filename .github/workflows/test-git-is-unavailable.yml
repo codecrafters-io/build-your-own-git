@@ -12,5 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: satackey/action-docker-layer-caching@v0.0.11
+        continue-on-error: true
+        with:
+          key: v3-template-compilation-{hash}
+          restore-keys: |
+            v3-template-compilation-
+
       - name: Validate Git is hidden
         run: ./scripts/check_git_is_unavailable.sh
