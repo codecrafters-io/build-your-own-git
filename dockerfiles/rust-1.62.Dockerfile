@@ -1,7 +1,8 @@
 FROM rust:1.62-buster
 
-ENV CODECRAFTERS_GIT=/usr/bin/codecrafters-secret-git
-RUN mv $(which git) $CODECRAFTERS_GIT
+RUN apt update && \
+	apt install --no-install-recommends --yes git && \
+	rm -r /var/lib/apt/lists/
 
 COPY Cargo.toml /app/Cargo.toml
 COPY Cargo.lock /app/Cargo.lock

@@ -1,9 +1,9 @@
 name: Validate Git is hidden
 
+# Disabled for now, until we figure out how to remove Git from other downstream components
 on:
-  pull_request:
   push:
-    branches: [main]
+    branches: [test-git-is-unavailable]
 
 jobs:
   test_git_is_unavailable:
