@@ -3,6 +3,8 @@ use crate::object::{store_object, GitObject};
 use anyhow::Result;
 use std::fs::{read_dir, DirEntry};
 use std::os::unix::ffi::OsStrExt;
+#[cfg(unix)]
+use std::os::unix::fs::PermissionsExt;
 use std::path::Path;
 
 const DIRECTORY_FLAG: u16 = 1 << 14;
@@ -28,13 +30,18 @@ pub fn write_tree<P: AsRef<Path>>(path: P) -> Result<String> {
         } else if file_type.is_file() {
             let hash = hash_and_write_file(file.path())?;
 
-            (hash, FILE_FLAG | 0o777)
+            #[cfg(unix)]
+            let file_mode = file.metadata()?.permissions().mode();
+            #[cfg(not(unix))]
+            let file_mode = 0o644;
+
+            (hash, FILE_FLAG | ((file_mode & 0o777) as u16))
         } else {
             // Symlinks not supported
             continue;
         };
 
-        content.extend_from_slice(format!("{:06o} ", mode).as_bytes());
+        content.extend_from_slice(format!("{:o} ", mode).as_bytes());
         content.extend_from_slice(file.file_name().as_bytes());
         content.push(0);
         content.append(&mut hex::decode(hash)?);
