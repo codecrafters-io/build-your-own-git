@@ -62,4 +62,22 @@
     required_executable: "cargo (1.54)"
     user_editable_file: "src/main.rs"
 
+- language: swift
+  file_mappings:
+    - source: starter_templates/README.md
+      target: README.md
+    - source: starter_templates/codecrafters.yml
+      target: codecrafters.yml
+    - source: starter_templates/swift/.gitignore
+      target: .gitignore
+    - source: starter_templates/swift/Sources/swift-git-challenge/Main.swift
+      target: Sources/swift-git-challenge/Main.swift
+    - source: starter_templates/swift/Package.swift
+      target: Package.swift
+    - source: starter_templates/swift/your_git.sh
+      target: your_git.sh
+  template_attributes:
+    required_executable: "swift (5.7)"
+    user_editable_file: "Sources/swift-git-challenge/Main.swift"
+
 # TODO: Add kotlin here once it's supported again!
