@@ -14,7 +14,7 @@ short_description_md: |
 
 completion_percentage: 10
 
-early_access_languages: []
+early_access_languages: ["swift"]
 supported_languages: ["python", "ruby", "go", "rust"] # TODO: Add kotlin back once our builds are faster
 
 starter_repos:
