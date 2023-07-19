@@ -10,6 +10,8 @@
       target: cmd/mygit/main.go
     - source: starter_templates/go/your_git.sh
       target: your_git.sh
+    - source: starter_templates/.gitattributes
+      target: .gitattributes
   template_attributes:
     required_executable: "go"
     user_editable_file: "cmd/mygit/main.go"
@@ -24,6 +26,8 @@
       target: app/main.py
     - source: starter_templates/python/your_git.sh
       target: your_git.sh
+    - source: starter_templates/.gitattributes
+      target: .gitattributes
   template_attributes:
     required_executable: "python"
     user_editable_file: "app/main.py"
@@ -38,6 +42,8 @@
       target: app/main.rb
     - source: starter_templates/ruby/your_git.sh
       target: your_git.sh
+    - source: starter_templates/.gitattributes
+      target: .gitattributes
   template_attributes:
     required_executable: "ruby"
     user_editable_file: "app/main.rb"
@@ -58,6 +64,8 @@
       target: Cargo.lock
     - source: starter_templates/rust/your_git.sh
       target: your_git.sh
+    - source: starter_templates/.gitattributes
+      target: .gitattributes
   template_attributes:
     required_executable: "cargo (1.54)"
     user_editable_file: "src/main.rs"
