@@ -1,2 +1,2 @@
 setup:
-	git clone https://github.com/codecrafters-io/course-definition-tester course_definition_tester
+	git clone https://github.com/codecrafters-io/course-sdk course_sdk
