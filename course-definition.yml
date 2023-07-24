@@ -9,50 +9,46 @@ description_md: |
   way, you'll learn about the `.git` directory, Git objects (blobs, commits,
   trees etc.), packfiles, Git's transfer protocols and much more.
 
+# Keep this under 70 characters
 short_description_md: |
-  Learn about git objects, plumbing commands, git transfer protocols and more
+  Learn about git objects, plumbing commands and more
 
 completion_percentage: 10
 
-early_access_languages: []
-supported_languages: ["python", "ruby", "go", "rust"] # TODO: Add kotlin back once our builds are faster
+languages:
+  - slug: "python"
+    starter_repository_url: "https://github.com/codecrafters-io/git-starter-python"
 
-starter_repos:
-  python: https://github.com/codecrafters-io/git-starter-python
-  ruby: https://github.com/codecrafters-io/git-starter-ruby
-  go: https://github.com/codecrafters-io/git-starter-go
-  rust: https://github.com/codecrafters-io/git-starter-rust
+  - slug: "ruby"
+    starter_repository_url: "https://github.com/codecrafters-io/git-starter-ruby"
+
+  - slug: "go"
+    starter_repository_url: "https://github.com/codecrafters-io/git-starter-go"
+
+  - slug: "rust"
+    starter_repository_url: "https://github.com/codecrafters-io/git-starter-rust"
+
+# TODO: Add this back once builds are faster
 #  kotlin: https://github.com/codecrafters-io/git-starter-kotlin
 
 marketing:
-  description: Learn about git objects, plumbing commands, git transfer protocols and more
   difficulty: hard
-  introduction_md: |
-    In this challenge, you'll build a Git implementation that can initialize a
-    repository, create commits and clone a public repository from GitHub. Along
-    the way, you'll learn about the [`.git`
-    directory](http://gitready.com/advanced/2009/03/23/whats-inside-your-git-directory.html),
-    a few of Git's ["plumbing"
-    commands](https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain),
-    [Git objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects)
-    (blobs, commits, trees etc.), Git's [transfer
-    protocols](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols) and
-    more.
+  sample_extension_idea_title: "Push to remote repository"
+  sample_extension_idea_description: "A Git implementation that can push changes to a remote repository"
   testimonials:
     - author_name: "Beyang Liu"
       author_description: "CTO, Sourcegraph"
-      author_avatar: "https://codecrafters.io/images/testimonials/beyang_liu.jpeg"
+      author_avatar: "https://codecrafters.io/images/external/testimonials/beyang-liu.jpeg"
       link: "https://twitter.com/beyang/status/1271225214886506496"
       text: |
         Found out about CodeCrafters from a colleague. It's a tutorial site that has you build your own version of things
         like Git and Docker from scratch. A cool way to build a stronger mental model of how those tools work.
     - author_name: "Lacronicus"
       author_description: "Reddit user"
-      author_avatar: "https://codecrafters.io/images/testimonials/lacronicus.png"
+      author_avatar: "https://codecrafters.io/images/external/testimonials/reddit-user.png"
       link: "https://www.reddit.com/r/programming/comments/fefrka/advanced_programming_challenges/fjoxu7n/"
       text: |
         Never in my life have I needed something so much and not known until I received it.
-
 
 stages:
   - slug: "init"
@@ -78,6 +74,7 @@ stages:
     marketing_md: |
       In this stage, you'll implement the `git init` command. You'll initialize
       a git repository by creating a `.git` directory and some files inside it.
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_init.go#L12"
 
   - slug: "read_blob"
     name: "Read a blob object"
@@ -107,7 +104,11 @@ stages:
       ./your_git.sh cat-file -p <blob_sha>
       ```
 
-      It is expected to print out the binary data that the blob contains.
+      It is expected to print out the binary data that the blob contains. 
+
+      In many programming languages the default print function (like [`fmt.Println`](https://pkg.go.dev/fmt#example-Println)) 
+      will append a newline to the output. The output of `cat-file` must not contain a 
+      newline at the end, so you might need to use a different function to print the output.
 
       {{#lang_is_python}}
       Keep in mind that Git uses [Zlib](https://en.wikipedia.org/wiki/Zlib) to
@@ -145,7 +146,7 @@ stages:
       commands](https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain)
       we'll encounter in this challenge: [`git
       cat-file`](https://git-scm.com/docs/git-cat-file).
-
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_read_blob.go#L18"
 
   - slug: "create_blob"
     name: "Create a blob object"
@@ -176,6 +177,7 @@ stages:
     marketing_md: |
       In the previous stage, we learnt how to read a blob. In this stage, we'll
       persist a blob by implementing the `git hash-object` command.
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/master/internal/stage_create_blob.go"
 
   - slug: "read_tree"
     name: "Read a tree object"
@@ -226,6 +228,7 @@ stages:
       Git object: [the tree](https://developer.github.com/v3/git/trees/). In
       this stage, you'll read a tree object from storage by implementing the
       `git ls-tree` command.
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_read_tree.go#L20"
 
   - slug: "write_tree"
     name: "Write a tree object"
@@ -258,13 +261,14 @@ stages:
 
       To keep things simple, we won't implement an `index`, we'll just assume
       that all changes in the worktree are staged.
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_write_tree.go#L21"
 
   - slug: "create_commit"
     name: "Create a commit"
     difficulty: medium
     description_md: |
       Let's move on to the last git object we'll be dealing with in this
-      challenge: the commit.
+      challenge: [the commit](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_git_commit_objects).
 
       To create a commit, you'll need the following information:
 
@@ -298,6 +302,7 @@ stages:
       challenge: the commit. In this stage, you'll create a commit by
       implementing the [`git commit-tree`](https://git-scm.com/docs/git-commit-tree)
       command.
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/master/internal/stage_create_commit.go"
 
   - slug: "clone_repository"
     name: "Clone a repository"
@@ -329,8 +334,8 @@ stages:
       - Read commit object attributes from the `.git` directory
 
       To know more about the protocol format, checkout
-      [pack-protocol.txt](https://github.com/git/git/blob/master/Documentation/technical/pack-protocol.txt),
-      [pack-format.txt](https://github.com/git/git/blob/master/Documentation/technical/pack-format.txt),
+      [gitprotocol-pack.txt](https://github.com/git/git/blob/795ea8776befc95ea2becd8020c7a284677b4161/Documentation/gitprotocol-pack.txt),
+      [gitformat-pack.txt](https://github.com/git/git/blob/795ea8776befc95ea2becd8020c7a284677b4161/Documentation/gitformat-pack.txt),
       and
       [these](https://codewords.recurse.com/issues/three/unpacking-git-packfiles)
       [articles](https://medium.com/@concertdaw/sneaky-git-number-encoding-ddcc5db5329f).
@@ -340,3 +345,4 @@ stages:
       stage, you'll clone a public repository from GitHub. To do this, you'll
       use one of Git's [Transfer
       protocols](https://git-scm.com/book/en/v2/Git-Internals-Transfer-Protocols).
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_clone_repository.go#L80"
