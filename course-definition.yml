@@ -17,16 +17,9 @@ completion_percentage: 10
 
 languages:
   - slug: "go"
-    starter_repository_url: "https://github.com/codecrafters-io/git-starter-go"
-
   - slug: "python"
-    starter_repository_url: "https://github.com/codecrafters-io/git-starter-python"
-
   - slug: "ruby"
-    starter_repository_url: "https://github.com/codecrafters-io/git-starter-ruby"
-
   - slug: "rust"
-    starter_repository_url: "https://github.com/codecrafters-io/git-starter-rust"
 
 # TODO: Add this back once builds are faster
 #  kotlin: https://github.com/codecrafters-io/git-starter-kotlin
