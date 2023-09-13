@@ -8,7 +8,7 @@
       target: .gitignore
     - source: starter_templates/cpp/src/Server.cpp
       target: src/Server.cpp
-    - source: starter_templates/cpp/src/CMakeLists.txt
+    - source: starter_templates/cpp/CMakeLists.txt
       target: CMakeLists.txt
     - source: starter_templates/cpp/spawn_git_server.sh
       target: spawn_git_server.sh
