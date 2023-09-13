@@ -17,7 +17,6 @@ completion_percentage: 10
 
 languages:
   - slug: "cpp"
-    release_status: "beta"
   - slug: "go"
   - slug: "python"
   - slug: "ruby"
