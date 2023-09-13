@@ -7,8 +7,6 @@ int main(int argc, char* argv[]) {
     // You can use print statements as follows for debugging, they'll be visible when running tests.
     std::cout << "Hello, world!\n";
 
-    // Uncomment this block to pass the first stage
-    //
     // if (argc < 2) {
     //     std::cerr << "No command provided.\n";
     //     return EXIT_FAILURE;
