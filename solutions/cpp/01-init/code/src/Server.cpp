@@ -4,10 +4,10 @@
 #include <string>
 
 int main(int argc, char* argv[]) {
-    // if (argc < 2) {
-    //     std::cerr << "No command provided.\n";
-    //     return EXIT_FAILURE;
-    // }
+    if (argc < 2) {
+        std::cerr << "No command provided.\n";
+        return EXIT_FAILURE;
+    }
 
     // std::string command = argv[1];
 
