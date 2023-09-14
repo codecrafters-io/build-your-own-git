@@ -10,8 +10,8 @@
       target: src/Server.cpp
     - source: starter_templates/cpp/CMakeLists.txt
       target: CMakeLists.txt
-    - source: starter_templates/cpp/spawn_git_server.sh
-      target: spawn_git_server.sh
+    - source: starter_templates/cpp/your_git.sh
+      target: your_git.sh
     - source: starter_templates/.gitattributes
       target: .gitattributes
   template_attributes:
