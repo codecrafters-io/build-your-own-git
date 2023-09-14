@@ -6,6 +6,6 @@
 #
 # DON'T EDIT THIS!
 set -e
-cmake . > /dev/null
+cmake $(dirname $0) > /dev/null
 make > /dev/null
-exec ./server
+exec ./server init

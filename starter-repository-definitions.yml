@@ -1,3 +1,23 @@
+- language: cpp
+  file_mappings:
+    - source: starter_templates/README.md
+      target: README.md
+    - source: starter_templates/codecrafters.yml
+      target: codecrafters.yml
+    - source: starter_templates/cpp/.gitignore
+      target: .gitignore
+    - source: starter_templates/cpp/src/Server.cpp
+      target: src/Server.cpp
+    - source: starter_templates/cpp/CMakeLists.txt
+      target: CMakeLists.txt
+    - source: starter_templates/cpp/your_git.sh
+      target: your_git.sh
+    - source: starter_templates/.gitattributes
+      target: .gitattributes
+  template_attributes:
+    required_executable: "cmake"
+    user_editable_file: "src/Server.cpp"
+
 - language: go
   file_mappings:
     - source: starter_templates/README.md
