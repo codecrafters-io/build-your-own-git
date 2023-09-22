@@ -90,4 +90,20 @@
     required_executable: "cargo (1.54)"
     user_editable_file: "src/main.rs"
 
+- language: javascript
+  file_mappings:
+    - source: starter_templates/README.md
+      target: README.md
+    - source: starter_templates/codecrafters.yml
+      target: codecrafters.yml
+    - source: starter_templates/javascript/app/main.js
+      target: app/main.js
+    - source: starter_templates/javascript/your_git.sh
+      target: your_git.sh
+    - source: starter_templates/.gitattributes
+      target: .gitattributes
+  template_attributes:
+    required_executable: "node (18)"
+    user_editable_file: "app/main.js"
+
 # TODO: Add kotlin here once it's supported again!
