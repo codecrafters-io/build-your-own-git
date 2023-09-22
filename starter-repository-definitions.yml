@@ -98,8 +98,8 @@
       target: codecrafters.yml
     - source: starter_templates/javascript/app/main.js
       target: app/main.js
-    - source: starter_templates/javascript/your_grep.sh
-      target: your_grep.sh
+    - source: starter_templates/javascript/your_git.sh
+      target: your_git.sh
     - source: starter_templates/.gitattributes
       target: .gitattributes
   template_attributes:
