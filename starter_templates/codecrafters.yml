@@ -75,3 +75,7 @@ language_pack: dotnet-6.0
 # Available versions: cpp-20
 language_pack: cpp-20
 {{/language_is_cpp}}
+{{# language_is_javascript }}
+# Available versions: nodejs-18
+language_pack: nodejs-18
+{{/ language_is_javascript }}
