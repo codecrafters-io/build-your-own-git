@@ -19,7 +19,6 @@ languages:
   - slug: "cpp"
   - slug: "go"
   - slug: "javascript"
-    release_status: "alpha"
   - slug: "python"
   - slug: "ruby"
   - slug: "rust"
