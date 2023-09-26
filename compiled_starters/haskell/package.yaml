@@ -12,26 +12,28 @@ license:             BSD3
 
 dependencies:
 - base >= 4.7 && < 5
-# - HUnit
-# - async  # may help with concurrency
-# - attoparsec
-# - bytestring  # useful to send bytes over the network
-# - containers  # may help with the database structure and debugging
-# - cryptonite
-- directory
-- filepath
-# - http-client
-# - http-client-tls
-# - http-types
-# - megaparsec
-# - memory
-# - mtl  # may help with structuring
-# - parsec
-# - parser-combinators
-# - text  # use Text rather than String
-# - time  # may help with the expiry function
-# - word8
-# - zlib
+- async                # may help with concurrency
+- bytestring           # useful to send bytes over the network
+- containers           # may help with the database structure and debugging
+- cryptonite           # dealing with SHA1
+- directory            # directory manipulations
+- filepath             # path manipulations
+- http-client          # http
+- http-client-tls      # https
+- http-types           # http
+- memory               # helpful in sha1 manipulations
+- mtl                  # may help with structuring
+- text                 # use Text rather than String
+- time                 # may help with the expiry function
+- word8                # works well with attoparsec
+- zlib                 # zlib compression (git uses it)
+# parsing libs
+- attoparsec
+- megaparsec
+- parsec
+- parser-combinators
+# testing
+- HUnit
 
 executables:
   hs-git-clone-exe:
