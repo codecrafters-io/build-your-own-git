@@ -120,10 +120,6 @@
       target: stack.yaml
     - source: starter_templates/haskell/stack.yaml.lock
       target: stack.yaml.lock
-    - source: starter_templates/haskell/flake.nix
-      target: flake.nix
-    - source: starter_templates/haskell/flake.lock
-      target: flake.lock
     - source: starter_templates/haskell/your_git.sh
       target: your_git.sh
     - source: starter_templates/haskell/app/Main.hs
