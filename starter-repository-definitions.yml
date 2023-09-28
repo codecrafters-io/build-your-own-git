@@ -106,4 +106,28 @@
     required_executable: "node (18)"
     user_editable_file: "app/main.js"
 
+- language: haskell
+  file_mappings:
+    - source: starter_templates/README.md
+      target: README.md
+    - source: starter_templates/codecrafters.yml
+      target: codecrafters.yml
+    - source: starter_templates/haskell/.gitignore
+      target: .gitignore
+    - source: starter_templates/haskell/package.yaml
+      target: package.yaml
+    - source: starter_templates/haskell/stack.yaml
+      target: stack.yaml
+    - source: starter_templates/haskell/stack.yaml.lock
+      target: stack.yaml.lock
+    - source: starter_templates/haskell/your_git.sh
+      target: your_git.sh
+    - source: starter_templates/haskell/app/Main.hs
+      target: app/Main.hs
+    - source: starter_templates/.gitattributes
+      target: .gitattributes
+  template_attributes:
+    required_executable: "stack"
+    user_editable_file: "app/Main.hs"
+
 # TODO: Add kotlin here once it's supported again!
