@@ -19,7 +19,7 @@ RUN mkdir /app/app
 RUN echo 'main :: IO ()' >> /app/app/Main.hs
 RUN echo 'main = putStrLn "Hello, World!"' >> /app/app/Main.hs
 
-RUN stack build 
+RUN stack build
 RUN stack clean hs-git-clone
 RUN cp -r .stack-work /tmp/
 
