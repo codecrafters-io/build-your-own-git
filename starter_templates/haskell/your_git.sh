@@ -5,11 +5,10 @@
 # CodeCrafters uses this file to test your code. Don't make any changes here!
 #
 # DON'T EDIT THIS!
-set -e
 
+set -e
 (
     cd $(dirname "$0")
-    stack build
+    stack build --copy-bins
 )
-
-exec $(dirname "$0")/.stack-work/dist/x86_64-linux/Cabal-3.8.1.0/build/hs-git-clone-exe/hs-git-clone-exe "$@"
+exec hs-git-clone-exe "$@"
