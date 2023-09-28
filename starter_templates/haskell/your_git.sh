@@ -7,9 +7,9 @@
 # DON'T EDIT THIS!
 set -e
 
-pushd .
-cd $(dirname "$0")
-stack build
-popd
+(
+    cd $(dirname "$0")
+    stack build
+)
 
-exec /app/.stack-work/dist/x86_64-linux/Cabal-3.8.1.0/build/hs-git-clone-exe/hs-git-clone-exe "$@"
+exec $(dirname "$0")/.stack-work/dist/x86_64-linux/Cabal-3.8.1.0/build/hs-git-clone-exe/hs-git-clone-exe "$@"
