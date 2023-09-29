@@ -18,6 +18,7 @@ completion_percentage: 10
 languages:
   - slug: "cpp"
   - slug: "go"
+  - slug: "haskell"
   - slug: "javascript"
   - slug: "python"
   - slug: "ruby"
