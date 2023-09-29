@@ -22,6 +22,7 @@ dependencies:
 - http-types           # http
 - memory               # helpful in sha1 manipulations
 - mtl                  # may help with structuring
+- optparse-applicative # may help with command line argument parsing
 - time                 # may help with the expiry function
 - word8                # works well with attoparsec
 - zlib                 # zlib compression (git uses it)
