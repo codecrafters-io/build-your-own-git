@@ -18,11 +18,11 @@ completion_percentage: 10
 languages:
   - slug: "cpp"
   - slug: "go"
+  - slug: "haskell"
   - slug: "javascript"
   - slug: "python"
   - slug: "ruby"
   - slug: "rust"
-  - slug: "haskell"
 
 # TODO: Add this back once builds are faster
 #  kotlin: https://github.com/codecrafters-io/git-starter-kotlin
@@ -100,10 +100,10 @@ stages:
       ./your_git.sh cat-file -p <blob_sha>
       ```
 
-      It is expected to print out the binary data that the blob contains. 
+      It is expected to print out the binary data that the blob contains.
 
-      In many programming languages the default print function (like [`fmt.Println`](https://pkg.go.dev/fmt#example-Println)) 
-      will append a newline to the output. The output of `cat-file` must not contain a 
+      In many programming languages the default print function (like [`fmt.Println`](https://pkg.go.dev/fmt#example-Println))
+      will append a newline to the output. The output of `cat-file` must not contain a
       newline at the end, so you might need to use a different function to print the output.
 
       {{#lang_is_python}}
