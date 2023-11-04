@@ -13,10 +13,10 @@ commits, trees etc.), Git's transfer protocols and more.
 
 # Passing the first stage
 
-The entry point for your Git implementation is in `app/main.js`. Study and uncomment the relevant code, and
-push your changes to pass the first stage:
+The entry point for your Git implementation is in `app/main.js`. Study and
+uncomment the relevant code, and push your changes to pass the first stage:
 
-``` sh
+```sh
 git add .
 git commit -m "pass 1st stage" # any msg
 git push origin master
@@ -44,15 +44,15 @@ folder.
 We suggest executing `your_git.sh` in a different folder when testing locally.
 For example:
 
-``` sh
+```sh
 mkdir -p /tmp/testing && cd /tmp/testing
 /path/to/your/repo/your_git.sh init
 ```
 
-To make this easier to type out, you could add a [shell
-alias](https://shapeshed.com/unix-alias/):
+To make this easier to type out, you could add a
+[shell alias](https://shapeshed.com/unix-alias/):
 
-``` sh
+```sh
 alias mygit=/path/to/your/repo/your_git.sh
 
 mkdir -p /tmp/testing && cd /tmp/testing
