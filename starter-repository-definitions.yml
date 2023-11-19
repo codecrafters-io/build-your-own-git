@@ -130,4 +130,22 @@
     required_executable: "stack"
     user_editable_file: "app/Main.hs"
 
-# TODO: Add kotlin here once it's supported again!
+- language: kotlin
+  file_mappings:
+    - source: starter_templates/README.md
+      target: README.md
+    - source: starter_templates/codecrafters.yml
+      target: codecrafters.yml
+    - source: starter_templates/kotlin/your_git.sh
+      target: your_git.sh
+    - source: starter_templates/kotlin/.gitignore
+      target: .gitignore
+    - source: starter_templates/kotlin/src/main/kotlin/Main.kt
+      target: src/main/kotlin/Main.kt
+    - source: starter_templates/kotlin/pom.xml
+      target: pom.xml
+    - source: starter_templates/.gitattributes
+      target: .gitattributes
+  template_attributes:
+    required_executable: "java (1.8)"
+    user_editable_file: "src/main/kotlin/Main.kt"

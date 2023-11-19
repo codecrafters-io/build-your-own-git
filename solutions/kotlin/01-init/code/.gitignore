@@ -1,0 +1,4 @@
+kotlin_git.jar
+target/*
+target/
+.idea/
