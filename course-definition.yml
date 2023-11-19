@@ -23,6 +23,9 @@ languages:
   - slug: "python"
   - slug: "ruby"
   - slug: "rust"
+  - slug: "java"
+    release_status: "beta"
+
 
 # TODO: Add this back once builds are faster
 #  kotlin: https://github.com/codecrafters-io/git-starter-kotlin
