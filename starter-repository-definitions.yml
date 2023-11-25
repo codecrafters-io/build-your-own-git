@@ -137,7 +137,7 @@
     - source: starter_templates/codecrafters.yml
       target: codecrafters.yml
     - source: starter_templates/java/your_git.sh
-      target: your_bittorrent.sh
+      target: your_git.sh
     - source: starter_templates/java/.gitignore
       target: .gitignore
     - source: starter_templates/java/src/main/java/Main.java
