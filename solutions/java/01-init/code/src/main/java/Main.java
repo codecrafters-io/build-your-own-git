@@ -5,14 +5,14 @@ import java.nio.file.Files;
 public class Main {
   public static void main(String[] args){
     final String command = args[0];
+
     switch (command) {
       case "init" -> {
         final File root = new File(".git");
-        final File objects = new File(root, "objects");
-        final File refs = new File(root, "refs");
-        objects.mkdirs();
-        refs.mkdirs();
+        new File(root, "objects").mkdirs();
+        new File(root, "refs").mkdirs();
         final File head = new File(root, "HEAD");
+
         try {
           head.createNewFile();
           Files.write(head.toPath(), "ref: refs/heads/master\n".getBytes());

@@ -35,7 +35,7 @@
 -    //             std::cerr << "Failed to create .git/HEAD file.\n";
 -    //             return EXIT_FAILURE;
 -    //         }
--    //
+-    //        
 -    //         std::cout << "Initialized git directory\n";
 -    //     } catch (const std::filesystem::filesystem_error& e) {
 -    //         std::cerr << e.what() << '\n';
