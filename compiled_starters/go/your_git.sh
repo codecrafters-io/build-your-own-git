@@ -9,7 +9,6 @@ set -e
 
 tmpFile=$(mktemp)
 
-( cd $(dirname "$0") &&
-	go build -o "$tmpFile" ./cmd/mygit )
+(cd $(dirname "$0") && go build -buildvcs=false -o "$tmpFile" ./cmd/mygit)
 
 exec "$tmpFile" "$@"
