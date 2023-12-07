@@ -42,6 +42,8 @@
       target: README.md
     - source: starter_templates/codecrafters.yml
       target: codecrafters.yml
+    - source: starter_templates/python/.gitignore
+      target: .gitignore
     - source: starter_templates/python/app/main.py
       target: app/main.py
     - source: starter_templates/python/your_git.sh
@@ -129,5 +131,4 @@
   template_attributes:
     required_executable: "stack"
     user_editable_file: "app/Main.hs"
-
 # TODO: Add kotlin here once it's supported again!
