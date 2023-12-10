@@ -23,9 +23,7 @@ languages:
   - slug: "python"
   - slug: "ruby"
   - slug: "rust"
-
-# TODO: Add this back once builds are faster
-#  kotlin: https://github.com/codecrafters-io/git-starter-kotlin
+  - slug: "kotlin"
 
 marketing:
   difficulty: hard
