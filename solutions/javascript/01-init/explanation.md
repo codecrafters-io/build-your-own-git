@@ -21,7 +21,7 @@ function createGitDirectory() {
 
   fs.writeFileSync(
     path.join(__dirname, ".git", "HEAD"),
-    "ref: refs/heads/master\n"
+    "ref: refs/heads/master\n",
   );
   console.log("Initialized git directory");
 }
