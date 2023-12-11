@@ -26,6 +26,8 @@
       target: codecrafters.yml
     - source: starter_templates/go/go.mod
       target: go.mod
+    - source: starter_templates/go/go.sum
+      target: go.sum
     - source: starter_templates/go/cmd/mygit/main.go
       target: cmd/mygit/main.go
     - source: starter_templates/go/your_git.sh
