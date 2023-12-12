@@ -1,6 +1,9 @@
-const fs = require("fs");
-const path = require("path");
+The entry point for your Git implementation is in `app/main.js`.
 
+Study and uncomment the relevant code: 
+
+```javascript
+// Uncomment this block to pass the first stage
 const command = process.argv[2];
 
 switch (command) {
@@ -19,3 +22,12 @@ function createGitDirectory() {
   fs.writeFileSync(path.join(__dirname, ".git", "HEAD"), "ref: refs/heads/master\n");
   console.log("Initialized git directory");
 }
+```
+
+Push your changes to pass the first stage:
+
+```
+git add .
+git commit -m "pass 1st stage" # any msg
+git push origin master
+```

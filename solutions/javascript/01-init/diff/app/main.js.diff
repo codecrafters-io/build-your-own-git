@@ -1,4 +1,4 @@
-@@ -1,28 +1,24 @@
+@@ -1,25 +1,21 @@
  const fs = require("fs");
  const path = require("path");
 
@@ -22,10 +22,7 @@
 -//   fs.mkdirSync(path.join(__dirname, ".git", "objects"), { recursive: true });
 -//   fs.mkdirSync(path.join(__dirname, ".git", "refs"), { recursive: true });
 -//
--//   fs.writeFileSync(
--//     path.join(__dirname, ".git", "HEAD"),
--//     "ref: refs/heads/master\n"
--//   );
+-//   fs.writeFileSync(path.join(__dirname, ".git", "HEAD"), "ref: refs/heads/master\n");
 -//   console.log("Initialized git directory");
 -// }
 +switch (command) {
@@ -41,9 +38,6 @@
 +  fs.mkdirSync(path.join(__dirname, ".git", "objects"), { recursive: true });
 +  fs.mkdirSync(path.join(__dirname, ".git", "refs"), { recursive: true });
 +
-+  fs.writeFileSync(
-+    path.join(__dirname, ".git", "HEAD"),
-+    "ref: refs/heads/master\n"
-+  );
++  fs.writeFileSync(path.join(__dirname, ".git", "HEAD"), "ref: refs/heads/master\n");
 +  console.log("Initialized git directory");
 +}
