@@ -16,9 +16,6 @@ function createGitDirectory() {
   fs.mkdirSync(path.join(__dirname, ".git", "objects"), { recursive: true });
   fs.mkdirSync(path.join(__dirname, ".git", "refs"), { recursive: true });
 
-  fs.writeFileSync(
-    path.join(__dirname, ".git", "HEAD"),
-    "ref: refs/heads/master\n"
-  );
+  fs.writeFileSync(path.join(__dirname, ".git", "HEAD"), "ref: refs/heads/master\n");
   console.log("Initialized git directory");
 }

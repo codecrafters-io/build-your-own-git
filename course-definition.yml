@@ -137,6 +137,18 @@ stages:
       files, we've included it in the `Cargo.toml` file.
       {{/lang_is_rust}}
 
+      {{^lang_is_python}}
+      {{^lang_is_ruby}}
+      {{^lang_is_go}}
+      {{^lang_is_rust}}
+      Keep in mind that Git uses [Zlib](https://en.wikipedia.org/wiki/Zlib) to
+      compress objects. Many languages have utils for dealing with zlib data in their standard library. If not,
+      you might need to use a third-party library to read these compressed files.
+      {{/lang_is_rust}}
+      {{/lang_is_go}}
+      {{/lang_is_ruby}}
+      {{/lang_is_python}}
+
     marketing_md: |-
       In this stage, you'll read a blob from your git repository by fetching its
       contents from the `.git/objects` directory.
