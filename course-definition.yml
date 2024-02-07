@@ -3,11 +3,25 @@ name: "Build your own Git"
 short_name: "Git"
 release_status: "live"
 
+# This is shown on the course overview page. Markdown supported, recommended length ~40 words.
+#
+# Recommended format:
+#
+# > ABC is <whatever>. In this challenge, you'll build your own ABC that's capable of D, E, F and G.
+# >
+# > Along the way, we'll learn about X, Y, Z and more.
+#
+# Example:
+#
+# > Redis is an in-memory data structure store often used as a database, cache, message broken and streaming engine. In this challenge
+# > you'll build your own Redis server that is capable of serving basic commands, reading RDB files and more.
+# >
+# > Along the way, you'll learn about TCP servers, the Redis Protocol and more.
 description_md: |-
-  In this challenge, you'll build a Git implementation that can initialize a
-  repository, create commits and clone a public repository from GitHub. Along the
-  way, you'll learn about the `.git` directory, Git objects (blobs, commits,
-  trees etc.), packfiles, Git's transfer protocols and much more.
+  Git is a version control system used to track changes in source code. In this challenge, you'll build your own Git implementation that
+  is capable of cloning a public repository from GitHub.
+
+  Along the way, you'll learn about the .git directory, Git objects, plumbing commands and more.
 
 # Keep this under 70 characters
 short_description_md: |-
