@@ -73,7 +73,7 @@ stages:
       inside it.
 
       You can read more about what's inside the `.git` folder
-      [here](http://gitready.com/advanced/2009/03/23/whats-inside-your-git-directory.html).
+      [here](https://blog.meain.io/2023/what-is-in-dot-git/).
 
       For the purposes of this challenge, you'll only need to create the bare
       minimum required for Git to function properly:
