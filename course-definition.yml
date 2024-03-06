@@ -89,15 +89,14 @@ stages:
       ```
 
       - `objects/`
-        - This directory contains all the [Git objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects) in your repository. We'll
-          learn more about what Git objects are in later stages.
+        - This directory contains all the [Git objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects) in your repository.
+        - We'll learn more about what Git objects are in later stages.
       - `refs/`
-        - This directory contains [Git references](https://git-scm.com/book/en/v2/Git-Internals-Git-References). We'll deal with this in later
-          stages too.
+        - This directory contains [Git references](https://git-scm.com/book/en/v2/Git-Internals-Git-References).
+        - We'll deal with this in later stages too.
       - `HEAD`
         - This file contains a reference to the currently checked out branch.
-        - It's contents should be either `ref: refs/heads/main\n` or `ref: refs/heads/master\n`, depending on the default branch name of your Git
-          implementation.
+        - It's contents should be `ref: refs/heads/main\n`.
 
       You can learn more about these in detail [here](https://blog.meain.io/2023/what-is-in-dot-git/).
 
@@ -117,7 +116,7 @@ stages:
       $ test -d .git/objects # Check if .git/objects directory exists
       $ test -d .git/refs # Check if .git/refs directory exists
       $ test -f .git/HEAD # Check if .git/HEAD file exists
-      $ cat .git/HEAD # Check if .git/HEAD contains "ref: refs/heads/master\n" or "ref: refs/heads/main\n"
+      $ cat .git/HEAD # Check if .git/HEAD contains either "ref: refs/heads/main\n" or "ref: refs/heads/master\n"
       ```
 
       ### Notes
@@ -126,7 +125,7 @@ stages:
         that are absolutely necessary for Git to function properly.
       - The `.git/HEAD` file has a newline at the end.
       - The `.git/HEAD` file can contain either `ref: refs/heads/main\n` or `ref: refs/heads/master\n`, the tester will
-        work with either.
+        work with either of these.
     marketing_md: |-
       In this stage, you'll implement the `git init` command. You'll initialize
       a git repository by creating a `.git` directory and some files inside it.
