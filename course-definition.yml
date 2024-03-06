@@ -178,7 +178,7 @@ stages:
       ./git/objects/e8/8f7a929cd70b0274c4ea33b209c97fa845fdbc
       ```
 
-      You'll see that the file isn't placed directly in the `objects` directory. Instead, it's placed in a directory named with the
+      You'll see that the file isn't placed directly in the `./git/objects` directory. Instead, it's placed in a directory named with the
       first two characters of the object's hash. The remaining 38 characters are used as the file name.
 
       Each Git object has its own format for storage. We'll look at how Blobs are stored in this stage, and we'll cover
