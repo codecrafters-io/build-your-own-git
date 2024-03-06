@@ -219,6 +219,13 @@ stages:
       hello world # This is the contents of the blob
       ```
 
+      To implement this, you'll need to:
+
+      - Read the contents of the blob object file from the `.git/objects` directory
+      - Decompress the contents using Zlib
+      - Extract the actual "content" from the decompressed data
+      - Print the content to stdout
+
       ### Tests
 
       The tester will create a new Git repository and add a blob to the `.git/objects` directory.
