@@ -14,5 +14,5 @@ main = do
     createDirectoryIfMissing createParents ".git"
     createDirectoryIfMissing createParents (".git" </> "objects")
     createDirectoryIfMissing createParents (".git" </> "refs")
-    withFile (".git" </> "HEAD") WriteMode $ \f -> hPutStrLn f "ref: refs/heads/master"
+    withFile (".git" </> "HEAD") WriteMode $ \f -> hPutStrLn f "ref: refs/heads/main"
     putStrLn $ "Initialized git directory"

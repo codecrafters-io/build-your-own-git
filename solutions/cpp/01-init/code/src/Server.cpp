@@ -3,7 +3,8 @@
 #include <fstream>
 #include <string>
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
     if (argc < 2) {
         std::cerr << "No command provided.\n";
         return EXIT_FAILURE;
@@ -19,7 +20,7 @@ int main(int argc, char* argv[]) {
 
             std::ofstream headFile(".git/HEAD");
             if (headFile.is_open()) {
-                headFile << "ref: refs/heads/master\n";
+                headFile << "ref: refs/heads/main\n";
                 headFile.close();
             } else {
                 std::cerr << "Failed to create .git/HEAD file.\n";

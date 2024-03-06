@@ -9,7 +9,7 @@ if args[1] == "init" {
     fs::create_dir(".git").unwrap();
     fs::create_dir(".git/objects").unwrap();
     fs::create_dir(".git/refs").unwrap();
-    fs::write(".git/HEAD", "ref: refs/heads/master\n").unwrap();
+    fs::write(".git/HEAD", "ref: refs/heads/main\n").unwrap();
     println!("Initialized git directory")
 } else {
     println!("unknown command: {}", args[1])

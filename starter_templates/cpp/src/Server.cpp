@@ -3,7 +3,8 @@
 #include <fstream>
 #include <string>
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
     // You can use print statements as follows for debugging, they'll be visible when running tests.
     std::cout << "Logs from your program will appear here!\n";
 
@@ -24,13 +25,13 @@ int main(int argc, char* argv[]) {
     //
     //         std::ofstream headFile(".git/HEAD");
     //         if (headFile.is_open()) {
-    //             headFile << "ref: refs/heads/master\n";
+    //             headFile << "ref: refs/heads/main\n";
     //             headFile.close();
     //         } else {
     //             std::cerr << "Failed to create .git/HEAD file.\n";
     //             return EXIT_FAILURE;
     //         }
-    //        
+    //
     //         std::cout << "Initialized git directory\n";
     //     } catch (const std::filesystem::filesystem_error& e) {
     //         std::cerr << e.what() << '\n';
