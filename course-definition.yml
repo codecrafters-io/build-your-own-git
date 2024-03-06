@@ -89,7 +89,7 @@ stages:
       ```
 
       - `objects/`
-        - This directory contains all the [Git objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects) in your repository.
+        - This directory contains [Git objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects).
         - We'll learn more about what Git objects are in later stages.
       - `refs/`
         - This directory contains [Git references](https://git-scm.com/book/en/v2/Git-Internals-Git-References).
