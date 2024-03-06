@@ -162,7 +162,7 @@ stages:
         - The information stored can include things like what files/directories are in a tree, their names and permissions.
       - Commits (Future stages)
         - These are used to store commit data.
-        - The informatino stored can include things like the commit message, author, committer, parent commit(s) and more.
+        - The information stored can include things like the commit message, author, committer, parent commit(s) and more.
 
       All Git objects are identifiable by a 40-character SHA-1 hash, also known as the "object hash". An object hash
       looks something like this: `e88f7a929cd70b0274c4ea33b209c97fa845fdbc`.
