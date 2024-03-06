@@ -102,10 +102,13 @@ stages:
 
       ### Tests
 
-      The tester will run your program in a new empty directory
+      The tester will run your program in a new empty directory like this:
 
       ```bash
+      # Create a new directory and cd into it
       $ mkdir test_dir && cd test_dir
+
+      # Run your program
       $ /path/to/your_git.sh init
       ```
 
