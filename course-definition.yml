@@ -230,7 +230,7 @@ stages:
 
       The tester will first initialize a new git repository using your program:
 
-      ```
+      ```bash
       $ mkdir test_dir && cd test_dir
       $ /path/to/your_git.sh init
       ```
