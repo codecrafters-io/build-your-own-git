@@ -20,7 +20,7 @@ func main() {
 			}
 		}
 
-		headFileContents := []byte("ref: refs/heads/master\n")
+		headFileContents := []byte("ref: refs/heads/main\n")
 		if err := os.WriteFile(".git/HEAD", headFileContents, 0644); err != nil {
 			fmt.Fprintf(os.Stderr, "Error writing file: %s\n", err)
 		}

@@ -85,7 +85,7 @@ stages:
       - .git/
         - objects/
         - refs/
-        - HEAD (should contain "ref: refs/heads/master\n")
+        - HEAD (should contain "ref: refs/heads/main\n")
       ```
 
       - `objects/`

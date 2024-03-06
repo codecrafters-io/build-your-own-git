@@ -1,10 +1,11 @@
-@@ -1,45 +1,40 @@
+@@ -1,46 +1,41 @@
  #include <iostream>
  #include <filesystem>
  #include <fstream>
  #include <string>
 
- int main(int argc, char* argv[]) {
+ int main(int argc, char *argv[])
+ {
 -    // You can use print statements as follows for debugging, they'll be visible when running tests.
 -    std::cout << "Logs from your program will appear here!\n";
 +    if (argc < 2) {
@@ -29,13 +30,13 @@
 -    //
 -    //         std::ofstream headFile(".git/HEAD");
 -    //         if (headFile.is_open()) {
--    //             headFile << "ref: refs/heads/master\n";
+-    //             headFile << "ref: refs/heads/main\n";
 -    //             headFile.close();
 -    //         } else {
 -    //             std::cerr << "Failed to create .git/HEAD file.\n";
 -    //             return EXIT_FAILURE;
 -    //         }
--    //        
+-    //
 -    //         std::cout << "Initialized git directory\n";
 -    //     } catch (const std::filesystem::filesystem_error& e) {
 -    //         std::cerr << e.what() << '\n';
@@ -57,7 +58,7 @@
 +
 +            std::ofstream headFile(".git/HEAD");
 +            if (headFile.is_open()) {
-+                headFile << "ref: refs/heads/master\n";
++                headFile << "ref: refs/heads/main\n";
 +                headFile.close();
 +            } else {
 +                std::cerr << "Failed to create .git/HEAD file.\n";

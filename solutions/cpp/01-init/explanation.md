@@ -20,7 +20,7 @@ if (command == "init") {
 
         std::ofstream headFile(".git/HEAD");
         if (headFile.is_open()) {
-            headFile << "ref: refs/heads/master\n";
+            headFile << "ref: refs/heads/main\n";
             headFile.close();
         } else {
             std::cerr << "Failed to create .git/HEAD file.\n";
