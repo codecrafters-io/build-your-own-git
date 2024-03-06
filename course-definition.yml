@@ -115,11 +115,20 @@ stages:
       It'll then check if the `.git` directory and its contents are created correctly.
 
       ```bash
-      $ test -d .git # Check if .git directory exists
-      $ test -d .git/objects # Check if .git/objects directory exists
-      $ test -d .git/refs # Check if .git/refs directory exists
-      $ test -f .git/HEAD # Check if .git/HEAD file exists
-      $ cat .git/HEAD # Check if .git/HEAD contains either "ref: refs/heads/main\n" or "ref: refs/heads/master\n"
+      # Check if .git directory exists
+      $ test -d .git
+
+      # Check if .git/objects directory exists
+      $ test -d .git/objects
+
+      # Check if .git/refs directory exists
+      $ test -d .git/refs
+
+      # Check if .git/HEAD file exists
+      $ test -f .git/HEAD
+
+      # Check if .git/HEAD contains either "ref: refs/heads/main\n" or "ref: refs/heads/master\n"
+      $ cat .git/HEAD
       ```
 
       ### Notes
