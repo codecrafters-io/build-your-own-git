@@ -1,10 +1,8 @@
-// DON'T EDIT THIS!
+// CodeCrafters Note:
 //
-// Codecrafters relies on this file being intact to run tests successfully. Any changes
-// here will not reflect when CodeCrafters tests your code, and might even cause build
-// failures.
+// You can make changes to this file if you'd like to use dependencies.
 //
-// DON'T EDIT THIS!
+// When updating this file, make sure to run `go mod tidy` to ensure that `go.sum` is updated too.
 
 module github.com/codecrafters-io/git-starter-go
 
