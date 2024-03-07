@@ -707,6 +707,8 @@ stages:
       $ git commit-tree 5b825dc642cb6eb9a060e54bf8d69288fbee4904 -p 3b18e512dba79e4c8300dd08aeb37f8e728b8dad -m "Second commit"
       ```
 
+      The output of `git commit-tree` is the 40-char SHA hash of the commit object that was written to `.git/objects`.
+
       ### Tests
 
       Your program will be invoked like this:
