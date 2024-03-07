@@ -304,28 +304,76 @@ stages:
     name: "Create a blob object"
     difficulty: medium
     description_md: |-
-      In the previous stage, we learnt how to read a blob. In this stage, you'll
-      add a blob to your git repository by implementing the [`git
+      In this stage, you'll implement support for creating a blob using the [`git
       hash-object`](https://git-scm.com/docs/git-hash-object) command.
 
-      Your program will be called like so:
+      ### The `git hash-object` command
+
+      `git hash-object` is used to compute the SHA hash of a Git object. When used with the `-w` flag, it
+      also writes the object to the `.git/objects` directory.
+
+      Here's an example of using `git hash-object`:
+
+      ```bash
+      # Create a file with some content
+      $ echo "hello world" > test.txt
+
+      # Compute the SHA hash of the file + write it to .git/objects
+      $ git hash-object -w test.txt
+      3b18e512dba79e4c8300dd08aeb37f8e728b8dad
+
+      # Verify that the file was written to .git/objects
+      $ file .git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad
+      .git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad: zlib compressed data
+      ```
+
+      ### Blob Object Storage (Recap)
+
+      As mentioned in the previous stage, each Git Blob is stored as a separate file in the `.git/objects` directory. The file
+      contains a header and the contents of the blob object, compressed using Zlib.
+
+      The format of a blob object file looks like this (after Zlib decompression):
 
       ```
-      ./your_git.sh hash-object -w <file>
+      blob <size>\0<content>
       ```
 
-      It is expected to store the data from `<file>` as a blob in `.git/objects`
-      and print a 40-char SHA to stdout.
+      - `<size>` is the size of the content (in bytes)
+      - `\0` is a null byte
+      - `<content>` is the actual content of the file
 
-      To verify your implementation, the tester will try to read the blob your
-      program wrote. It'll do this using [`git
-      cat-file`](https://git-scm.com/docs/git-cat-file), the command you
-      implemented in the previous stage.
+      For example, if the contents of a file are `hello world`, the blob object file would look like this (after Zlib decompression):
 
       ```
-      git cat-file -p <blob_sha>
+      blob 11\0hello world
       ```
 
+      ### Tests
+
+      The tester will first initialize a new git repository using your program:
+
+      ```bash
+      $ mkdir test_dir && cd test_dir
+      $ /path/to/your_git.sh init
+      ```
+
+      It'll write some random data to a file:
+
+      ```bash
+      $ echo "hello world" > test.txt
+      ```
+
+      It'll then run your program like this:
+
+      ```bash
+      $ ./your_git.sh hash-object -w test.txt
+      3b18e512dba79e4c8300dd08aeb37f8e728b8dad
+      ```
+
+      The tester will verify that:
+
+      - Your program prints a 40-character SHA hash to stdout
+      - The file written to `.git/objects` matches what the official `git` implementation would write
     marketing_md: |-
       In the previous stage, we learnt how to read a blob. In this stage, we'll
       persist a blob by implementing the `git hash-object` command.
