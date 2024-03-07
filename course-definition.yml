@@ -85,7 +85,7 @@ stages:
       - .git/
         - objects/
         - refs/
-        - HEAD (should contain "ref: refs/heads/main\n")
+        - HEAD (should contain "ref: refs/heads/main\n" for a new repository)
       ```
 
       - `objects/`
@@ -96,7 +96,7 @@ stages:
         - We'll deal with this in later stages too.
       - `HEAD`
         - This file contains a reference to the currently checked out branch.
-        - It's contents should be `ref: refs/heads/main\n`.
+        - For a new repository, it's contents will be `ref: refs/heads/main\n`.
 
       You can learn more about these in detail [here](https://blog.meain.io/2023/what-is-in-dot-git/).
 
