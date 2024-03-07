@@ -160,80 +160,97 @@ stages:
 
       ### Git objects
 
-      In this challenge, we'll deal with three [Git
-      objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects):
+      <details>
+        <summary>Click to expand/collapse</summary>
 
-      - Blobs (**This stage**)
-        - These are used to store file data.
-        - Blobs only store the contents of a file, not its name or permissions.
-      - Trees (Future stages)
-        - These are used to store directory structures.
-        - The information stored can include things like what files/directories are in a tree, their names and permissions.
-      - Commits (Future stages)
-        - These are used to store commit data.
-        - The information stored can include things like the commit message, author, committer, parent commit(s) and more.
+        In this challenge, we'll deal with three [Git
+        objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects):
 
-      All Git objects are identifiable by a 40-character SHA-1 hash, also known as the "object hash".
+        - Blobs (**This stage**)
+          - These are used to store file data.
+          - Blobs only store the contents of a file, not its name or permissions.
+        - Trees (Future stages)
+          - These are used to store directory structures.
+          - The information stored can include things like what files/directories are in a tree, their names and permissions.
+        - Commits (Future stages)
+          - These are used to store commit data.
+          - The information stored can include things like the commit message, author, committer, parent commit(s) and more.
 
-      Here's an example of an object hash: `e88f7a929cd70b0274c4ea33b209c97fa845fdbc`.
+        All Git objects are identifiable by a 40-character SHA-1 hash, also known as the "object hash".
+
+        Here's an example of an object hash: `e88f7a929cd70b0274c4ea33b209c97fa845fdbc`.
+      </details>
 
       ### Git Object Storage
 
-      Git objects are stored in the `.git/objects` directory. The path to an object is derived from its hash.
+      <details>
+        <summary>Click to expand/collapse</summary>
 
-      The path for the object with the hash `e88f7a929cd70b0274c4ea33b209c97fa845fdbc` would be:
+        Git objects are stored in the `.git/objects` directory. The path to an object is derived from its hash.
 
-      ```bash
-      ./git/objects/e8/8f7a929cd70b0274c4ea33b209c97fa845fdbc
-      ```
+        The path for the object with the hash `e88f7a929cd70b0274c4ea33b209c97fa845fdbc` would be:
 
-      You'll see that the file isn't placed directly in the `./git/objects` directory. Instead, it's placed in a directory named with the
-      first two characters of the object's hash. The remaining 38 characters are used as the file name.
+        ```bash
+        ./git/objects/e8/8f7a929cd70b0274c4ea33b209c97fa845fdbc
+        ```
 
-      Each Git object has its own format for storage. We'll look at how Blobs are stored in this stage, and we'll cover
-      other objects in future stages.
+        You'll see that the file isn't placed directly in the `./git/objects` directory. Instead, it's placed in a directory named with the
+        first two characters of the object's hash. The remaining 38 characters are used as the file name.
+
+        Each Git object has its own format for storage. We'll look at how Blobs are stored in this stage, and we'll cover
+        other objects in future stages.
+      </details>
 
       ### Blob Object Storage
 
-      Each Git Blob is stored as a separate file in the `.git/objects` directory. The file contains a header and the contents of
-      the blob object, compressed using Zlib.
+      <details>
+        <summary>Click to expand/collapse</summary>
 
-      The format of a blob object file looks like this (after Zlib decompression):
+        Each Git Blob is stored as a separate file in the `.git/objects` directory. The file contains a header and the contents of
+        the blob object, compressed using Zlib.
 
-      ```
-      blob <size>\0<content>
-      ```
+        The format of a blob object file looks like this (after Zlib decompression):
 
-      - `<size>` is the size of the content (in bytes)
-      - `\0` is a null byte
-      - `<content>` is the actual content of the file
+        ```
+        blob <size>\0<content>
+        ```
 
-      For example, if the contents of a file are `hello world`, the blob object file would look like this (after Zlib decompression):
+        - `<size>` is the size of the content (in bytes)
+        - `\0` is a null byte
+        - `<content>` is the actual content of the file
 
-      ```
-      blob 11\0hello world
-      ```
+        For example, if the contents of a file are `hello world`, the blob object file would look like this (after Zlib decompression):
+
+        ```
+        blob 11\0hello world
+        ```
+      </details>
 
       ### The cat-file command
 
-      In this stage, you'll read a blob from a git repository by reading its contents from the `.git/objects` directory.
+      <details>
+        <summary>Click to expand/collapse</summary>
 
-      You'll do this using the first of multiple ["plumbing" commands](https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain)
-      we'll encounter in this challenge: [`git cat-file`](https://git-scm.com/docs/git-cat-file).
+        In this stage, you'll read a blob from a git repository by reading its contents from the `.git/objects` directory.
 
-      `git cat-file` is used to view the type of an object, its size, and its content. Example usage:
+        You'll do this using the first of multiple ["plumbing" commands](https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain)
+        we'll encounter in this challenge: [`git cat-file`](https://git-scm.com/docs/git-cat-file).
 
-      ```bash
-      $ git cat-file -p <blob_sha>
-      hello world # This is the contents of the blob
-      ```
+        `git cat-file` is used to view the type of an object, its size, and its content. Example usage:
 
-      To implement this, you'll need to:
+        ```bash
+        $ git cat-file -p <blob_sha>
+        hello world # This is the contents of the blob
+        ```
 
-      - Read the contents of the blob object file from the `.git/objects` directory
-      - Decompress the contents using Zlib
-      - Extract the actual "content" from the decompressed data
-      - Print the content to stdout
+        To implement this, you'll need to:
+
+        - Read the contents of the blob object file from the `.git/objects` directory
+        - Decompress the contents using Zlib
+        - Extract the actual "content" from the decompressed data
+        - Print the content to stdout
+
+      </details>
 
       ### Tests
 
