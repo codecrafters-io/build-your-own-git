@@ -494,7 +494,7 @@ stages:
         - `<mode>` is the mode of the file/directory (check the previous section for valid values)
         - `<name>` is the name of the file/directory
         - `\0` is a null byte
-        - `<20_byte_sha>` is the SHA hash of the file/directory, stored as 20 bytes (not hexadecimal format)
+        - `<20_byte_sha>` is the 20-byte SHA-1 hash of the blob/tree (this is **not** in hexadecimal format)
 
       You can read more about the internal format of a tree object [here](https://stackoverflow.com/questions/14790681/what-is-the-internal-format-of-a-git-tree-object).
 
