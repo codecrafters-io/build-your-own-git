@@ -397,7 +397,7 @@ stages:
         - If the entry is a file, this points to a blob object
         - If the entry is a directory, this points to a tree object
       - The name of the file/directory
-      - The permissions of the file/directory
+      - The mode of the file/directory
         - This is a simplified version of the permissions you'd see in a Unix file system.
         - For files, the valid values are:
             - `100644` (regular file)
@@ -491,7 +491,7 @@ stages:
 
       - The file starts with `tree <size>\0`. This is the "object header", similar to what we saw with blob objects.
       - After the header, there are multiple entries. Each entry is of the form `<mode> <name>\0<sha>`.
-        - `<mode>` is the permissions of the file/directory
+        - `<mode>` is the mode of the file/directory (check the previous section for valid values)
         - `<name>` is the name of the file/directory
         - `\0` is a null byte
         - `<20_byte_sha>` is the SHA hash of the file/directory, stored as 20 bytes (not hexadecimal format)
