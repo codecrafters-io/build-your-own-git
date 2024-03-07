@@ -71,11 +71,15 @@ stages:
 
       ### The `git init` command
 
+      <details>
+
       `git init` initializes a Git repository by creating a `.git` directory with some files
       & directories inside it.
 
       You can learn more about what's inside the `.git` folder [here](https://blog.meain.io/2023/what-is-in-dot-git/). We've
       included a description of the files & directores we'll be dealing with in this stage below.
+
+      </details>
 
       ### The `.git` directory
 
