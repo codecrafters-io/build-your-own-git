@@ -661,36 +661,72 @@ stages:
     name: "Create a commit"
     difficulty: medium
     description_md: |-
+      In this stage, you'll implement the `git commit-tree` command, which is used to create a commit object.
+
+      ### Commits
+
       Let's move on to the last git object we'll be dealing with in this
       challenge: [the commit](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_git_commit_objects).
 
-      To create a commit, you'll need the following information:
+      A commit object contains information like:
 
       - Committer/Author name + email
       - Timestamp
       - Tree SHA
       - Parent commit SHA(s), if any
 
-      In this stage, you'll implement [`git
-      commit-tree`](https://git-scm.com/docs/git-commit-tree), a plumbing
-      command that creates a commit.
+      ### The `git commit-tree` command
+
+      The `git commit-tree` command creates a commit object. Example usage:
+
+      ```bash
+      # Create a new directory and cd into it
+      $ mkdir test_dir && cd test_dir
+
+      # Initialize a new git repository
+      $ git init
+      Initialized empty Git repository in /path/to/test_dir/.git/
+
+      # Create a tree, get its SHA
+      $ echo "hello world" > test.txt
+      $ git add test.txt
+      $ git write-tree
+      4b825dc642cb6eb9a060e54bf8d69288fbee4904
+
+      # Create the initial commit
+      $ git commit-tree 4b825dc642cb6eb9a060e54bf8d69288fbee4904 -m "Initial commit"
+      3b18e512dba79e4c8300dd08aeb37f8e728b8dad
+
+      # Write some changes, get another tree SHA
+      $ echo "hello world 2" > test.txt
+      $ git add test.txt
+      $ git write-tree
+      5b825dc642cb6eb9a060e54bf8d69288fbee4904
+
+      # Create a new commit with the new tree SHA
+      $ git commit-tree 5b825dc642cb6eb9a060e54bf8d69288fbee4904 -p 3b18e512dba79e4c8300dd08aeb37f8e728b8dad -m "Second commit"
+      ```
+
+      ### Tests
 
       Your program will be invoked like this:
 
       ```
-      ./your_git.sh commit-tree <tree_sha> -p <commit_sha> -m <message>
+      $ ./your_git.sh commit-tree <tree_sha> -p <commit_sha> -m <message>
       ```
-
-      You'll receive exactly one parent commit, and exactly one line in the
-      message. You're free to hardcode any valid name/email for the
-      author/committer fields.
 
       Your program must create a commit object and print its 40-char SHA to
       stdout.
 
+      To keep things simple:
+
+      - You'll receive exactly one parent commit
+      - You'll receive exactly one line in the message
+      - You're free to hardcode any valid name/email for the author/committer fields
+
+
       To verify your changes, the tester will read the commit object from the
       `.git` directory. It'll use the `git show` command to do this.
-
     marketing_md: |-
       Let's move on to the last git object we'll be dealing with in this
       challenge: the commit. In this stage, you'll create a commit by
