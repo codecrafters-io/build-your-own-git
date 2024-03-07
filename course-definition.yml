@@ -400,9 +400,9 @@ stages:
       - The permissions of the file/directory
         - This is a simplified version of the permissions you'd see in a Unix file system.
         - For files, the valid values are:
-          - `100644` (regular file)
-          - `100755` (executable file)
-          - `120000` (symbolic link)
+            - `100644` (regular file)
+            - `100755` (executable file)
+            - `120000` (symbolic link)
         - For directories, the value is `040000`
         - There are other values for submodules, but we won't be dealing with those in this challenge.
 
