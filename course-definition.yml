@@ -537,7 +537,10 @@ stages:
       file1
       ```
 
-      (Note that the output is alphabetically sorted, this is how Git stores entries in the tree object internally)
+      ### Notes
+
+      - In a tree object file, the SHA hashes are not in hexadecimal format. They're just raw bytes (20 bytes long).
+      - In a tree object file, entries are sorted by their name. The output of `ls-tree` matches this order.
     marketing_md: |-
       Now that we've learnt how to read/write blobs, let's move onto our next
       Git object: [the tree](https://developer.github.com/v3/git/trees/). In
