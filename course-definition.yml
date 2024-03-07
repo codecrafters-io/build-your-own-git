@@ -702,38 +702,40 @@ stages:
     name: "Clone a repository"
     difficulty: hard
     description_md: |-
-      This is the last stage of the challenge, and probably the hardest.
+      In this stage, you'll implement cloning a public repository from GitHub.
 
-      In this stage, you'll clone a public repository from GitHub. To do this,
-      you'll use Git's [Smart HTTP transfer
-      protocol](https://www.git-scm.com/docs/http-protocol).
+      This is the last stage of the challenge, and probably the hardest across all of CodeCrafters!
+
+      We might split this into an extension with multiple stages in the future, but for now it's just one big stage.
+
+      We don't have detailed instructions for this stage, so you're all on your own here. A few pointers to get you started:
+
+      - You'll need to use Git's [Smart HTTP transfer protocol](https://www.git-scm.com/docs/http-protocol) for this.
+      - To know more about the protocol format, we recommend reading:
+        - [gitprotocol-pack.txt](https://github.com/git/git/blob/795ea8776befc95ea2becd8020c7a284677b4161/Documentation/gitprotocol-pack.txt)
+        - [gitformat-pack.txt](https://github.com/git/git/blob/795ea8776befc95ea2becd8020c7a284677b4161/Documentation/gitformat-pack.txt)
+        - [Unpacking Git packfiles](https://codewords.recurse.com/issues/three/unpacking-git-packfiles)
+        - [Sneaky git number encoding](https://medium.com/@concertdaw/sneaky-git-number-encoding-ddcc5db5329f).
 
       {{#lang_is_rust}}
       You can use the [reqwest](https://crates.io/crates/reqwest) crate to make
       HTTP requests, we've included it in the `Cargo.toml` file.
       {{/lang_is_rust}}
 
-      Your program will be invoked like this:
+      ### Tests
 
+      The tester will run your program like this:
+
+      ```bash
+      $ /path/to/your_git.sh clone https://github.com/blah/blah <some_dir>
       ```
-      ./your_git.sh clone https://github.com/blah/blah <some_dir>
-      ```
 
-      Your program must create `<some_dir>` and clone the given repository into
-      it.
+      Your program must create `<some_dir>` and clone the given repository into it.
 
-      To verify your changes, the tester will do the following:
+      To verify your changes, the tester will:
 
-      - Check the contents of a file
+      - Check the contents of a random file
       - Read commit object attributes from the `.git` directory
-
-      To know more about the protocol format, checkout
-      [gitprotocol-pack.txt](https://github.com/git/git/blob/795ea8776befc95ea2becd8020c7a284677b4161/Documentation/gitprotocol-pack.txt),
-      [gitformat-pack.txt](https://github.com/git/git/blob/795ea8776befc95ea2becd8020c7a284677b4161/Documentation/gitformat-pack.txt),
-      and
-      [these](https://codewords.recurse.com/issues/three/unpacking-git-packfiles)
-      [articles](https://medium.com/@concertdaw/sneaky-git-number-encoding-ddcc5db5329f).
-
     marketing_md: |-
       This is the last stage of the challenge, and probably the hardest! In this
       stage, you'll clone a public repository from GitHub. To do this, you'll
