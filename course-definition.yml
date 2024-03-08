@@ -176,6 +176,7 @@ stages:
           - These are used to store commit data.
           - The information stored can include things like the commit message, author, committer, parent commit(s) and more.
 
+
         All Git objects are identifiable by a 40-character SHA-1 hash, also known as the "object hash".
 
         Here's an example of an object hash: `e88f7a929cd70b0274c4ea33b209c97fa845fdbc`.
