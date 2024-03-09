@@ -712,6 +712,7 @@ stages:
 
       ### Notes
 
+      - Remember to ignore the `.git` directory when creating the tree object.
       - Your implementation of `git write-tree` will need to handle nested directories. A recursive implementation
         will help here, since you'll need to create tree objects for each subdirectory to be able to create the
         parent directory's tree object.
