@@ -416,6 +416,8 @@ stages:
 
       - Although the object file is stored with zlib compression, the SHA hash needs to be computed over
         the "uncompressed" contents of the file, not the compressed version.
+      - The input for the SHA hash is the header (`blob <size>\0`) + the actual contents of the file,
+        not just the contents of the file.
     marketing_md: |-
       In the previous stage, we learnt how to read a blob. In this stage, we'll
       persist a blob by implementing the `git hash-object` command.
@@ -613,58 +615,68 @@ stages:
 
       ### The `git write-tree` command
 
-      The `git write-tree` command creates a tree object from the current state of the "staging area". The
-      staging area is a place where changes go when you run `git add`.
+      <details>
+        <summary>Click to expand/collapse</summary>
 
-      In this challenge we won't implement a staging area, we'll just assume that all files in the working directory are staged.
+        The `git write-tree` command creates a tree object from the current state of the "staging area". The
+        staging area is a place where changes go when you run `git add`.
 
-      Here's an example of using `git write-tree`:
+        In this challenge we won't implement a staging area, we'll just assume that all files in the working directory are staged.
 
-      ```bash
-      # Create a file with some content
-      $ echo "hello world" > test.txt
+        Here's an example of using `git write-tree`:
 
-      # Add the file to the staging area (we won't implement a staging area in this challenge)
-      $ git add test.txt
+        ```bash
+        # Create a file with some content
+        $ echo "hello world" > test.txt
 
-      # Write the tree to .git/objects
-      $ git write-tree
-      4b825dc642cb6eb9a060e54bf8d69288fbee4904
-      ```
+        # Add the file to the staging area (we won't implement a staging area in this challenge)
+        $ git add test.txt
 
-      The output of `git write-tree` is the 40-char SHA hash of the tree object that was written to `.git/objects`.
+        # Write the tree to .git/objects
+        $ git write-tree
+        4b825dc642cb6eb9a060e54bf8d69288fbee4904
+        ```
 
-      To implement this, you'll need to:
+        The output of `git write-tree` is the 40-char SHA hash of the tree object that was written to `.git/objects`.
 
-      - Iterate over the files/directories in the working directory
-      - If the entry is a file, create a blob object and record its SHA hash
-      - If the entry is a directory, recursively create a tree object and record its SHA hash
-      - Once you have all the entries and their SHA hashes, write the tree object to the `.git/objects` directory
+        To implement this, you'll need to:
 
-      If you're testing this against `git` locally, make sure to run `git add .` before `git write-tree`, so that
-      all files in the working directory are staged.
+        - Iterate over the files/directories in the working directory
+        - If the entry is a file, create a blob object and record its SHA hash
+        - If the entry is a directory, recursively create a tree object and record its SHA hash
+        - Once you have all the entries and their SHA hashes, write the tree object to the `.git/objects` directory
+
+        If you're testing this against `git` locally, make sure to run `git add .` before `git write-tree`, so that
+        all files in the working directory are staged.
+
+      </details>
 
       ### Tree File Storage (recap)
 
-      We covered the format of a tree object file in the previous stage. Here's a quick recap of what
-      a tree object file looks like (before Zlib compression):
+      <details>
+        <summary>Click to expand/collapse</summary>
 
-      ```
-      tree <size>\0
-      <mode> <name>\0<20_byte_sha>
-      <mode> <name>\0<20_byte_sha>
-      ```
+        We covered the format of a tree object file in the previous stage. Here's a quick recap of what
+        a tree object file looks like (before Zlib compression):
 
-      (The above code block is formatted with newlines for readability, but the actual file doesn't contain newlines)
+        ```
+        tree <size>\0
+        <mode> <name>\0<20_byte_sha>
+        <mode> <name>\0<20_byte_sha>
+        ```
 
-      - The file starts with `tree <size>\0`. This is the "object header", similar to what we saw with blob objects.
-      - After the header, there are multiple entries. Each entry is of the form `<mode> <name>\0<sha>`.
-        - `<mode>` is the mode of the file/directory
-        - `<name>` is the name of the file/directory
-        - `\0` is a null byte
-        - `<20_byte_sha>` is the 20-byte SHA-1 hash of the blob/tree (this is **not** in hexadecimal format)
+        (The above code block is formatted with newlines for readability, but the actual file doesn't contain newlines)
 
-      You can read more about the internal format of a tree object [here](https://stackoverflow.com/questions/14790681/what-is-the-internal-format-of-a-git-tree-object).
+        - The file starts with `tree <size>\0`. This is the "object header", similar to what we saw with blob objects.
+        - After the header, there are multiple entries. Each entry is of the form `<mode> <name>\0<sha>`.
+          - `<mode>` is the mode of the file/directory
+          - `<name>` is the name of the file/directory
+          - `\0` is a null byte
+          - `<20_byte_sha>` is the 20-byte SHA-1 hash of the blob/tree (this is **not** in hexadecimal format)
+
+        You can read more about the internal format of a tree object [here](https://stackoverflow.com/questions/14790681/what-is-the-internal-format-of-a-git-tree-object).
+
+      </details>
 
       ### Tests
 
