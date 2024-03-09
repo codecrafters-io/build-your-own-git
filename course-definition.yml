@@ -727,6 +727,9 @@ stages:
       - Tree SHA
       - Parent commit SHA(s), if any
 
+      We don't have a detailed description of the commit object format here, but you can read more about it
+      [here](https://stackoverflow.com/questions/22968856/what-is-the-file-format-of-a-git-commit-object-data-structure).
+
       ### The `git commit-tree` command
 
       The `git commit-tree` command creates a commit object. Example usage:
