@@ -411,6 +411,11 @@ stages:
 
       - Your program prints a 40-character SHA hash to stdout
       - The file written to `.git/objects` matches what the official `git` implementation would write
+
+      ### Notes
+
+      - Although the object file is stored with zlib compression, the SHA hash needs to be computed over
+        the "uncompressed" contents of the file, not the compressed version.
     marketing_md: |-
       In the previous stage, we learnt how to read a blob. In this stage, we'll
       persist a blob by implementing the `git hash-object` command.
