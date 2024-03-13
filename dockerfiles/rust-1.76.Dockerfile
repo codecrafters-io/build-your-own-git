@@ -1,8 +1,9 @@
 FROM rust:1.76-buster
 
-RUN apt update && \
-	apt install --no-install-recommends --yes git && \
-	rm -r /var/lib/apt/lists/
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y git=1:2.* && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY Cargo.toml /app/Cargo.toml
 COPY Cargo.lock /app/Cargo.lock
