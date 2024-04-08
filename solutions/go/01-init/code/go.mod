@@ -6,4 +6,4 @@
 
 module github.com/codecrafters-io/git-starter-go
 
-go 1.19
+go 1.22
