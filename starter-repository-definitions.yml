@@ -155,3 +155,25 @@
     user_editable_file: "src/main/java/Main.java"
 
 # TODO: Add kotlin here once it's supported again!
+
+- language: csharp
+  file_mappings:
+    - source: starter_templates/README.md
+      target: README.md
+    - source: starter_templates/codecrafters.yml
+      target: codecrafters.yml
+    - source: starter_templates/csharp/.gitignore
+      target: .gitignore
+    - source: starter_templates/csharp/src/Program.cs
+      target: src/Program.cs
+    - source: starter_templates/csharp/codecrafters-git.csproj
+      target: codecrafters-git.csproj
+    - source: starter_templates/csharp/codecrafters-git.sln
+      target: codecrafters-git.sln
+    - source: starter_templates/csharp/your_git.sh
+      target: your_git.sh
+    - source: starter_templates/.gitattributes
+      target: .gitattributes
+  template_attributes:
+    required_executable: "dotnet (8.0)"
+    user_editable_file: "src/Program.cs"
