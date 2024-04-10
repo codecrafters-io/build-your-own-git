@@ -31,14 +31,16 @@ completion_percentage: 10
 
 languages:
   - slug: "cpp"
+  - slug: "csharp"
+    release_status: "alpha"
   - slug: "go"
   - slug: "haskell"
+  - slug: "java"
+    release_status: "beta"
   - slug: "javascript"
   - slug: "python"
   - slug: "ruby"
   - slug: "rust"
-  - slug: "java"
-    release_status: "beta"
 
 # TODO: Add this back once builds are faster
 #  kotlin: https://github.com/codecrafters-io/git-starter-kotlin
