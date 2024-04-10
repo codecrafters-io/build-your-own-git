@@ -5,11 +5,11 @@ Study and uncomment the relevant code:
 ```csharp
 // Uncomment this block to pass the first stage
 
-    Directory.CreateDirectory(".git");
-    Directory.CreateDirectory(".git/objects");
-    Directory.CreateDirectory(".git/refs");
-    File.WriteAllText(".git/HEAD", "ref: refs/heads/main\n");
-    Console.WriteLine("Initialized git directory");
+Directory.CreateDirectory(".git");
+Directory.CreateDirectory(".git/objects");
+Directory.CreateDirectory(".git/refs");
+File.WriteAllText(".git/HEAD", "ref: refs/heads/main\n");
+Console.WriteLine("Initialized git directory");
 ```
 
 Push your changes to pass the first stage:

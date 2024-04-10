@@ -11,11 +11,11 @@ string command = args[0];
 
 if (command == "init")
 {
-        Directory.CreateDirectory(".git");
-        Directory.CreateDirectory(".git/objects");
-        Directory.CreateDirectory(".git/refs");
-        File.WriteAllText(".git/HEAD", "ref: refs/heads/main\n");
-        Console.WriteLine("Initialized git directory");
+    Directory.CreateDirectory(".git");
+    Directory.CreateDirectory(".git/objects");
+    Directory.CreateDirectory(".git/refs");
+    File.WriteAllText(".git/HEAD", "ref: refs/heads/main\n");
+    Console.WriteLine("Initialized git directory");
 }
 else
 {
