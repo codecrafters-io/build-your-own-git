@@ -32,8 +32,7 @@ completion_percentage: 10
 languages:
   - slug: "cpp"
   - slug: "csharp"
-    release_status: "alpha"
-    alpha_tester_usernames: ["ryan-gang"]
+    release_status: "beta"
   - slug: "go"
   - slug: "haskell"
   - slug: "java"
