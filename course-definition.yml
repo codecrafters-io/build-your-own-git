@@ -33,6 +33,7 @@ languages:
   - slug: "cpp"
   - slug: "csharp"
     release_status: "alpha"
+    alpha_tester_usernames: ["ryan-gang"]
   - slug: "go"
   - slug: "haskell"
   - slug: "java"
