@@ -6,4 +6,4 @@
 #
 # DON'T EDIT THIS!
 deno cache /app/app/main.ts
-exec deno run --allow-net --allow-read --allow-write /app/app/main.ts "$@"
+exec deno run --allow-read --allow-write --allow-net /app/app/main.ts "$@"
