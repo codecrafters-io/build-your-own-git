@@ -190,6 +190,10 @@
       target: codecrafters.yml
     - source: starter_templates/typescript/app/main.ts
       target: app/main.ts
+    - source: starter_templates/typescript/deno.json
+      target: deno.json
+    - source: starter_templates/typescript/deno.lock
+      target: deno.lock
     - source: starter_templates/typescript/your_git.sh
       target: your_git.sh
     - source: starter_templates/.gitattributes
