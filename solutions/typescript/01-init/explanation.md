@@ -8,7 +8,7 @@ Study and uncomment the relevant code:
 Deno.mkdirSync(".git", { recursive: true });
 Deno.mkdirSync(".git/objects", { recursive: true });
 Deno.mkdirSync(".git/refs", { recursive: true });
-Deno.writeFileSync(".git/HEAD", new TextEncoder().encode("ref: refs/heads/main\n"));
+Deno.writeTextFileSync(".git/HEAD", "ref: refs/heads/main\n");
 console.log("Initialized git directory");
 ```
 
