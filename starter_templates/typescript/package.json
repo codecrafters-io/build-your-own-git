@@ -1,0 +1,9 @@
+{
+  "name": "@codecrafters/build-your-own-git",
+  "description": "Build your own Git challenge, from CodeCrafters",
+  "type": "module",
+  "scripts": {
+    "dev": "deno run --allow-all app/main.ts"
+  },
+  "dependencies": {}
+}

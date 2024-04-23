@@ -4,7 +4,6 @@ Study and uncomment the relevant code:
 
 ```typescript
 // Uncomment this block to pass the first stage
-
 Deno.mkdirSync(".git", { recursive: true });
 Deno.mkdirSync(".git/objects", { recursive: true });
 Deno.mkdirSync(".git/refs", { recursive: true });
