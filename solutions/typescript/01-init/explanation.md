@@ -4,10 +4,10 @@ Study and uncomment the relevant code:
 
 ```typescript
 // Uncomment this block to pass the first stage
-Deno.mkdirSync(".git", { recursive: true });
-Deno.mkdirSync(".git/objects", { recursive: true });
-Deno.mkdirSync(".git/refs", { recursive: true });
-Deno.writeTextFileSync(".git/HEAD", "ref: refs/heads/main\n");
+fs.mkdirSync(".git", { recursive: true });
+fs.mkdirSync(".git/objects", { recursive: true });
+fs.mkdirSync(".git/refs", { recursive: true });
+fs.writeFileSync(".git/HEAD", "ref: refs/heads/main\n");
 console.log("Initialized git directory");
 ```
 
