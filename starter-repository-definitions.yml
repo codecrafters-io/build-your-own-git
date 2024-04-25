@@ -202,5 +202,5 @@
     - source: starter_templates/typescript/.gitignore
       target: .gitignore
   template_attributes:
-    required_executable: "bun (1.42)"
+    required_executable: "bun (1.1)"
     user_editable_file: "app/main.ts"

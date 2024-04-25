@@ -6,6 +6,6 @@
     "dev": "bun run app/main.ts"
   },
   "dependencies": {
-    "chalk": "^5.3.0"
+    "async": "^3.2.0"
   }
 }
