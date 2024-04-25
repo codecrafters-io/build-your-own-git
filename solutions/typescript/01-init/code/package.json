@@ -1,0 +1,11 @@
+{
+  "name": "@codecrafters/build-your-own-git",
+  "description": "Build your own Git challenge, from CodeCrafters",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run app/main.ts"
+  },
+  "dependencies": {
+    "async": "^3.2.0"
+  }
+}

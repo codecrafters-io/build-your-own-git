@@ -181,3 +181,26 @@
   template_attributes:
     required_executable: "dotnet (8.0)"
     user_editable_file: "src/Program.cs"
+
+- language: typescript
+  file_mappings:
+    - source: starter_templates/README.md
+      target: README.md
+    - source: starter_templates/codecrafters.yml
+      target: codecrafters.yml
+    - source: starter_templates/typescript/app/main.ts
+      target: app/main.ts
+    - source: starter_templates/typescript/package.json
+      target: package.json
+    - source: starter_templates/typescript/bun.lockb
+      target: bun.lockb
+      should_skip_template_evaluation: true
+    - source: starter_templates/typescript/your_git.sh
+      target: your_git.sh
+    - source: starter_templates/.gitattributes
+      target: .gitattributes
+    - source: starter_templates/typescript/.gitignore
+      target: .gitignore
+  template_attributes:
+    required_executable: "bun (1.1)"
+    user_editable_file: "app/main.ts"

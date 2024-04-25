@@ -75,3 +75,7 @@ language_pack: dotnet-8.0
 # Available versions: cpp-20
 language_pack: cpp-20
 {{/language_is_cpp}}
+{{#language_is_typescript}}
+# Available versions: bun-1.1
+language_pack: bun-1.1
+{{/language_is_typescript}}
