@@ -104,14 +104,20 @@
       target: README.md
     - source: starter_templates/codecrafters.yml
       target: codecrafters.yml
+    - source: starter_templates/javascript/package.json
+      target: package.json
+    - source: starter_templates/javascript/package-lock.json
+      target: package-lock.json
     - source: starter_templates/javascript/app/main.js
       target: app/main.js
     - source: starter_templates/javascript/your_git.sh
       target: your_git.sh
     - source: starter_templates/.gitattributes
       target: .gitattributes
+    - source: starter_templates/javascript/.gitignore
+      target: .gitignore
   template_attributes:
-    required_executable: "node (18)"
+    required_executable: "node (21)"
     user_editable_file: "app/main.js"
 
 - language: haskell

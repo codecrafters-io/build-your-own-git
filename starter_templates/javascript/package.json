@@ -1,0 +1,15 @@
+{
+    "name": "@codecrafters/build-your-own-git",
+    "version": "1.0.0",
+    "description": "Build your own Git challenge, from CodeCrafters",
+    "main": "main.js",
+    "scripts": {
+        "dev": "node app/main.js"
+    },
+    "keywords": [
+        "build-your-own-x"
+    ],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {}
+}
