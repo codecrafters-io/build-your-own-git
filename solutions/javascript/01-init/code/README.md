@@ -28,7 +28,7 @@ That's all!
 
 Note: This section is for stages 2 and beyond.
 
-1. Ensure you have `node (18)` installed locally
+1. Ensure you have `node (21)` installed locally
 1. Run `./your_git.sh` to run your Git implementation, which is implemented in
    `app/main.js`.
 1. Commit your changes and run `git push origin master` to submit your solution
