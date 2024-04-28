@@ -42,7 +42,7 @@ languages:
   - slug: "ruby"
   - slug: "rust"
   - slug: "typescript"
-    release_status: "alpha"
+    release_status: "beta"
 
 # TODO: Add this back once builds are faster
 #  kotlin: https://github.com/codecrafters-io/git-starter-kotlin
