@@ -200,7 +200,6 @@
       target: package.json
     - source: starter_templates/typescript/bun.lockb
       target: bun.lockb
-      should_skip_template_evaluation: true
     - source: starter_templates/typescript/your_git.sh
       target: your_git.sh
     - source: starter_templates/.gitattributes
