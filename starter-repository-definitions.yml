@@ -1,211 +1,231 @@
 - language: cpp
   file_mappings:
-    - source: starter_templates/README.md
-      target: README.md
-    - source: starter_templates/codecrafters.yml
-      target: codecrafters.yml
-    - source: starter_templates/cpp/.gitignore
-      target: .gitignore
-    - source: starter_templates/cpp/src/Server.cpp
-      target: src/Server.cpp
-    - source: starter_templates/cpp/CMakeLists.txt
-      target: CMakeLists.txt
-    - source: starter_templates/cpp/your_git.sh
-      target: your_git.sh
-    - source: starter_templates/.gitattributes
-      target: .gitattributes
+      - source: starter_templates/README.md
+        target: README.md
+      - source: starter_templates/codecrafters.yml
+        target: codecrafters.yml
+      - source: starter_templates/cpp/.gitignore
+        target: .gitignore
+      - source: starter_templates/cpp/src/Server.cpp
+        target: src/Server.cpp
+      - source: starter_templates/cpp/CMakeLists.txt
+        target: CMakeLists.txt
+      - source: starter_templates/cpp/your_git.sh
+        target: your_git.sh
+      - source: starter_templates/.gitattributes
+        target: .gitattributes
   template_attributes:
-    required_executable: "cmake"
-    user_editable_file: "src/Server.cpp"
+      required_executable: "cmake"
+      user_editable_file: "src/Server.cpp"
 
 - language: go
   file_mappings:
-    - source: starter_templates/README.md
-      target: README.md
-    - source: starter_templates/codecrafters.yml
-      target: codecrafters.yml
-    - source: starter_templates/go/go.mod
-      target: go.mod
-    - source: starter_templates/go/go.sum
-      target: go.sum
-    - source: starter_templates/go/cmd/mygit/main.go
-      target: cmd/mygit/main.go
-    - source: starter_templates/go/your_git.sh
-      target: your_git.sh
-    - source: starter_templates/.gitattributes
-      target: .gitattributes
+      - source: starter_templates/README.md
+        target: README.md
+      - source: starter_templates/codecrafters.yml
+        target: codecrafters.yml
+      - source: starter_templates/go/go.mod
+        target: go.mod
+      - source: starter_templates/go/go.sum
+        target: go.sum
+      - source: starter_templates/go/cmd/mygit/main.go
+        target: cmd/mygit/main.go
+      - source: starter_templates/go/your_git.sh
+        target: your_git.sh
+      - source: starter_templates/.gitattributes
+        target: .gitattributes
   template_attributes:
-    required_executable: "go"
-    user_editable_file: "cmd/mygit/main.go"
+      required_executable: "go"
+      user_editable_file: "cmd/mygit/main.go"
 
 - language: python
   file_mappings:
-    - source: starter_templates/README.md
-      target: README.md
-    - source: starter_templates/codecrafters.yml
-      target: codecrafters.yml
-    - source: starter_templates/python/app/main.py
-      target: app/main.py
-    - source: starter_templates/python/your_git.sh
-      target: your_git.sh
-    - source: starter_templates/python/.gitignore
-      target: .gitignore
-    - source: starter_templates/.gitattributes
-      target: .gitattributes
+      - source: starter_templates/README.md
+        target: README.md
+      - source: starter_templates/codecrafters.yml
+        target: codecrafters.yml
+      - source: starter_templates/python/app/main.py
+        target: app/main.py
+      - source: starter_templates/python/your_git.sh
+        target: your_git.sh
+      - source: starter_templates/python/.gitignore
+        target: .gitignore
+      - source: starter_templates/.gitattributes
+        target: .gitattributes
   template_attributes:
-    required_executable: "python"
-    user_editable_file: "app/main.py"
+      required_executable: "python"
+      user_editable_file: "app/main.py"
 
 - language: ruby
   file_mappings:
-    - source: starter_templates/README.md
-      target: README.md
-    - source: starter_templates/codecrafters.yml
-      target: codecrafters.yml
-    - source: starter_templates/ruby/app/main.rb
-      target: app/main.rb
-    - source: starter_templates/ruby/your_git.sh
-      target: your_git.sh
-    - source: starter_templates/.gitattributes
-      target: .gitattributes
-    - source: starter_templates/ruby/Gemfile
-      target: Gemfile
-    - source: starter_templates/ruby/Gemfile.lock
-      target: Gemfile.lock
+      - source: starter_templates/README.md
+        target: README.md
+      - source: starter_templates/codecrafters.yml
+        target: codecrafters.yml
+      - source: starter_templates/ruby/app/main.rb
+        target: app/main.rb
+      - source: starter_templates/ruby/your_git.sh
+        target: your_git.sh
+      - source: starter_templates/.gitattributes
+        target: .gitattributes
+      - source: starter_templates/ruby/Gemfile
+        target: Gemfile
+      - source: starter_templates/ruby/Gemfile.lock
+        target: Gemfile.lock
   template_attributes:
-    required_executable: "ruby (3.3)"
-    user_editable_file: "app/main.rb"
+      required_executable: "ruby (3.3)"
+      user_editable_file: "app/main.rb"
 
 - language: rust
   file_mappings:
-    - source: starter_templates/README.md
-      target: README.md
-    - source: starter_templates/codecrafters.yml
-      target: codecrafters.yml
-    - source: starter_templates/rust/.gitignore
-      target: .gitignore
-    - source: starter_templates/rust/src/main.rs
-      target: src/main.rs
-    - source: starter_templates/rust/Cargo.toml
-      target: Cargo.toml
-    - source: starter_templates/rust/Cargo.lock
-      target: Cargo.lock
-    - source: starter_templates/rust/your_git.sh
-      target: your_git.sh
-    - source: starter_templates/.gitattributes
-      target: .gitattributes
+      - source: starter_templates/README.md
+        target: README.md
+      - source: starter_templates/codecrafters.yml
+        target: codecrafters.yml
+      - source: starter_templates/rust/.gitignore
+        target: .gitignore
+      - source: starter_templates/rust/src/main.rs
+        target: src/main.rs
+      - source: starter_templates/rust/Cargo.toml
+        target: Cargo.toml
+      - source: starter_templates/rust/Cargo.lock
+        target: Cargo.lock
+      - source: starter_templates/rust/your_git.sh
+        target: your_git.sh
+      - source: starter_templates/.gitattributes
+        target: .gitattributes
   template_attributes:
-    required_executable: "cargo (1.54)"
-    user_editable_file: "src/main.rs"
+      required_executable: "cargo (1.54)"
+      user_editable_file: "src/main.rs"
 
 - language: javascript
   file_mappings:
-    - source: starter_templates/README.md
-      target: README.md
-    - source: starter_templates/codecrafters.yml
-      target: codecrafters.yml
-    - source: starter_templates/javascript/package.json
-      target: package.json
-    - source: starter_templates/javascript/package-lock.json
-      target: package-lock.json
-    - source: starter_templates/javascript/app/main.js
-      target: app/main.js
-    - source: starter_templates/javascript/your_git.sh
-      target: your_git.sh
-    - source: starter_templates/.gitattributes
-      target: .gitattributes
-    - source: starter_templates/javascript/.gitignore
-      target: .gitignore
+      - source: starter_templates/README.md
+        target: README.md
+      - source: starter_templates/codecrafters.yml
+        target: codecrafters.yml
+      - source: starter_templates/javascript/package.json
+        target: package.json
+      - source: starter_templates/javascript/package-lock.json
+        target: package-lock.json
+      - source: starter_templates/javascript/app/main.js
+        target: app/main.js
+      - source: starter_templates/javascript/your_git.sh
+        target: your_git.sh
+      - source: starter_templates/.gitattributes
+        target: .gitattributes
+      - source: starter_templates/javascript/.gitignore
+        target: .gitignore
   template_attributes:
-    required_executable: "node (21)"
-    user_editable_file: "app/main.js"
+      required_executable: "node (21)"
+      user_editable_file: "app/main.js"
 
 - language: haskell
   file_mappings:
-    - source: starter_templates/README.md
-      target: README.md
-    - source: starter_templates/codecrafters.yml
-      target: codecrafters.yml
-    - source: starter_templates/haskell/.gitignore
-      target: .gitignore
-    - source: starter_templates/haskell/package.yaml
-      target: package.yaml
-    - source: starter_templates/haskell/stack.yaml
-      target: stack.yaml
-    - source: starter_templates/haskell/stack.yaml.lock
-      target: stack.yaml.lock
-    - source: starter_templates/haskell/your_git.sh
-      target: your_git.sh
-    - source: starter_templates/haskell/app/Main.hs
-      target: app/Main.hs
-    - source: starter_templates/.gitattributes
-      target: .gitattributes
+      - source: starter_templates/README.md
+        target: README.md
+      - source: starter_templates/codecrafters.yml
+        target: codecrafters.yml
+      - source: starter_templates/haskell/.gitignore
+        target: .gitignore
+      - source: starter_templates/haskell/package.yaml
+        target: package.yaml
+      - source: starter_templates/haskell/stack.yaml
+        target: stack.yaml
+      - source: starter_templates/haskell/stack.yaml.lock
+        target: stack.yaml.lock
+      - source: starter_templates/haskell/your_git.sh
+        target: your_git.sh
+      - source: starter_templates/haskell/app/Main.hs
+        target: app/Main.hs
+      - source: starter_templates/.gitattributes
+        target: .gitattributes
   template_attributes:
-    required_executable: "stack"
-    user_editable_file: "app/Main.hs"
+      required_executable: "stack"
+      user_editable_file: "app/Main.hs"
 
 - language: java
   file_mappings:
-    - source: starter_templates/README.md
-      target: README.md
-    - source: starter_templates/codecrafters.yml
-      target: codecrafters.yml
-    - source: starter_templates/java/your_git.sh
-      target: your_git.sh
-    - source: starter_templates/java/.gitignore
-      target: .gitignore
-    - source: starter_templates/java/src/main/java/Main.java
-      target: src/main/java/Main.java
-    - source: starter_templates/java/pom.xml
-      target: pom.xml
-    - source: starter_templates/.gitattributes
-      target: .gitattributes
+      - source: starter_templates/README.md
+        target: README.md
+      - source: starter_templates/codecrafters.yml
+        target: codecrafters.yml
+      - source: starter_templates/java/your_git.sh
+        target: your_git.sh
+      - source: starter_templates/java/.gitignore
+        target: .gitignore
+      - source: starter_templates/java/src/main/java/Main.java
+        target: src/main/java/Main.java
+      - source: starter_templates/java/pom.xml
+        target: pom.xml
+      - source: starter_templates/.gitattributes
+        target: .gitattributes
   template_attributes:
-    required_executable: "java (21)"
-    user_editable_file: "src/main/java/Main.java"
+      required_executable: "java (21)"
+      user_editable_file: "src/main/java/Main.java"
 
 # TODO: Add kotlin here once it's supported again!
 
 - language: csharp
   file_mappings:
-    - source: starter_templates/README.md
-      target: README.md
-    - source: starter_templates/codecrafters.yml
-      target: codecrafters.yml
-    - source: starter_templates/csharp/.gitignore
-      target: .gitignore
-    - source: starter_templates/csharp/src/Program.cs
-      target: src/Program.cs
-    - source: starter_templates/csharp/codecrafters-git.csproj
-      target: codecrafters-git.csproj
-    - source: starter_templates/csharp/codecrafters-git.sln
-      target: codecrafters-git.sln
-    - source: starter_templates/csharp/your_git.sh
-      target: your_git.sh
-    - source: starter_templates/.gitattributes
-      target: .gitattributes
+      - source: starter_templates/README.md
+        target: README.md
+      - source: starter_templates/codecrafters.yml
+        target: codecrafters.yml
+      - source: starter_templates/csharp/.gitignore
+        target: .gitignore
+      - source: starter_templates/csharp/src/Program.cs
+        target: src/Program.cs
+      - source: starter_templates/csharp/codecrafters-git.csproj
+        target: codecrafters-git.csproj
+      - source: starter_templates/csharp/codecrafters-git.sln
+        target: codecrafters-git.sln
+      - source: starter_templates/csharp/your_git.sh
+        target: your_git.sh
+      - source: starter_templates/.gitattributes
+        target: .gitattributes
   template_attributes:
-    required_executable: "dotnet (8.0)"
-    user_editable_file: "src/Program.cs"
+      required_executable: "dotnet (8.0)"
+      user_editable_file: "src/Program.cs"
 
 - language: typescript
   file_mappings:
-    - source: starter_templates/README.md
-      target: README.md
-    - source: starter_templates/codecrafters.yml
-      target: codecrafters.yml
-    - source: starter_templates/typescript/app/main.ts
-      target: app/main.ts
-    - source: starter_templates/typescript/package.json
-      target: package.json
-    - source: starter_templates/typescript/bun.lockb
-      target: bun.lockb
-    - source: starter_templates/typescript/your_git.sh
-      target: your_git.sh
-    - source: starter_templates/.gitattributes
-      target: .gitattributes
-    - source: starter_templates/typescript/.gitignore
-      target: .gitignore
+      - source: starter_templates/README.md
+        target: README.md
+      - source: starter_templates/codecrafters.yml
+        target: codecrafters.yml
+      - source: starter_templates/typescript/app/main.ts
+        target: app/main.ts
+      - source: starter_templates/typescript/package.json
+        target: package.json
+      - source: starter_templates/typescript/bun.lockb
+        target: bun.lockb
+      - source: starter_templates/typescript/your_git.sh
+        target: your_git.sh
+      - source: starter_templates/.gitattributes
+        target: .gitattributes
+      - source: starter_templates/typescript/.gitignore
+        target: .gitignore
   template_attributes:
-    required_executable: "bun (1.1)"
-    user_editable_file: "app/main.ts"
+      required_executable: "bun (1.1)"
+      user_editable_file: "app/main.ts"
+
+- language: swift
+  file_mappings:
+      - source: starter_templates/README.md
+        target: README.md
+      - source: starter_templates/codecrafters.yml
+        target: codecrafters.yml
+      - source: starter_templates/swift/.gitignore
+        target: .gitignore
+      - source: starter_templates/swift/Package.swift
+        target: Package.swift
+      - source: starter_templates/swift/Sources/main.swift
+        target: Sources/main.swift
+      - source: starter_templates/swift/your_git.sh
+        target: your_git.sh
+      - source: starter_templates/.gitattributes
+        target: .gitattributes
+  template_attributes:
+      required_executable: "swift"
+      user_editable_file: "Sources/main.swift"
