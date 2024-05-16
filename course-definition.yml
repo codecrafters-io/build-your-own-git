@@ -67,7 +67,8 @@ marketing:
         Never in my life have I needed something so much and not known until I received it.
 
 stages:
-  - slug: "init"
+  - legacy_slug: "init"
+    slug: "init"
     name: "Initialize the .git directory"
     difficulty: very_easy
     description_md: |-
@@ -156,7 +157,8 @@ stages:
       a git repository by creating a `.git` directory and some files inside it.
     tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_init.go#L12"
 
-  - slug: "read_blob"
+  - legacy_slug: "read_blob"
+    slug: "read_blob"
     name: "Read a blob object"
     difficulty: medium
     description_md: |-
@@ -331,7 +333,8 @@ stages:
       cat-file`](https://git-scm.com/docs/git-cat-file).
     tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_read_blob.go#L18"
 
-  - slug: "create_blob"
+  - legacy_slug: "create_blob"
+    slug: "create_blob"
     name: "Create a blob object"
     difficulty: medium
     description_md: |-
@@ -427,7 +430,8 @@ stages:
       persist a blob by implementing the `git hash-object` command.
     tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/master/internal/stage_create_blob.go"
 
-  - slug: "read_tree"
+  - legacy_slug: "read_tree"
+    slug: "read_tree"
     name: "Read a tree object"
     difficulty: medium
     description_md: |-
@@ -611,7 +615,8 @@ stages:
       `git ls-tree` command.
     tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_read_tree.go#L20"
 
-  - slug: "write_tree"
+  - legacy_slug: "write_tree"
+    slug: "write_tree"
     name: "Write a tree object"
     difficulty: medium
     description_md: |-
@@ -731,7 +736,8 @@ stages:
       that all changes in the worktree are staged.
     tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_write_tree.go#L21"
 
-  - slug: "create_commit"
+  - legacy_slug: "create_commit"
+    slug: "create_commit"
     name: "Create a commit"
     difficulty: medium
     description_md: |-
@@ -813,7 +819,8 @@ stages:
       command.
     tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/master/internal/stage_create_commit.go"
 
-  - slug: "clone_repository"
+  - legacy_slug: "clone_repository"
+    slug: "clone_repository"
     name: "Clone a repository"
     difficulty: hard
     description_md: |-
