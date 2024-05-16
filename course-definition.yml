@@ -68,7 +68,7 @@ marketing:
 
 stages:
   - legacy_slug: "init"
-    slug: "init"
+    slug: "gg4"
     name: "Initialize the .git directory"
     difficulty: very_easy
     description_md: |-
@@ -158,7 +158,7 @@ stages:
     tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_init.go#L12"
 
   - legacy_slug: "read_blob"
-    slug: "read_blob"
+    slug: "ic4"
     name: "Read a blob object"
     difficulty: medium
     description_md: |-
@@ -334,7 +334,7 @@ stages:
     tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_read_blob.go#L18"
 
   - legacy_slug: "create_blob"
-    slug: "create_blob"
+    slug: "jt4"
     name: "Create a blob object"
     difficulty: medium
     description_md: |-
@@ -431,7 +431,7 @@ stages:
     tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/master/internal/stage_create_blob.go"
 
   - legacy_slug: "read_tree"
-    slug: "read_tree"
+    slug: "kp1"
     name: "Read a tree object"
     difficulty: medium
     description_md: |-
@@ -616,7 +616,7 @@ stages:
     tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_read_tree.go#L20"
 
   - legacy_slug: "write_tree"
-    slug: "write_tree"
+    slug: "fe4"
     name: "Write a tree object"
     difficulty: medium
     description_md: |-
@@ -737,7 +737,7 @@ stages:
     tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_write_tree.go#L21"
 
   - legacy_slug: "create_commit"
-    slug: "create_commit"
+    slug: "jm9"
     name: "Create a commit"
     difficulty: medium
     description_md: |-
@@ -820,7 +820,7 @@ stages:
     tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/master/internal/stage_create_commit.go"
 
   - legacy_slug: "clone_repository"
-    slug: "clone_repository"
+    slug: "mg6"
     name: "Clone a repository"
     difficulty: hard
     description_md: |-
