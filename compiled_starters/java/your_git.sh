@@ -6,5 +6,6 @@
 #
 # DON'T EDIT THIS!
 set -e
-mvn -B --quiet package -Ddir=/tmp/codecrafters-git-target
+BASEDIR=$(dirname "$0")
+mvn -B --quiet package -Ddir=/tmp/codecrafters-git-target -f "$BASEDIR/pom.xml"
 exec java -jar /tmp/codecrafters-git-target/java_git.jar "$@"
