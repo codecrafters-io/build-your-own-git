@@ -196,7 +196,7 @@ stages:
         The path for the object with the hash `e88f7a929cd70b0274c4ea33b209c97fa845fdbc` would be:
 
         ```bash
-        ./git/objects/e8/8f7a929cd70b0274c4ea33b209c97fa845fdbc
+        ./.git/objects/e8/8f7a929cd70b0274c4ea33b209c97fa845fdbc
         ```
 
         You'll see that the file isn't placed directly in the `./git/objects` directory. Instead, it's placed in a directory named with the
