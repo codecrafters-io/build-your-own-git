@@ -4,7 +4,6 @@ Study and uncomment the relevant code:
 
 ```cpp
 // Uncomment this block to pass the first stage
-
 if (argc < 2) {
     std::cerr << "No command provided.\n";
     return EXIT_FAILURE;
