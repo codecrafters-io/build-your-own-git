@@ -5,6 +5,10 @@
 
 int main(int argc, char *argv[])
 {
+    // Flush after every std::cout / std::cerr
+    std::cout << std::unitbuf;
+    std::cerr << std::unitbuf;
+
     if (argc < 2) {
         std::cerr << "No command provided.\n";
         return EXIT_FAILURE;
