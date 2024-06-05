@@ -8,6 +8,10 @@
       target: .gitignore
     - source: starter_templates/cpp/src/Server.cpp
       target: src/Server.cpp
+    - source: starter_templates/cpp/vcpkg.json
+      target: vcpkg.json
+    - source: starter_templates/cpp/vcpkg-configuration.json
+      target: vcpkg-configuration.json
     - source: starter_templates/cpp/CMakeLists.txt
       target: CMakeLists.txt
     - source: starter_templates/cpp/your_git.sh
