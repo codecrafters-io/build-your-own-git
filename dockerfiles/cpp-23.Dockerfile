@@ -41,5 +41,3 @@ RUN chmod +x /codecrafters-precompile.sh
 
 # Once the heavy steps are done, we can copy all files back
 COPY . /app
-
-# RUN printf "cd \${CODECRAFTERS_SUBMISSION_DIR} && cmake . && make && (echo '#!/bin/sh\nexec \${CODECRAFTERS_SUBMISSION_DIR}/server \"\$@\"' > your_git.sh) && chmod +x your_git.sh && cat your_git.sh" > /codecrafters-precompile.sh
