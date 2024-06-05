@@ -15,4 +15,5 @@ if [ -z "${CODECRAFTERS_SUBMISSION_DIR}" ]; then
     CODECRAFTERS_SUBMISSION_DIR="."
 fi
 
-exec ${CODECRAFTERS_SUBMISSION_DIR}/build/server "$@"
+
+exec $(dirname "$0")/build/server "$@"
