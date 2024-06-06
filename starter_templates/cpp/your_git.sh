@@ -6,6 +6,7 @@
 #
 # DON'T EDIT THIS!
 set -e
-cmake $(dirname $0) > /dev/null
-make > /dev/null
-exec ./server "$@"
+# vcpkg & cmake are required. 
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake
+cmake --build ./build
+exec $(dirname "$0")/build/server "$@"
