@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1.7-labs
 FROM rust:1.62-buster
 
 RUN apt-get update && \
@@ -5,13 +6,13 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY Cargo.toml /app/Cargo.toml
-COPY Cargo.lock /app/Cargo.lock
 
 RUN mkdir /app/src
 RUN echo 'fn main() { println!("Hello World!"); }' > /app/src/main.rs
 
 WORKDIR /app
+# .git & README.md are unique per-repository. We ignore them on first copy to prevent cache misses
+COPY --exclude=.git --exclude=README.md . /app
 RUN cargo build --release --target-dir=/tmp/codecrafters-git-target
 
 RUN rm /tmp/codecrafters-git-target/release/git-starter-rust
@@ -30,3 +31,6 @@ RUN chmod +x /codecrafters-precompile.sh
 
 ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="Cargo.toml,Cargo.lock"
 
+
+# Once the heave steps are done, we can copy all files back
+COPY . /app
