@@ -1,14 +1,15 @@
+# syntax=docker/dockerfile:1.7-labs
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine
 
 RUN apk add --no-cache 'git>=2.40'
 
-COPY codecrafters-git.csproj /app/codecrafters-git.csproj
-COPY codecrafters-git.sln /app/codecrafters-git.sln
 
 RUN mkdir /app/src
 RUN (echo 'System.Console.WriteLine("If you are seeing this, there is something wrong with our caching mechanism! Please contact us at hello@codecrafters.io.");' > /app/src/Program.cs) > /dev/null
 
 WORKDIR /app
+# .git & README.md are unique per-repository. We ignore them on first copy to prevent cache misses
+COPY --exclude=.git --exclude=README.md . /app
 
 # This saves nuget packages to ~/.nuget
 RUN dotnet build --configuration Release .
@@ -24,3 +25,6 @@ RUN echo "cd \${CODECRAFTERS_SUBMISSION_DIR} && dotnet build --configuration Rel
 RUN chmod +x /codecrafters-precompile.sh
 
 ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="codecrafters-git.csproj,codecrafters-git.sln"
+
+# Once the heave steps are done, we can copy all files back
+COPY . /app
