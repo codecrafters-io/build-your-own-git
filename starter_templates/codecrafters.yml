@@ -79,3 +79,7 @@ language_pack: cpp-23
 # Available versions: bun-1.1
 language_pack: bun-1.1
 {{/language_is_typescript}}
+{{#language_is_zig}}
+# Available versions: zig-0.12
+language_pack: zig-0.12
+{{/language_is_zig}}
