@@ -232,6 +232,8 @@
       target: your_git.sh
     - source: starter_templates/zig/.gitignore
       target: .gitignore
+    - source: starter_templates/.gitattributes
+      target: .gitattributes
   template_attributes:
     required_executable: "zig (0.12)"
     user_editable_file: "src/main.zig"
