@@ -1,0 +1,3 @@
+attributes:
+  required_executable: go
+  user_editable_file: cmd/mygit/main.go
