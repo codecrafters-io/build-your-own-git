@@ -18,4 +18,5 @@ stack build
 #
 # - Edit this to change how your program runs locally
 # - Edit .codecrafters/run.sh to change how your program runs remotely
-exec $(stack path --local-install-root)/bin/hs-redis-clone-exe "$@"
+stackInstallRoot=$(cd $(dirname "$0") && stack path --local-install-root) # Fetch the path from within the project directory
+exec "$stackInstallRoot/bin/hs-git-clone-exe" "$@"
