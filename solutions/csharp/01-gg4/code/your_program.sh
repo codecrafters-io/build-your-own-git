@@ -12,10 +12,10 @@ set -e # Exit early if any commands fail
 #
 # - Edit this to change how your program compiles locally
 # - Edit .codecrafters/compile.sh to change how your program compiles remotely
-dotnet build --configuration Release --output /tmp/codecrafters-build-redis-csharp codecrafters-redis.csproj
+dotnet build --configuration Release --output /tmp/codecrafters-build-git-csharp codecrafters-git.csproj
 
 # Copied from .codecrafters/run.sh
 #
 # - Edit this to change how your program runs locally
 # - Edit .codecrafters/run.sh to change how your program runs remotely
-exec /tmp/codecrafters-build-redis-csharp/codecrafters-redis "$@"
+exec /tmp/codecrafters-build-git-csharp/codecrafters-git "$@"

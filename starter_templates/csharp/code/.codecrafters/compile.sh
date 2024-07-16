@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-dotnet build --configuration Release --output /tmp/codecrafters-build-redis-csharp codecrafters-redis.csproj
+dotnet build --configuration Release --output /tmp/codecrafters-build-git-csharp codecrafters-git.csproj
