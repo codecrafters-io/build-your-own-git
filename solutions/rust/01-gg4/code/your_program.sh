@@ -12,10 +12,10 @@ set -e # Exit early if any commands fail
 #
 # - Edit this to change how your program compiles locally
 # - Edit .codecrafters/compile.sh to change how your program compiles remotely
-cargo build --release --target-dir=/tmp/codecrafters-redis-target --manifest-path Cargo.toml
+cargo build --release --target-dir=/tmp/codecrafters-git-target --manifest-path Cargo.toml
 
 # Copied from .codecrafters/run.sh
 #
 # - Edit this to change how your program runs locally
 # - Edit .codecrafters/run.sh to change how your program runs remotely
-exec /tmp/codecrafters-redis-target/release/redis-starter-rust "$@"
+exec /tmp/codecrafters-git-target/release/git-starter-rust "$@"

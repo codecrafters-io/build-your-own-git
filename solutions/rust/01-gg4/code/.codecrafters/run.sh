@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-exec /tmp/codecrafters-redis-target/release/redis-starter-rust "$@"
+exec /tmp/codecrafters-git-target/release/git-starter-rust "$@"

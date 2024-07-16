@@ -18,4 +18,4 @@ zig build
 #
 # - Edit this to change how your program runs locally
 # - Edit .codecrafters/run.sh to change how your program runs remotely
-exec zig-out/bin/zig "$@"
+exec $(dirname $0)/zig-out/bin/zit "$@"

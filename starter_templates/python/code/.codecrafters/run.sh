@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-exec python3 -m app.main "$@"
+PYTHONPATH=$(dirname $0) exec python3 -m app.main "$@"

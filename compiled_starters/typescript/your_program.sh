@@ -8,6 +8,12 @@
 
 set -e # Exit early if any commands fail
 
+# Copied from .codecrafters/compile.sh
+#
+# - Edit this to change how your program compiles locally
+# - Edit .codecrafters/compile.sh to change how your program compiles remotely
+exec bun run $(dirname $0)/app/main.ts "$@"
+
 # Copied from .codecrafters/run.sh
 #
 # - Edit this to change how your program runs locally

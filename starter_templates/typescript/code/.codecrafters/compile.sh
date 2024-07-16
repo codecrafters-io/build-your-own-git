@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-# (This file is empty since TypeScript programs don't use a compile step)
+exec bun run $(dirname $0)/app/main.ts "$@"
