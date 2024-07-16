@@ -29,20 +29,20 @@ That's all!
 Note: This section is for stages 2 and beyond.
 
 1. Ensure you have `stack` installed locally
-1. Run `./your_program.sh` to run your Git implementation, which is implemented in
-   `app/Main.hs`.
+1. Run `./your_program.sh` to run your Git implementation, which is implemented
+   in `app/Main.hs`.
 1. Commit your changes and run `git push origin master` to submit your solution
    to CodeCrafters. Test output will be streamed to your terminal.
 
 # Testing locally
 
-The `your_program.sh` script is expected to operate on the `.git` folder inside the
-current working directory. If you're running this inside the root of this
+The `your_program.sh` script is expected to operate on the `.git` folder inside
+the current working directory. If you're running this inside the root of this
 repository, you might end up accidentally damaging your repository's `.git`
 folder.
 
-We suggest executing `your_program.sh` in a different folder when testing locally.
-For example:
+We suggest executing `your_program.sh` in a different folder when testing
+locally. For example:
 
 ```sh
 mkdir -p /tmp/testing && cd /tmp/testing
