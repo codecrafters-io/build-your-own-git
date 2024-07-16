@@ -12,11 +12,10 @@ set -e # Exit early if any commands fail
 #
 # - Edit this to change how your program compiles locally
 # - Edit .codecrafters/compile.sh to change how your program compiles remotely
-cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake
-cmake --build ./build
+cargo build --release --target-dir=/tmp/codecrafters-redis-target --manifest-path Cargo.toml
 
 # Copied from .codecrafters/run.sh
 #
 # - Edit this to change how your program runs locally
 # - Edit .codecrafters/run.sh to change how your program runs remotely
-exec $(dirname "$0")/build/git "$@"
+exec /tmp/codecrafters-redis-target/release/redis-starter-rust "$@"

@@ -19,4 +19,4 @@ cmake --build ./build
 #
 # - Edit this to change how your program runs locally
 # - Edit .codecrafters/run.sh to change how your program runs remotely
-exec $(dirname "$0")/build/server "$@"
+exec $(dirname "$0")/build/git "$@"

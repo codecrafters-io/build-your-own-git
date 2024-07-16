@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-exec $(dirname "$0")/build/git "$@"
+exec $(stack path --local-install-root)/bin/hs-redis-clone-exe "$@"
