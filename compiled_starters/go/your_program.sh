@@ -8,11 +8,18 @@
 
 set -e # Exit early if any commands fail
 
+# This allows running your_program.sh from outside the repository directory
+CODECRAFTERS_REPOSITORY_DIR="$(dirname "$0")"
+export CODECRAFTERS_REPOSITORY_DIR
+
 # Copied from .codecrafters/compile.sh
 #
 # - Edit this to change how your program compiles locally
 # - Edit .codecrafters/compile.sh to change how your program compiles remotely
-go build -buildvcs="false" -o /tmp/codecrafters-build-git-go ./cmd/mygit
+(
+    cd "$CODECRAFTERS_REPOSITORY_DIR" # cd only affects the subshell
+    go build -buildvcs="false" -o /tmp/codecrafters-build-git-go ./cmd/mygit
+)
 
 # Copied from .codecrafters/run.sh
 #
