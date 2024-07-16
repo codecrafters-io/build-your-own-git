@@ -12,7 +12,10 @@ set -e # Exit early if any commands fail
 #
 # - Edit this to change how your program compiles locally
 # - Edit .codecrafters/compile.sh to change how your program compiles remotely
-go build -buildvcs="false" -o /tmp/codecrafters-build-git-go ./cmd/mygit
+(
+  cd $(dirname "$0") # Ensure compile steps are run within the repository directory
+  go build -buildvcs="false" -o /tmp/codecrafters-build-git-go ./cmd/mygit
+)
 
 # Copied from .codecrafters/run.sh
 #
