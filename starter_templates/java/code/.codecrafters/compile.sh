@@ -8,4 +8,5 @@
 
 set -e # Exit on failure
 
-mvn -B package -Ddir=/tmp/codecrafters-build-redis-java
+# TODO: Figure out directory path options?
+mvn -B package -Ddir=/tmp/codecrafters-build-git-java
