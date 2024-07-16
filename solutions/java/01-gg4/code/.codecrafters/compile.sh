@@ -8,5 +8,4 @@
 
 set -e # Exit on failure
 
-# TODO: Figure out directory path options?
 mvn -B package -Ddir=/tmp/codecrafters-build-git-java

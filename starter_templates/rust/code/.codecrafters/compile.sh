@@ -8,5 +8,4 @@
 
 set -e # Exit on failure
 
-# TODO: Figure out compile vs. run path?
 cargo build --release --target-dir=/tmp/codecrafters-git-target --manifest-path Cargo.toml

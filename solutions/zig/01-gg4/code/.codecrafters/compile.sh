@@ -8,5 +8,4 @@
 
 set -e # Exit on failure
 
-# TODO: Figure out dir path
 zig build
