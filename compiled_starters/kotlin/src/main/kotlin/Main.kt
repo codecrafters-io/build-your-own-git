@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
         // File(gitDir, "refs").mkdir()
         // File(gitDir, "HEAD").writeText("ref: refs/heads/master\n")
         //
-        /// println("Initialized git directory")
+        // println("Initialized git directory")
     } else {
         println("Unknown command: ${args[0]}")
         exitProcess(1)
