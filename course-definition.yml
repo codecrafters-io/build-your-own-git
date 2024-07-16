@@ -41,14 +41,12 @@ languages:
   - slug: "python"
   - slug: "ruby"
   - slug: "rust"
+  - slug: "kotlin"
   - slug: "typescript"
     release_status: "beta"
   - slug: "zig"
     release_status: "alpha"
     alpha_tester_usernames: ["typesafe"]
-
-# TODO: Add this back once builds are faster
-#  kotlin: https://github.com/codecrafters-io/git-starter-kotlin
 
 marketing:
   difficulty: hard
