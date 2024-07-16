@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-go build -o /tmp/codecrafters-build-redis-go app/*.go
+go build -buildvcs="false" -o /tmp/codecrafters-build-git-go ./cmd/mygit

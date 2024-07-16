@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-exec /tmp/codecrafters-build-redis-go "$@"
+exec /tmp/codecrafters-build-git-go "$@"
