@@ -16,7 +16,7 @@ commits, trees etc.), Git's transfer protocols and more.
 The entry point for your Git implementation is in `{{ user_editable_file }}`. Study and uncomment the relevant code, and
 push your changes to pass the first stage:
 
-``` sh
+```sh
 git add .
 git commit -m "pass 1st stage" # any msg
 git push origin master
@@ -29,7 +29,7 @@ That's all!
 Note: This section is for stages 2 and beyond.
 
 1. Ensure you have `{{ required_executable }}` installed locally
-1. Run `./your_git.sh` to run your Git implementation, which is implemented in
+1. Run `./your_program.sh` to run your Git implementation, which is implemented in
    `{{ user_editable_file }}`.{{# language_is_rust }} This command compiles your
    Rust project, so it might be slow the first time you run it. Subsequent runs
    will be fast.{{/ language_is_rust}}
@@ -38,24 +38,24 @@ Note: This section is for stages 2 and beyond.
 
 # Testing locally
 
-The `your_git.sh` script is expected to operate on the `.git` folder inside the
+The `your_program.sh` script is expected to operate on the `.git` folder inside the
 current working directory. If you're running this inside the root of this
 repository, you might end up accidentally damaging your repository's `.git`
 folder.
 
-We suggest executing `your_git.sh` in a different folder when testing locally.
+We suggest executing `your_program.sh` in a different folder when testing locally.
 For example:
 
-``` sh
+```sh
 mkdir -p /tmp/testing && cd /tmp/testing
-/path/to/your/repo/your_git.sh init
+/path/to/your/repo/your_program.sh init
 ```
 
 To make this easier to type out, you could add a [shell
 alias](https://shapeshed.com/unix-alias/):
 
-``` sh
-alias mygit=/path/to/your/repo/your_git.sh
+```sh
+alias mygit=/path/to/your/repo/your_program.sh
 
 mkdir -p /tmp/testing && cd /tmp/testing
 mygit init

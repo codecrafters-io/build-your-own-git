@@ -125,7 +125,7 @@ stages:
       $ mkdir test_dir && cd test_dir
 
       # Run your program
-      $ /path/to/your_git.sh init
+      $ /path/to/your_program.sh init
       ```
 
       It'll then check if the `.git` directory and its contents are created correctly.
@@ -266,13 +266,13 @@ stages:
 
       ```bash
       $ mkdir test_dir && cd test_dir
-      $ /path/to/your_git.sh init
+      $ /path/to/your_program.sh init
       ```
 
       It'll then insert a blob into the `.git/objects` directory and run your program like this:
 
       ```bash
-      $ ./your_git.sh cat-file -p <blob_sha>
+      $ ./your_program.sh cat-file -p <blob_sha>
       hello world
       ```
 
@@ -398,7 +398,7 @@ stages:
 
       ```bash
       $ mkdir test_dir && cd test_dir
-      $ /path/to/your_git.sh init
+      $ /path/to/your_program.sh init
       ```
 
       It'll write some random data to a file:
@@ -410,7 +410,7 @@ stages:
       It'll then run your program like this:
 
       ```bash
-      $ ./your_git.sh hash-object -w test.txt
+      $ ./your_program.sh hash-object -w test.txt
       3b18e512dba79e4c8300dd08aeb37f8e728b8dad
       ```
 
@@ -570,7 +570,7 @@ stages:
 
       ```bash
       $ mkdir test_dir && cd test_dir
-      $ /path/to/your_git.sh init
+      $ /path/to/your_program.sh init
       ```
 
       It'll then write a tree object to the `.git/objects` directory.
@@ -578,7 +578,7 @@ stages:
       It'll then run your program like this:
 
       ```bash
-      $ /path/to/your_git.sh ls-tree --name-only <tree_sha>
+      $ /path/to/your_program.sh ls-tree --name-only <tree_sha>
       ```
 
       It'll verify that the output of your program matches the contents of the tree object.
@@ -691,7 +691,7 @@ stages:
 
       ```bash
       $ mkdir test_dir && cd test_dir
-      $ /path/to/your_git.sh init
+      $ /path/to/your_program.sh init
       ```
 
       It'll create some random files and directories:
@@ -707,7 +707,7 @@ stages:
       And then run your program like this:
 
       ```bash
-      $ /path/to/your_git.sh write-tree
+      $ /path/to/your_program.sh write-tree
       4b825dc642cb6eb9a060e54bf8d69288fbee4904
       ```
 
@@ -794,7 +794,7 @@ stages:
       Your program will be invoked like this:
 
       ```
-      $ ./your_git.sh commit-tree <tree_sha> -p <commit_sha> -m <message>
+      $ ./your_program.sh commit-tree <tree_sha> -p <commit_sha> -m <message>
       ```
 
       Your program must create a commit object and print its 40-char SHA to
@@ -845,7 +845,7 @@ stages:
       The tester will run your program like this:
 
       ```bash
-      $ /path/to/your_git.sh clone https://github.com/blah/blah <some_dir>
+      $ /path/to/your_program.sh clone https://github.com/blah/blah <some_dir>
       ```
 
       Your program must create `<some_dir>` and clone the given repository into it.
