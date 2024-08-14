@@ -29,4 +29,3 @@ RUN echo "cd \${CODECRAFTERS_REPOSITORY_DIR} && cargo build --release --target-d
 RUN chmod +x /codecrafters-precompile.sh
 
 ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="Cargo.toml,Cargo.lock"
-

@@ -14,5 +14,3 @@ RUN zig build
 
 RUN printf "set -e \ncd \${CODECRAFTERS_REPOSITORY_DIR} \necho 'Running zig build' \nzig build \necho 'zig build completed.' \n" > /codecrafters-precompile.sh
 RUN chmod +x /codecrafters-precompile.sh
-
-COPY . /app
