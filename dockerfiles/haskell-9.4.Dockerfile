@@ -26,7 +26,7 @@ RUN cp -r .stack-work /tmp/
 RUN rm -rf /app/app
 RUN rm -rf /app/src
 
-RUN echo "cd \${CODECRAFTERS_SUBMISSION_DIR} && cp -r /tmp/.stack-work . && stack build" > /codecrafters-precompile.sh
+RUN echo "cd \${CODECRAFTERS_REPOSITORY_DIR} && cp -r /tmp/.stack-work . && stack build" > /codecrafters-precompile.sh
 RUN chmod +x /codecrafters-precompile.sh
 
 ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="stack.yaml,package.yaml,stack.yaml.lock"
