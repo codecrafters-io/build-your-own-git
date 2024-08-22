@@ -6,6 +6,4 @@
 #
 # Learn more: https://codecrafters.io/program-interface
 
-set -e # Exit on failure
-
-exec /tmp/codecrafters-git-target/release/git-starter-rust "$@"
+exec /tmp/codecrafters-build-git-rust/release/codecrafters-git "$@"
