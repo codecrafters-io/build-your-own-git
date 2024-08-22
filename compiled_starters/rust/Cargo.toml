@@ -1,22 +1,11 @@
-# CodeCrafters Note:
-#
-# We've included a set of dependencies that we think are essential for this challenge. You
-# can make changes to this file if you'd like to use different dependencies.
-#
-# When updating this file, make sure to run `cargo build` to ensure that `Cargo.lock` is updated too.
 [package]
-name = "git-starter-rust"
+name = "codecrafters-git"
 version = "0.1.0"
 authors = ["Codecrafters <hello@codecrafters.io>"]
 edition = "2021"
+rust-version = "1.80"
 
 [dependencies]
-reqwest = { version = "0.11.13", features = ["json", "blocking"] } # http requests
-bytes = "1.3.0"                                                    # helps wrap responses from reqwest
-tokio = { version = "1.23.0", features = ["full"] }                # async http requests
-clap = { version = "4.0.32", features = ["derive"]}                # creating a cli
-flate2 = "1.0"                                                     # gzip compression
-sha1 = "0.10.1"                                                    # hashing
-hex = "0.4.3"                                                      # working with hash output
-anyhow = "1.0.59"                                                  # error handling
-thiserror = "1.0.32"                                               # error handling
+anyhow = "1.0.68"                                # error handling
+bytes = "1.3.0"                                  # helps manage buffers
+thiserror = "1.0.38"                             # error handling
