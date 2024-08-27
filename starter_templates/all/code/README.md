@@ -17,8 +17,7 @@ The entry point for your Git implementation is in `{{ user_editable_file }}`. St
 push your changes to pass the first stage:
 
 ```sh
-git add .
-git commit -m "pass 1st stage" # any msg
+git commit -am "pass 1st stage" # any msg
 git push origin master
 ```
 
