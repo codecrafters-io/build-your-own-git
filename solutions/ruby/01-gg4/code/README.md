@@ -17,8 +17,7 @@ The entry point for your Git implementation is in `app/main.rb`. Study and
 uncomment the relevant code, and push your changes to pass the first stage:
 
 ```sh
-git add .
-git commit -m "pass 1st stage" # any msg
+git commit -am "pass 1st stage" # any msg
 git push origin master
 ```
 
