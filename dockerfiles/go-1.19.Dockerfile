@@ -6,6 +6,6 @@ WORKDIR /app
 
 COPY go.mod go.sum ./
 
-RUN ash -c "set -exo pipefail; go mod graph | awk '{if (\$1 !~ \"@\") {print \$2}}' | xargs -r go get"
+RUN go mod download
 
 RUN apk add --no-cache 'git>=2.40'
