@@ -351,15 +351,15 @@ stages:
 
         ```bash
         # Create a file with some content
-        $ echo "hello world" > test.txt
+        $ echo -n "hello world" > test.txt
 
         # Compute the SHA hash of the file + write it to .git/objects
         $ git hash-object -w test.txt
-        3b18e512dba79e4c8300dd08aeb37f8e728b8dad
+        95d09f2b10159347eece71399a7e2e907ea3df4f
 
         # Verify that the file was written to .git/objects
-        $ file .git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad
-        .git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad: zlib compressed data
+        $ file .git/objects/95/d09f2b10159347eece71399a7e2e907ea3df4f
+        .git/objects/95/d09f2b10159347eece71399a7e2e907ea3df4f: zlib compressed data
         ```
 
       </details>
