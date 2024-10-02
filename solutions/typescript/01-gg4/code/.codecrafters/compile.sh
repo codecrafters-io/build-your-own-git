@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-# This script is empty since TypeScript programs don't need a compile step
+# (This file is empty since TypeScript programs don't use a compile step)
