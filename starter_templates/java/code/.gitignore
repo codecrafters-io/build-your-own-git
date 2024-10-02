@@ -1,4 +1,3 @@
-java_git.jar
-target/*
+*.jar
 target/
 .idea/
