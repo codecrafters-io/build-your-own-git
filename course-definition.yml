@@ -455,7 +455,7 @@ stages:
               - `100644` (regular file)
               - `100755` (executable file)
               - `120000` (symbolic link)
-          - For directories, the value is `040000`
+          - For directories, the value is `40000`
           - There are other values for submodules, but we won't be dealing with those in this challenge.
 
         For example, if you had a directory structure like this:
@@ -473,13 +473,13 @@ stages:
         The entries in the tree object would look like this:
 
         ```
-        040000 dir1 <tree_sha_1>
-        040000 dir2 <tree_sha_2>
+        40000 dir1 <tree_sha_1>
+        40000 dir2 <tree_sha_2>
         100644 file1 <blob_sha_1>
         ```
 
-        - Line 1 (`040000 dir1 <tree_sha_1>`) indicates that `dir1` is a directory with the SHA hash `<tree_sha_1>`
-        - Line 2 (`040000 dir2 <tree_sha_2>`) indicates that `dir2` is a directory with the SHA hash `<tree_sha_2>`
+        - Line 1 (`40000 dir1 <tree_sha_1>`) indicates that `dir1` is a directory with the SHA hash `<tree_sha_1>`
+        - Line 2 (`40000 dir2 <tree_sha_2>`) indicates that `dir2` is a directory with the SHA hash `<tree_sha_2>`
         - Line 3 (`100644 file1 <blob_sha_1>`) indicates that `file1` is a regular file with the SHA hash `<blob_sha_1>`
 
         `dir1` and `dir2` would be tree objects themselves, and their entries would contain the files/directories inside them.
