@@ -30,6 +30,8 @@ short_description_md: |-
 completion_percentage: 10
 
 languages:
+  - slug: "c"
+    release_status: "alpha"
   - slug: "cpp"
   - slug: "csharp"
     release_status: "beta"
