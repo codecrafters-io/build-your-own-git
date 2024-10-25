@@ -1,7 +1,7 @@
-slug: 'git'
-name: 'Build your own Git'
-short_name: 'Git'
-release_status: 'live'
+slug: "git"
+name: "Build your own Git"
+short_name: "Git"
+release_status: "live"
 
 # This is shown on the course overview page. Markdown supported, recommended length ~40 words.
 #
@@ -30,48 +30,48 @@ short_description_md: |-
 completion_percentage: 10
 
 languages:
-  - slug: 'c'
-    release_status: 'alpha'
-  - slug: 'cpp'
-  - slug: 'csharp'
-    release_status: 'beta'
-  - slug: 'go'
-  - slug: 'haskell'
-  - slug: 'java'
-    release_status: 'beta'
-  - slug: 'javascript'
-  - slug: 'python'
-  - slug: 'ruby'
-  - slug: 'rust'
-  - slug: 'kotlin'
-  - slug: 'typescript'
-    release_status: 'beta'
-  - slug: 'zig'
-    release_status: 'alpha'
-    alpha_tester_usernames: ['typesafe']
+  - slug: "c"
+    release_status: "alpha"
+  - slug: "cpp"
+  - slug: "csharp"
+    release_status: "beta"
+  - slug: "go"
+  - slug: "haskell"
+  - slug: "java"
+    release_status: "beta"
+  - slug: "javascript"
+  - slug: "python"
+  - slug: "ruby"
+  - slug: "rust"
+  - slug: "kotlin"
+  - slug: "typescript"
+    release_status: "beta"
+  - slug: "zig"
+    release_status: "alpha"
+    alpha_tester_usernames: ["typesafe"]
 
 marketing:
   difficulty: hard
-  sample_extension_idea_title: 'Push to remote repository'
-  sample_extension_idea_description: 'A Git implementation that can push changes to a remote repository'
+  sample_extension_idea_title: "Push to remote repository"
+  sample_extension_idea_description: "A Git implementation that can push changes to a remote repository"
   testimonials:
-    - author_name: 'Beyang Liu'
-      author_description: 'CTO, Sourcegraph'
-      author_avatar: 'https://codecrafters.io/images/external/testimonials/beyang-liu.jpeg'
-      link: 'https://twitter.com/beyang/status/1271225214886506496'
+    - author_name: "Beyang Liu"
+      author_description: "CTO, Sourcegraph"
+      author_avatar: "https://codecrafters.io/images/external/testimonials/beyang-liu.jpeg"
+      link: "https://twitter.com/beyang/status/1271225214886506496"
       text: |-
         Found out about CodeCrafters from a colleague. It's a tutorial site that has you build your own version of things
         like Git and Docker from scratch. A cool way to build a stronger mental model of how those tools work.
-    - author_name: 'Lacronicus'
-      author_description: 'Reddit user'
-      author_avatar: 'https://codecrafters.io/images/external/testimonials/reddit-user.png'
-      link: 'https://www.reddit.com/r/programming/comments/fefrka/advanced_programming_challenges/fjoxu7n/'
+    - author_name: "Lacronicus"
+      author_description: "Reddit user"
+      author_avatar: "https://codecrafters.io/images/external/testimonials/reddit-user.png"
+      link: "https://www.reddit.com/r/programming/comments/fefrka/advanced_programming_challenges/fjoxu7n/"
       text: |-
         Never in my life have I needed something so much and not known until I received it.
 
 stages:
-  - slug: 'gg4'
-    name: 'Initialize the .git directory'
+  - slug: "gg4"
+    name: "Initialize the .git directory"
     difficulty: very_easy
     description_md: |-
       In this stage, you'll implement the `git init` command.
@@ -157,10 +157,10 @@ stages:
     marketing_md: |-
       In this stage, you'll implement the `git init` command. You'll initialize
       a git repository by creating a `.git` directory and some files inside it.
-    tester_source_code_url: 'https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_init.go#L12'
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_init.go#L12"
 
-  - slug: 'ic4'
-    name: 'Read a blob object'
+  - slug: "ic4"
+    name: "Read a blob object"
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for reading a blob using the `git cat-file` command.
@@ -332,10 +332,10 @@ stages:
       commands](https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain)
       we'll encounter in this challenge: [`git
       cat-file`](https://git-scm.com/docs/git-cat-file).
-    tester_source_code_url: 'https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_read_blob.go#L18'
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_read_blob.go#L18"
 
-  - slug: 'jt4'
-    name: 'Create a blob object'
+  - slug: "jt4"
+    name: "Create a blob object"
     difficulty: medium
     description_md: |-
       In this stage, you'll implement support for creating a blob using the [`git
@@ -428,10 +428,10 @@ stages:
     marketing_md: |-
       In the previous stage, we learnt how to read a blob. In this stage, we'll
       persist a blob by implementing the `git hash-object` command.
-    tester_source_code_url: 'https://github.com/codecrafters-io/git-tester/blob/master/internal/stage_create_blob.go'
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/master/internal/stage_create_blob.go"
 
-  - slug: 'kp1'
-    name: 'Read a tree object'
+  - slug: "kp1"
+    name: "Read a tree object"
     difficulty: medium
     description_md: |-
       In this stage, you'll implement the `git ls-tree` command, which is used to inspect a tree object.
@@ -612,10 +612,10 @@ stages:
       Git object: [the tree](https://developer.github.com/v3/git/trees/). In
       this stage, you'll read a tree object from storage by implementing the
       `git ls-tree` command.
-    tester_source_code_url: 'https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_read_tree.go#L20'
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_read_tree.go#L20"
 
-  - slug: 'fe4'
-    name: 'Write a tree object'
+  - slug: "fe4"
+    name: "Write a tree object"
     difficulty: medium
     description_md: |-
       In this stage, you'll implement writing a tree to the `.git/objects` directory.
@@ -732,10 +732,10 @@ stages:
 
       To keep things simple, we won't implement an `index`, we'll just assume
       that all changes in the worktree are staged.
-    tester_source_code_url: 'https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_write_tree.go#L21'
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_write_tree.go#L21"
 
-  - slug: 'jm9'
-    name: 'Create a commit'
+  - slug: "jm9"
+    name: "Create a commit"
     difficulty: medium
     description_md: |-
       In this stage, you'll implement the `git commit-tree` command, which is used to create a commit object.
@@ -814,10 +814,10 @@ stages:
       challenge: the commit. In this stage, you'll create a commit by
       implementing the [`git commit-tree`](https://git-scm.com/docs/git-commit-tree)
       command.
-    tester_source_code_url: 'https://github.com/codecrafters-io/git-tester/blob/master/internal/stage_create_commit.go'
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/master/internal/stage_create_commit.go"
 
-  - slug: 'mg6'
-    name: 'Clone a repository'
+  - slug: "mg6"
+    name: "Clone a repository"
     difficulty: hard
     description_md: |-
       In this stage, you'll implement cloning a public repository from GitHub.
@@ -859,4 +859,4 @@ stages:
       stage, you'll clone a public repository from GitHub. To do this, you'll
       use one of Git's [Transfer
       protocols](https://git-scm.com/book/en/v2/Git-Internals-Transfer-Protocols).
-    tester_source_code_url: 'https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_clone_repository.go#L80'
+    tester_source_code_url: "https://github.com/codecrafters-io/git-tester/blob/03984478122959f23a866a0df102413a5ac08e67/internal/stage_clone_repository.go#L80"

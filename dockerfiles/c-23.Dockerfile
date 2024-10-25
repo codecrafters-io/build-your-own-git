@@ -35,6 +35,6 @@ RUN vcpkg install --no-print-usage
 # Install language-specific dependencies
 RUN .codecrafters/compile.sh
 
-RUN mkdir -p /app-cached/build
+RUN mkdir -p /app-cached
 RUN if [ -d "/app/build" ]; then mv /app/build /app-cached; fi
 RUN if [ -d "/app/vcpkg_installed" ]; then mv /app/vcpkg_installed /app-cached; fi
