@@ -6,10 +6,14 @@ module Main (main) where
 
 import System.Directory (createDirectoryIfMissing)
 import System.FilePath ((</>))
-import System.IO (IOMode (WriteMode), hPutStrLn, withFile)
+import System.IO (IOMode (WriteMode), hPutStrLn, withFile, hSetBuffering, stdout, stderr, BufferMode (NoBuffering))
 
 main :: IO ()
 main = do
+    -- Disable output buffering
+    hSetBuffering stdout NoBuffering
+    hSetBuffering stderr NoBuffering
+
     -- You can use print statements as follows for debugging, they'll be visible when running tests.
     hPutStrLn stderr "Logs from your program will appear here"
 
