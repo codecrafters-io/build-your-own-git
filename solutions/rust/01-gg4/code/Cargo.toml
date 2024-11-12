@@ -8,4 +8,5 @@ rust-version = "1.80"
 [dependencies]
 anyhow = "1.0.68"                                # error handling
 bytes = "1.3.0"                                  # helps manage buffers
+flate2 = "1.0.34"                                # compression
 thiserror = "1.0.38"                             # error handling
