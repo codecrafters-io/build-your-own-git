@@ -261,22 +261,20 @@ stages:
 
       ### Tests
 
-      The tester will first initialize a new git repository using your program & then insert a blob with random contents into the `.git/objects` directory:
+      The tester will first initialize a new git repository using your program, and then insert a blob with random contents into the `.git/objects` directory:
 
       ```bash
       $ mkdir /tmp/test_dir && cd /tmp/test_dir
       $ /path/to/your_program.sh init
       $ echo "hello world" > test.txt # The tester will use a random string, not "hello world"
       $ git hash-object -w test.txt
-      <blob_sha>
+      3b18e512dba79e4c8300dd08aeb37f8e728b8dad
       ```
-
-      <!-- TODO: Andy, find the exact blob sha that one would get for hello world -->
 
       After that, it'll run your program like this:
 
       ```bash
-      $ /path/to/your_program.sh cat-file -p <blob_sha>
+      $ /path/to/your_program.sh cat-file -p 3b18e512dba79e4c8300dd08aeb37f8e728b8dad
       hello world
       ```
 
