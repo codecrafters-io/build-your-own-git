@@ -14,3 +14,5 @@ COPY --exclude=.git --exclude=README.md . /app
 RUN GODEBUG="installgoroot=all" go install std
 
 RUN go mod download
+
+RUN apk add --no-cache 'git>=2.40'
