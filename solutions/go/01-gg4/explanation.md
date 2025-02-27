@@ -1,4 +1,4 @@
-The entry point for your Git implementation is in `cmd/mygit/main.go`.
+The entry point for your Git implementation is in `app/main.go`.
 
 Study and uncomment the relevant code: 
 
