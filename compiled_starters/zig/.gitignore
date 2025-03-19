@@ -1,10 +1,10 @@
 # Zig build artifacts
+main
 zig-cache/
 .zig-cache/
 zig-out/
 
 # Compiled binary output
-main
 bin/
 !bin/.gitkeep
 
@@ -13,6 +13,6 @@ bin/
 *.h
 
 # Ignore OS and editor specific files
-.DS_Store
+**/.DS_Store
 *.swp
 *~
