@@ -3,12 +3,8 @@ import * as fs from 'fs';
 const args = process.argv.slice(2);
 const command = args[0];
 
-enum Commands {
-    Init = "init",
-}
-
 switch (command) {
-    case Commands.Init:
+    case "init":
         // You can use print statements as follows for debugging, they'll be visible when running tests.
         console.error("Logs from your program will appear here!");
 
