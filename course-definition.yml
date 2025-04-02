@@ -46,8 +46,7 @@ languages:
   - slug: "typescript"
     release_status: "beta"
   - slug: "zig"
-    release_status: "alpha"
-    alpha_tester_usernames: ["typesafe"]
+    release_status: "beta"
 
 marketing:
   difficulty: hard
