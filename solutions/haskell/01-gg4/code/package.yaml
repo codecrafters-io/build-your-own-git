@@ -6,36 +6,36 @@
 #
 # DON'T EDIT THIS!
 
-name:                hs-git-clone
-version:             0.1.0.0
-license:             BSD3
+name: codecrafters-git
+version: 0.1.0.0
+license: BSD3
 
 dependencies:
-- base >= 4.7 && < 5
-- bytestring           # useful to send bytes over the network
-- containers           # may help with the database structure and debugging
-- cryptonite           # dealing with SHA1
-- directory            # directory manipulations
-- filepath             # path manipulations
-- http-client          # http
-- http-client-tls      # https
-- http-types           # http
-- memory               # helpful in sha1 manipulations
-- mtl                  # may help with structuring
-- optparse-applicative # may help with command line argument parsing
-- time                 # may help with the expiry function
-- word8                # works well with attoparsec
-- zlib                 # zlib compression (git uses it)
-# parsing libs
-- attoparsec
-# testing
-- HUnit
+  - base >= 4.19 && < 5
+  - bytestring # useful to send bytes over the network
+  - containers # may help with the database structure and debugging
+  - cryptonite # dealing with SHA1
+  - directory # directory manipulations
+  - filepath # path manipulations
+  - http-client # http
+  - http-client-tls # https
+  - http-types # http
+  - memory # helpful in sha1 manipulations
+  - mtl # may help with structuring
+  - optparse-applicative # may help with command line argument parsing
+  - time # may help with the expiry function
+  - word8 # works well with attoparsec
+  - zlib # zlib compression (git uses it)
+  # parsing libs
+  - attoparsec
+  # testing
+  - HUnit
 
 executables:
-  hs-git-clone-exe:
-    main:                Main.hs
-    source-dirs:         app
+  codecrafters-git-exe:
+    main: Main.hs
+    source-dirs: app
     ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N

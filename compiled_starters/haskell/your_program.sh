@@ -22,4 +22,4 @@ set -e # Exit early if any commands fail
 # - Edit this to change how your program runs locally
 # - Edit .codecrafters/run.sh to change how your program runs remotely
 stackInstallRoot=$(cd $(dirname "$0") && stack path --local-install-root) # Fetch the path from within the project directory
-exec "$stackInstallRoot/bin/hs-git-clone-exe" "$@"
+exec "$stackInstallRoot/bin/codecrafters-git-exe" "$@"
