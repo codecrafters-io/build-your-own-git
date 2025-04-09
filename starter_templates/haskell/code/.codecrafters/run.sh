@@ -9,4 +9,4 @@
 set -e # Exit on failure
 
 stackInstallRoot=$(cd $(dirname "$0") && stack path --local-install-root) # Fetch the path from within the project directory
-exec "$stackInstallRoot/bin/hs-git-clone-exe" "$@"
+exec "$stackInstallRoot/bin/codecrafters-git-exe" "$@"
