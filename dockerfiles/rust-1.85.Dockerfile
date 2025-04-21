@@ -11,3 +11,6 @@ COPY --exclude=.git --exclude=README.md . /app
 
 # This runs cargo build
 RUN .codecrafters/compile.sh
+
+# Remove git executable to prevent test solutions from using the git executable
+RUN apt-get remove -y git

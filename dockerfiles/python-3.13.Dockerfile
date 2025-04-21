@@ -1,3 +1,4 @@
 FROM python:3.13-alpine
 
-RUN apk add --no-cache 'git>=2.40'
+# Remove git executable to prevent test solutions from using the git executable
+RUN apk del git
