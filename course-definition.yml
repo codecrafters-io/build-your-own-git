@@ -347,7 +347,7 @@ stages:
       <details>
         <summary>Click to expand/collapse</summary>
 
-        `git hash-object` is used to compute the SHA hash of a Git object. When used with the `-w` flag, it
+        `git hash-object` is used to compute the SHA-1 hash of a Git object. When used with the `-w` flag, it
         also writes the object to the `.git/objects` directory.
 
         Here's an example of using `git hash-object`:
@@ -356,7 +356,7 @@ stages:
         # Create a file with some content
         $ echo -n "hello world" > test.txt
 
-        # Compute the SHA hash of the file + write it to .git/objects
+        # Compute the SHA-1 hash of the file + write it to .git/objects
         $ git hash-object -w test.txt
         95d09f2b10159347eece71399a7e2e907ea3df4f
 
@@ -417,14 +417,14 @@ stages:
 
       The tester will verify that:
 
-      - Your program prints a 40-character SHA hash to stdout
+      - Your program prints a 40-character SHA-1 hash to stdout
       - The file written to `.git/objects` matches what the official `git` implementation would write
 
       ### Notes
 
-      - Although the object file is stored with zlib compression, the SHA hash needs to be computed over
+      - Although the object file is stored with zlib compression, the SHA-1 hash needs to be computed over
         the "uncompressed" contents of the file, not the compressed version.
-      - The input for the SHA hash is the header (`blob <size>\0`) + the actual contents of the file,
+      - The input for the SHA-1 hash is the header (`blob <size>\0`) + the actual contents of the file,
         not just the contents of the file.
     marketing_md: |-
       In the previous stage, we learnt how to read a blob. In this stage, we'll
@@ -448,7 +448,7 @@ stages:
 
         A tree object has multiple "entries". Each entry includes:
 
-        - A SHA hash that points to a blob or tree object
+        - A SHA-1 hash that points to a blob or tree object
           - If the entry is a file, this points to a blob object
           - If the entry is a directory, this points to a tree object
         - The name of the file/directory
@@ -606,7 +606,7 @@ stages:
 
       ### Notes
 
-      - In a tree object file, the SHA hashes are not in hexadecimal format. They're just raw bytes (20 bytes long).
+      - In a tree object file, the SHA-1 hashes are not in hexadecimal format. They're just raw bytes (20 bytes long).
       - In a tree object file, entries are sorted by their name. The output of `ls-tree` matches this order.
     marketing_md: |-
       Now that we've learnt how to read/write blobs, let's move onto our next
@@ -645,14 +645,14 @@ stages:
         4b825dc642cb6eb9a060e54bf8d69288fbee4904
         ```
 
-        The output of `git write-tree` is the 40-char SHA hash of the tree object that was written to `.git/objects`.
+        The output of `git write-tree` is the 40-char SHA-1 hash of the tree object that was written to `.git/objects`.
 
         To implement this, you'll need to:
 
         - Iterate over the files/directories in the working directory
-        - If the entry is a file, create a blob object and record its SHA hash
-        - If the entry is a directory, recursively create a tree object and record its SHA hash
-        - Once you have all the entries and their SHA hashes, write the tree object to the `.git/objects` directory
+        - If the entry is a file, create a blob object and record its SHA-1 hash
+        - If the entry is a directory, recursively create a tree object and record its SHA-1 hash
+        - Once you have all the entries and their SHA-1 hashes, write the tree object to the `.git/objects` directory
 
         If you're testing this against `git` locally, make sure to run `git add .` before `git write-tree`, so that
         all files in the working directory are staged.
@@ -713,9 +713,9 @@ stages:
       ```
 
       You're expected to write the entire working directory as a tree object
-      and print the 40-char SHA to stdout.
+      and print the 40-char SHA-1 hash to stdout.
 
-      The tester will verify that the output of your program matches the SHA hash
+      The tester will verify that the output of your program matches the SHA-1 hash
       of the tree object that the official `git` implementation would write.
 
       ### Notes
@@ -788,7 +788,7 @@ stages:
       $ git commit-tree 5b825dc642cb6eb9a060e54bf8d69288fbee4904 -p 3b18e512dba79e4c8300dd08aeb37f8e728b8dad -m "Second commit"
       ```
 
-      The output of `git commit-tree` is the 40-char SHA hash of the commit object that was written to `.git/objects`.
+      The output of `git commit-tree` is the 40-char SHA-1 hash of the commit object that was written to `.git/objects`.
 
       ### Tests
 
@@ -798,7 +798,7 @@ stages:
       $ ./your_program.sh commit-tree <tree_sha> -p <commit_sha> -m <message>
       ```
 
-      Your program must create a commit object and print its 40-char SHA to
+      Your program must create a commit object and print its 40-char SHA-1 hash to
       stdout.
 
       To keep things simple:
