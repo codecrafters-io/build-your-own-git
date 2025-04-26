@@ -7,9 +7,9 @@ defmodule CLI do
     #
     # case argv do
     #   ["init" | _] ->
-    #     :ok = File.mkdir(".git")
-    #     :ok = File.mkdir(".git/objects")
-    #     :ok = File.mkdir(".git/refs")
+    #     :ok = File.mkdir_p(".git")
+    #     :ok = File.mkdir_p(".git/objects")
+    #     :ok = File.mkdir_p(".git/refs")
     #     :ok = File.write(".git/HEAD", "ref: refs/heads/main\n")
     #     IO.puts("Initialized git directory")
     #

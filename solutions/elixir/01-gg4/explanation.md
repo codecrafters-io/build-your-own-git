@@ -7,9 +7,9 @@ Study and uncomment the relevant code:
 
 case argv do
   ["init" | _] ->
-    :ok = File.mkdir(".git")
-    :ok = File.mkdir(".git/objects")
-    :ok = File.mkdir(".git/refs")
+    :ok = File.mkdir_p(".git")
+    :ok = File.mkdir_p(".git/objects")
+    :ok = File.mkdir_p(".git/refs")
     :ok = File.write(".git/HEAD", "ref: refs/heads/main\n")
     IO.puts("Initialized git directory")
 
@@ -18,7 +18,7 @@ case argv do
     System.halt(1)
 
   [] ->
-    IO.puts("Usage: your_script.sh <command> <args>")
+    IO.puts("Usage: your_program.sh <command> <args>")
     System.halt(1)
 end
 ```
