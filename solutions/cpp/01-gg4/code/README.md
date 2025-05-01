@@ -13,7 +13,7 @@ commits, trees etc.), Git's transfer protocols and more.
 
 # Passing the first stage
 
-The entry point for your Git implementation is in `src/Server.cpp`. Study and
+The entry point for your Git implementation is in `src/main.cpp`. Study and
 uncomment the relevant code, and push your changes to pass the first stage:
 
 ```sh
@@ -29,7 +29,7 @@ Note: This section is for stages 2 and beyond.
 
 1. Ensure you have `cmake` installed locally
 1. Run `./your_program.sh` to run your Git implementation, which is implemented
-   in `src/Server.cpp`.
+   in `src/main.cpp`.
 1. Commit your changes and run `git push origin master` to submit your solution
    to CodeCrafters. Test output will be streamed to your terminal.
 
