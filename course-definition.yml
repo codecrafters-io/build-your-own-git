@@ -426,6 +426,12 @@ stages:
         the "uncompressed" contents of the file, not the compressed version.
       - The input for the SHA-1 hash is the header (`blob <size>\0`) + the actual contents of the file,
         not just the contents of the file.
+      {{#lang_is_c}}
+      - You can use `#include <openssl/sha.h>` to access OpenSSL’s [SHA1()](https://www.openssl.org/docs/man3.0/man3/SHA1.html) hashing function.
+      {{/lang_is_c}}
+      {{#lang_is_cpp}}
+      - You can use `#include <openssl/sha.h>` to access OpenSSL’s [SHA1()](https://www.openssl.org/docs/man3.0/man3/SHA1.html) hashing function.
+      {{/lang_is_cpp}}
     marketing_md: |-
       In the previous stage, we learnt how to read a blob. In this stage, we'll
       persist a blob by implementing the `git hash-object` command.
