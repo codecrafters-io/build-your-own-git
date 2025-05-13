@@ -197,10 +197,10 @@ stages:
         The path for the object with the hash `e88f7a929cd70b0274c4ea33b209c97fa845fdbc` would be:
 
         ```bash
-        ./.git/objects/e8/8f7a929cd70b0274c4ea33b209c97fa845fdbc
+        .git/objects/e8/8f7a929cd70b0274c4ea33b209c97fa845fdbc
         ```
 
-        You'll see that the file isn't placed directly in the `./git/objects` directory. Instead, it's placed in a directory named with the
+        You'll see that the file isn't placed directly in the `.git/objects` directory. Instead, it's placed in a directory named with the
         first two characters of the object's hash. The remaining 38 characters are used as the file name.
 
         Each Git object has its own format for storage. We'll look at how Blobs are stored in this stage, and we'll cover
@@ -548,7 +548,7 @@ stages:
         <summary>Click to expand/collapse</summary>
 
         Just like blobs, tree objects are stored in the `.git/objects` directory. If the hash of a tree object is `e88f7a929cd70b0274c4ea33b209c97fa845fdbc`,
-        the path to the object would be `./git/objects/e8/8f7a929cd70b0274c4ea33b209c97fa845fdbc`.
+        the path to the object would be `.git/objects/e8/8f7a929cd70b0274c4ea33b209c97fa845fdbc`.
 
         The format of a tree object file looks like this (after Zlib decompression):
 
