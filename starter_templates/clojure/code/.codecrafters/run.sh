@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-exec java -jar /tmp/codecrafters-build-git-clojure/target.jar "$@"
+bb -m git.core "$@"
