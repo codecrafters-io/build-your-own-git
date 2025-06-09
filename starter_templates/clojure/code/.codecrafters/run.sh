@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-bb -m git.core "$@"
+bb --config /app/bb.edn -m git.core "$@"
