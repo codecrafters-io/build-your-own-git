@@ -13,7 +13,8 @@ _ = try cwd.makeDir("./.git/refs");
     defer head.close();
     _ = try head.write("ref: refs/heads/main\n");
 }
-_ = try stdout.print("Initialized git directory\n", .{});
+try stdout.print("Initialized git directory\n", .{});
+try stdout.flush();
 ```
 
 Push your changes to pass the first stage:

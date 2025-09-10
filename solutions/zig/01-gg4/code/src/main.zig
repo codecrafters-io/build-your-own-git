@@ -1,5 +1,4 @@
 const std = @import("std");
-const stdout = std.io.getStdOut().writer();
 
 pub fn main() !void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
@@ -9,12 +8,18 @@ pub fn main() !void {
     const args = try std.process.argsAlloc(allocator);
     defer std.process.argsFree(allocator, args);
 
+    var stdout_buffer: [1024]u8 = undefined;
+    var stdout_writer = std.fs.File.stdout().writer(&stdout_buffer);
+    const stdout = &stdout_writer.interface;
+
     if (args.len < 2) {
-        try std.io.getStdErr().writer().print("Usage: {s} <command>\n", .{args[0]});
+        try stdout.print("Usage: {s} <command>\n", .{args[0]});
         return;
     }
 
     const command: []const u8 = args[1];
+
+    try stdout.flush();
 
     if (std.mem.eql(u8, command, "init")) {
         const cwd = std.fs.cwd();
@@ -26,6 +31,7 @@ pub fn main() !void {
             defer head.close();
             _ = try head.write("ref: refs/heads/main\n");
         }
-        _ = try stdout.print("Initialized git directory\n", .{});
+        try stdout.print("Initialized git directory\n", .{});
+        try stdout.flush();
     }
 }
