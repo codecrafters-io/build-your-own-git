@@ -18,7 +18,7 @@
      const command: []const u8 = args[1];
 
 -    // You can use print statements as follows for debugging, they'll be visible when running tests.
--    try stdout.writeAll("Logs from your program will appear here!\n");
+-    std.debug.print("Logs from your program will appear here!\n", .{});
 -
      if (std.mem.eql(u8, command, "init")) {
 -        // Uncomment this block to pass the first stage
