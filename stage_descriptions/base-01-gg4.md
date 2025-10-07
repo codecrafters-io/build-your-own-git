@@ -1,4 +1,6 @@
-In this stage, you'll implement the `git init` command.
+All the data for a Git repository — from its commit history to its configuration — lives inside a hidden folder called `.git`. It’s created when you initialize a new repository with `git init`. In this stage, you’ll implement that command yourself.
+
+<!--
 
 ### The `git init` command
 
@@ -78,3 +80,5 @@ $ cat .git/HEAD
 - The `.git/HEAD` file has a newline at the end.
 - The `.git/HEAD` file can contain either `ref: refs/heads/main\n` or `ref: refs/heads/master\n`, the tester will
   work with either of these.
+
+-->
