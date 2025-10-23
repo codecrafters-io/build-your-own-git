@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
     }
 
     if (args[0] == "init") {
-        // Uncomment the code below to pass the first stage the first stage
+        // Uncomment this block to pass the first stage
         //
         // val gitDir = File(".git")
         // gitDir.mkdir()

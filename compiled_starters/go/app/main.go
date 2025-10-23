@@ -17,7 +17,7 @@ func main() {
 
 	switch command := os.Args[1]; command {
 	case "init":
-		// Uncomment the code below to pass the first stage the first stage!
+		// Uncomment this block to pass the first stage!
 		//
 		// for _, dir := range []string{".git", ".git/objects", ".git/refs"} {
 		// 	if err := os.MkdirAll(dir, 0755); err != nil {

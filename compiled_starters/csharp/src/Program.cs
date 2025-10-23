@@ -14,7 +14,7 @@ string command = args[0];
 
 if (command == "init")
 {
-    // Uncomment the code below to pass the first stage the first stage
+    // Uncomment this block to pass the first stage
     //
     // Directory.CreateDirectory(".git");
     // Directory.CreateDirectory(".git/objects");
