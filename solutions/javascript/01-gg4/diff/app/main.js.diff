@@ -6,7 +6,7 @@
 -console.error("Logs from your program will appear here!");
 +const command = process.argv[2];
 
--// Uncomment this block to pass the first stage
+-// Uncomment the code below to pass the first stage the first stage
 -// const command = process.argv[2];
 -//
 -// switch (command) {
