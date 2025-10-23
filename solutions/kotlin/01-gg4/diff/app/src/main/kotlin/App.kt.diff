@@ -12,7 +12,7 @@
      }
 
      if (args[0] == "init") {
--        // Uncomment the code below to pass the first stage the first stage
+-        // TODO: Uncomment the code below to pass the first stage
 -        //
 -        // val gitDir = File(".git")
 -        // gitDir.mkdir()
