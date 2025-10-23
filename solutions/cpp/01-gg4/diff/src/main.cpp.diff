@@ -17,7 +17,7 @@
 +        return EXIT_FAILURE;
 +    }
 
--    // Uncomment this block to pass the first stage
+-    // Uncomment the code below to pass the first stage
 -    //
 -    // if (argc < 2) {
 -    //     std::cerr << "No command provided.\n";

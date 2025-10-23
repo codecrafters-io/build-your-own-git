@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
         // You can use print statements as follows for debugging, they'll be visible when running tests.
         fprintf(stderr, "Logs from your program will appear here!\n");
 
-        // Uncomment this block to pass the first stage
+        // Uncomment the code below to pass the first stage
         // 
         // if (mkdir(".git", 0755) == -1 || 
         //     mkdir(".git/objects", 0755) == -1 || 

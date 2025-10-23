@@ -20,7 +20,7 @@ pub fn main() !void {
     std.debug.print("Logs from your program will appear here!\n", .{});
 
     if (std.mem.eql(u8, command, "init")) {
-        // Uncomment this block to pass the first stage
+        // Uncomment the code below to pass the first stage
         // const cwd = std.fs.cwd();
         // _ = try cwd.makeDir("./.git");
         // _ = try cwd.makeDir("./.git/objects");
