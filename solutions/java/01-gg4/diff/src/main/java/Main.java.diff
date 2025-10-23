@@ -9,7 +9,7 @@
 -    System.err.println("Logs from your program will appear here!");
 +    final String command = args[0];
 
--    // Uncomment the code below to pass the first stage the first stage
+-    // TODO: Uncomment the code below to pass the first stage
 -    //
 -    // final String command = args[0];
 -    //
