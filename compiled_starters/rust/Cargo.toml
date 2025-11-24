@@ -2,8 +2,8 @@
 name = "codecrafters-git"
 version = "0.1.0"
 authors = ["Codecrafters <hello@codecrafters.io>"]
-edition = "2021"
-rust-version = "1.80"
+edition = "2024"
+rust-version = "1.91"
 
 [dependencies]
 anyhow = "1.0.68"                                # error handling
