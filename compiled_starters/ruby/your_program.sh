@@ -12,4 +12,4 @@ set -e # Exit early if any commands fail
 #
 # - Edit this to change how your program runs locally
 # - Edit .codecrafters/run.sh to change how your program runs remotely
-exec ruby $(dirname $0)/app/main.rb "$@"
+exec bundle exec ruby app/main.rb "$@"
