@@ -21,7 +21,7 @@ tree <size>\0
   * `<mode>` shows the type and permissions of the file or directory.
   * `<name>` is the name of the file or directory.
   * `\0` represents a null byte.
-  * `<20_byte_sha>` is the 20-byte SHA-1 hash of the tree.
+  * `<20_byte_sha>` is the 20-byte SHA-1 hash of the file or directory.
 
 ### The `<mode>` Field
 
