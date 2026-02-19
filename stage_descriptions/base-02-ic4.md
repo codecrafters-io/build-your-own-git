@@ -91,7 +91,7 @@ In this stage, you'll add support for reading a blob using the `git cat-file` co
   - Read the contents of the blob object file from the `.git/objects` directory
   - Decompress the contents using Zlib
   - Extract the actual "content" from the decompressed data
-  - Print the content to stdout
+  - Write the content to stdout
 
 </details>
 
