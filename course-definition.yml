@@ -39,6 +39,7 @@ languages:
   - slug: "java"
     release_status: "beta"
   - slug: "javascript"
+  - slug: "php"
   - slug: "python"
   - slug: "ruby"
   - slug: "rust"
