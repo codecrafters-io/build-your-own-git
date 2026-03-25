@@ -19,5 +19,5 @@ fwrite(STDERR, "Logs from your program will appear here!\n");
 //     fwrite(STDOUT, "Initialized git directory\n");
 //     return;
 // }
-
-throw new RuntimeException("Unknown command #{$command}");
+// 
+// throw new RuntimeException("Unknown command #{$command}");
