@@ -1,0 +1,16 @@
+(lang dune 3.21)
+
+(name codecrafters_git)
+
+(generate_opam_files true)
+
+(package
+ (name codecrafters_git)
+ (maintainers "CodeCrafters <hello@codecrafters.io>")
+ (authors "CodeCrafters <hello@codecrafters.io>")
+ (synopsis "Starter code for the Build your own Git challenge")
+ (homepage "https://codecrafters.io")
+ (bug_reports "https://github.com/codecrafters-io/build-your-own-git/issues")
+ (license "MIT")
+ (allow_empty true)
+ (version 0.1))
