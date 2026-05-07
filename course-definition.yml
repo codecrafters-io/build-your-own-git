@@ -34,6 +34,7 @@ languages:
   - slug: "cpp"
   - slug: "csharp"
     release_status: "beta"
+  - slug: "elixir"
   - slug: "go"
   - slug: "haskell"
   - slug: "java"
