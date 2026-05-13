@@ -14,11 +14,10 @@ commits, trees etc.), Git's transfer protocols and more.
 # Passing the first stage
 
 The entry point for your Git implementation is in `{{ user_editable_file }}`. Study and uncomment the relevant code, and
-push your changes to pass the first stage:
+then run the command below to execute the tests on our servers:
 
 ```sh
-git commit -am "pass 1st stage" # any msg
-git push origin master
+codecrafters submit
 ```
 
 That's all!
