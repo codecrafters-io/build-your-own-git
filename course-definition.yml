@@ -35,6 +35,7 @@ languages:
   - slug: "csharp"
     release_status: "beta"
   - slug: "elixir"
+  - slug: "gleam"
   - slug: "go"
   - slug: "haskell"
   - slug: "java"

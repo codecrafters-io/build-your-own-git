@@ -1,0 +1,23 @@
+import argv
+import gleam/io
+import gleam/list
+import simplifile
+
+pub fn main() -> Nil {
+  // You can use print statements as follows for debugging, they'll be visible when running tests.
+  io.println_error("Logs from your program will appear here!")
+  // TODO: Uncomment the code below to pass the first stage!
+  //
+  // let args = argv.load().arguments
+  // case list.first(args) {
+  //   Ok("init") -> {
+  //     let assert Ok(_) = simplifile.create_directory_all(".git/objects")
+  //     let assert Ok(_) = simplifile.create_directory_all(".git/refs")
+  //     let assert Ok(_) =
+  //       simplifile.write(to: ".git/HEAD", contents: "ref: refs/heads/main\n")
+  //     io.println("Initialized git directory")
+  //   }
+  //   Ok(command) -> io.println("Unknown command: " <> command)
+  //   Error(_) -> Nil
+  // }
+}
