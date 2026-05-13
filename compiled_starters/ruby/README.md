@@ -30,8 +30,8 @@ Note: This section is for stages 2 and beyond.
 1. Ensure you have `ruby (4.0)` installed locally
 1. Run `./your_program.sh` to run your Git implementation, which is implemented
    in `app/main.rb`.
-1. Commit your changes and run `git push origin master` to submit your solution
-   to CodeCrafters. Test output will be streamed to your terminal.
+1. Run `codecrafters submit` to submit your solution to CodeCrafters. Test
+   output will be streamed to your terminal.
 
 # Testing locally
 
