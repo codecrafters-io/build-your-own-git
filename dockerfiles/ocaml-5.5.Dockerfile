@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.7-labs
-FROM ocaml/opam:debian-13-ocaml-5.4
+FROM ocaml/opam:debian-13-ocaml-5.5
 
 # The image uses opam as the user, so let's set OPAMROOT to re-use whatever is already built
 ENV OPAMROOT /home/opam/.opam
@@ -24,8 +24,8 @@ RUN apt-get update && \
 # Install dune
 RUN opam install dune.3.21.0 --yes
 
-# Dune path is /home/opam/.opam/5.4/bin/dune
-ENV PATH="${OPAMROOT}/5.4/bin:${PATH}"
+# Dune path is /home/opam/.opam/5.5/bin/dune
+ENV PATH="${OPAMROOT}/5.5/bin:${PATH}"
 
 WORKDIR /app
 
