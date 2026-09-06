@@ -1,13 +1,13 @@
 const std = @import("std");
-const stdout = std.fs.File.stdout();
+const stdout = std.Io.File.stdout();
 
-pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+pub fn main(init: std.process.Init) !void {
+    var gpa = std.heap.DebugAllocator(.{}){};
     defer _ = gpa.deinit();
     const allocator = gpa.allocator();
 
-    const args = try std.process.argsAlloc(allocator);
-    defer std.process.argsFree(allocator, args);
+    const args = try init.minimal.args.toSlice(allocator);
+    defer allocator.free(args);
 
     if (args.len < 2) {
         std.debug.print("Usage: {s} <command>\n", .{args[0]});
@@ -21,15 +21,16 @@ pub fn main() !void {
 
     if (std.mem.eql(u8, command, "init")) {
         // TODO: Uncomment the code below to pass the first stage
-        // const cwd = std.fs.cwd();
-        // _ = try cwd.makeDir("./.git");
-        // _ = try cwd.makeDir("./.git/objects");
-        // _ = try cwd.makeDir("./.git/refs");
+        // const io = init.io;
+        // const cwd = std.Io.Dir.cwd();
+        // _ = try cwd.createDir(io, "./.git", .default_dir);
+        // _ = try cwd.createDir(io, "./.git/objects", .default_dir);
+        // _ = try cwd.createDir(io, "./.git/refs", .default_dir);
         // {
-        //     const head = try cwd.createFile("./.git/HEAD", .{});
-        //     defer head.close();
-        //     _ = try head.write("ref: refs/heads/main\n");
+        //     const head = try cwd.createFile(io, "./.git/HEAD", .{});
+        //     defer head.close(io);
+        //     _ = try head.writeStreamingAll(io, "ref: refs/heads/main\n");
         // }
-        // try stdout.writeAll("Initialized git directory\n");
+        // try stdout.writeStreamingAll(io, "Initialized git directory\n");
     }
 }
