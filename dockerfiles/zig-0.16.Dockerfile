@@ -1,9 +1,14 @@
 # syntax=docker/dockerfile:1.7-labs
-FROM debian:bookworm
+FROM debian:trixie
 
+# hadolint ignore=DL3008
 RUN apt-get update && \
-    apt-get install --no-install-recommends -y xz-utils=5.4.1-1 && \
-    apt-get clean && \
+    apt-get install --no-install-recommends -y \
+        curl \
+        libncurses-dev \
+        libreadline-dev \
+        xz-utils \
+    && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Download and install Zig
