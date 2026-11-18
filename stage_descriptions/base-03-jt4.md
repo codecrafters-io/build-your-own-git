@@ -1,7 +1,6 @@
-You can now read stored file contents. In this stage, implement
+You can now read stored file contents. In this stage, you'll implement
 [`hash-object -w`](https://git-scm.com/docs/git-hash-object) to store a file as
-a blob and print its object hash. The same bytes must produce the same
-identifier as Git.
+a blob and print its object hash.
 
 ### The `git hash-object` command
 
@@ -10,6 +9,7 @@ identifier as Git.
 
 `git hash-object` is used to compute the SHA-1 hash of a Git object. When used
 with the `-w` flag, it also writes the object to the `.git/objects` directory.
+The same bytes must produce the same identifier as Git.
 
 Here's an example of using `git hash-object`:
 
@@ -33,7 +33,7 @@ $ file .git/objects/95/d09f2b10159347eece71399a7e2e907ea3df4f
 <details>
   <summary>Click to expand/collapse</summary>
 
-As in the previous stage, a loose blob is stored as a separate file in
+As with blob reading, a loose blob is stored as a separate file in
 `.git/objects`. The file contains a header and the contents of the blob object,
 compressed using Zlib.
 
@@ -65,7 +65,7 @@ the uncompressed representation.
 
 ### Tests
 
-The tester will first initialize a new git repository using your program:
+The tester will first initialize a new Git repository using your program:
 
 ```bash
 $ mkdir test_dir && cd test_dir
@@ -88,8 +88,8 @@ $ ./your_program.sh hash-object -w test.txt
 The tester will verify that:
 
 - Your program prints a 40-character SHA-1 hash to stdout
-- The stored object decompresses to the same header and content as the official
-  `git` implementation, and its hash is correct
+- The stored object decompresses to the same header and content as Git's object,
+  and its hash is correct
 
 ### Notes
 

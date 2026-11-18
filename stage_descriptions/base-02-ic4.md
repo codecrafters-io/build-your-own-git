@@ -1,4 +1,4 @@
-Your repository now has an object directory. In this stage, implement
+Your repository now has an object directory. In this stage, you'll implement
 `cat-file -p` to read a blob object and print the file contents it stores.
 
 ### Git objects
@@ -9,18 +9,12 @@ Your repository now has an object directory. In this stage, implement
 In this challenge, we'll deal with three
 [Git objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects):
 
-- Blobs (**This stage**)
-  - These are used to store file data.
-  - A blob stores only file contents. Names and permissions belong to tree
-    entries.
-- Trees (Future stages)
-  - These are used to store directory structures.
-  - The information stored can include things like what files/directories are in
-    a tree, their names and permissions.
-- Commits (Future stages)
-  - These are used to store commit data.
-  - The information stored can include things like the commit message, author,
-    committer, parent commit(s) and more.
+- Blobs store file contents. You'll read one in this stage. Names and
+  permissions belong to tree entries.
+- Trees store directory structures, including entries' names, permissions, and
+  object hashes. You'll work with them in later stages.
+- Commits link a snapshot's tree to parent commits and record a message, author,
+  and committer. They also come in later stages.
 
 This challenge uses Git's SHA-1 object format. Each object has a 20-byte
 identifier, usually written as 40 hexadecimal characters and called its "object
@@ -48,7 +42,7 @@ would be:
 The first two characters of the object's hash name a subdirectory of
 `.git/objects`. The remaining 38 characters name the file inside it.
 
-Each Git object has its own format for storage. We'll look at how Blobs are
+Each Git object has its own format for storage. We'll look at how blobs are
 stored in this stage, and we'll cover other objects in future stages.
 
 </details>
@@ -107,7 +101,7 @@ Other `cat-file` options and object types are outside this stage.
 
 ### Tests
 
-The tester will first initialize a new git repository using your program, and
+The tester will first initialize a new Git repository using your program, and
 then insert a blob with random contents into the `.git/objects` directory:
 
 ```bash

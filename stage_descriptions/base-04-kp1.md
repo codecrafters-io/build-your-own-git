@@ -1,33 +1,26 @@
 Blobs store file contents. Tree objects associate those contents with filenames
-and directory structure. In this stage, implement `ls-tree --name-only` to list
-the entries in one tree.
+and directory structure. In this stage, you'll implement `ls-tree --name-only`
+to list the entries in one tree.
 
 ### Tree objects
 
 <details>
   <summary>Click to expand/collapse</summary>
 
-In this stage, we'll deal with our next Git object type:
-[trees](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_tree_objects).
+A
+[tree object](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_tree_objects)
+represents one directory. Each entry contains a name, a mode, and a SHA-1
+identifier. File entries point to blobs, and directory entries point to other
+trees.
 
-Trees are used to store directory structures.
+The mode records the entry's type and simplified Unix permissions:
 
-A tree object contains a sequence of entries. Each entry includes:
+- `100644`: regular file.
+- `100755`: executable file.
+- `120000`: symbolic link.
+- `40000`: directory.
 
-- A SHA-1 hash that points to a blob or tree object
-  - If the entry is a file, this points to a blob object
-  - If the entry is a directory, this points to a tree object
-- The name of the file/directory
-- The mode of the file/directory
-  - This is a simplified version of the permissions you'd see in a Unix file
-    system.
-  - For files, the valid values are:
-    - `100644` (regular file)
-    - `100755` (executable file)
-    - `120000` (symbolic link)
-  - For directories, the value is `40000`
-  - There are other values for submodules, but we won't be dealing with those in
-    this challenge.
+Submodule modes are outside this challenge.
 
 For example, if you had a directory structure like this:
 
@@ -50,15 +43,8 @@ described below.
 100644 file1 <blob_sha_1>
 ```
 
-- Line 1 (`40000 dir1 <tree_sha_1>`) indicates that `dir1` is a directory with
-  the SHA hash `<tree_sha_1>`
-- Line 2 (`40000 dir2 <tree_sha_2>`) indicates that `dir2` is a directory with
-  the SHA hash `<tree_sha_2>`
-- Line 3 (`100644 file1 <blob_sha_1>`) indicates that `file1` is a regular file
-  with the SHA hash `<blob_sha_1>`
-
-`dir1` and `dir2` would be tree objects themselves, and their entries would
-contain the files/directories inside them.
+`<tree_sha_1>` and `<tree_sha_2>` identify the subtrees containing the nested
+files. `<blob_sha_1>` identifies `file1`'s contents.
 
 </details>
 
@@ -67,21 +53,7 @@ contain the files/directories inside them.
 <details>
   <summary>Click to expand/collapse</summary>
 
-The `git ls-tree` command is used to inspect a tree object.
-
-For a directory structure like this:
-
-```
-your_repo/
-  - file1
-  - dir1/
-    - file_in_dir_1
-    - file_in_dir_2
-  - dir2/
-    - file_in_dir_3
-```
-
-The output of `git ls-tree` would look like this:
+The `git ls-tree` command displays the entries above like this:
 
 ```bash
 $ git ls-tree <tree_sha>
@@ -94,8 +66,7 @@ The output follows the order stored in the tree. Git compares names byte by
 byte, treating a directory name as if it ended in `/`. For these names, that
 gives the alphabetical order shown above.
 
-In this stage you'll implement the `git ls-tree` command with the `--name-only`
-flag. Here's how the output looks with the `--name-only` flag:
+The required `--name-only` flag selects just the names:
 
 ```bash
 $ git ls-tree --name-only <tree_sha>
@@ -104,8 +75,8 @@ dir2
 file1
 ```
 
-Implementing the full `ls-tree` display is an optional exercise in interpreting
-modes and object types. Only `--name-only` is required here.
+The full display is optional. It gives you another way to inspect modes and
+object types.
 
 </details>
 
@@ -132,18 +103,14 @@ single null byte.
 
 - The file starts with `tree <size>\0`. As with blobs, `<size>` is the byte
   length of the content after this header, written in decimal.
-- After the header, there are multiple entries. Each entry is of the form
-  `<mode> <name>\0<sha>`.
-  - `<mode>` is the mode of the file/directory (check the previous section for
-    valid values)
-  - `<name>` is the name of the file/directory
-  - `\0` is a null byte
-  - `<20_byte_sha>` is the raw 20-byte identifier of the blob or tree. Its usual
-    hexadecimal display takes 40 characters. A raw identifier can contain any
-    byte value, including null or newline.
+- Each entry has the form `<mode> <name>\0<sha>`, using the mode and name
+  described above.
+- `<20_byte_sha>` is the raw 20-byte identifier of the blob or tree. Its
+  hexadecimal display takes 40 characters. A raw identifier can contain any byte
+  value, including null or newline.
 
-You can read more about the internal format of a tree object
-[here](https://stackoverflow.com/questions/14790681/what-is-the-internal-format-of-a-git-tree-object).
+Read more about
+[the internal format of a tree object](https://stackoverflow.com/questions/14790681/what-is-the-internal-format-of-a-git-tree-object).
 
 </details>
 
@@ -156,9 +123,7 @@ $ mkdir test_dir && cd test_dir
 $ /path/to/your_program.sh init
 ```
 
-It'll then write a tree object to the `.git/objects` directory.
-
-It'll then run your program like this:
+It writes a tree object to `.git/objects`, then runs:
 
 ```bash
 $ /path/to/your_program.sh ls-tree --name-only <tree_sha>
@@ -168,19 +133,7 @@ Print each immediate entry's name to stdout in tree order, with a newline after
 each name. Do not list the contents of subdirectories. The tester compares this
 output with the stored tree and expects a successful exit.
 
-For a directory structure like this:
-
-```
-your_repo/
-  - file1
-  - dir1/
-    - file_in_dir_1
-    - file_in_dir_2
-  - dir2/
-    - file_in_dir_3
-```
-
-The output expected is:
+For the directory structure above, the expected output is:
 
 ```
 dir1

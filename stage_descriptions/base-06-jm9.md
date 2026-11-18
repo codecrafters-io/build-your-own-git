@@ -1,6 +1,6 @@
-Your tree objects describe directory snapshots. In this stage, implement
-`commit-tree` to attach a snapshot to a parent commit and a message. This
-creates a record in the repository's history.
+Your tree objects describe directory snapshots. A commit connects a snapshot to
+the repository's history. In this stage, you'll implement `commit-tree` to
+attach a snapshot to a parent commit and a message.
 
 ### Commits
 
@@ -49,8 +49,8 @@ message. It refers to an empty tree and an example parent commit. Use the tree,
 parent, and message supplied to your command. Hash and store the complete object
 using the same header, SHA-1, and zlib conventions as earlier stages.
 
-You can read more about the commit object format
-[here](https://stackoverflow.com/questions/22968856/what-is-the-file-format-of-a-git-commit-object-data-structure).
+Read more about
+[the commit object format](https://stackoverflow.com/questions/22968856/what-is-the-file-format-of-a-git-commit-object-data-structure).
 
 ### The `git commit-tree` command
 
@@ -90,9 +90,9 @@ with the hashes returned by the preceding commands. Commit hashes also depend on
 identity and timestamp fields, so yours can differ for the same tree and
 message.
 
-The initial-commit example shows official Git's behavior. This stage requires
-only the single-parent form below. Creating the commit object does not update a
-branch reference.
+The initial-commit example shows Git's behavior. This stage requires only the
+single-parent form below. Creating the commit object does not update a branch
+reference.
 
 ### Tests
 

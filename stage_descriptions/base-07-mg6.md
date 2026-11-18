@@ -1,4 +1,4 @@
-You can now read and write Git objects locally. In this final stage, implement
+You can now read and write Git objects locally. In this stage, you'll implement
 `clone` to fetch a public GitHub repository's objects and restore its files in a
 new directory.
 
@@ -26,11 +26,12 @@ of the files alone has no commit history to inspect.
 
 ### Protocol references
 
-This capstone leaves the protocol implementation to you. Use these references
-for reference discovery, object transfer, pack headers, and delta encodings:
+Use these references for reference discovery, object transfer, pack headers, and
+delta encodings:
 
-- [This forum post](https://forum.codecrafters.io/t/step-for-git-clone-implementing-the-git-protocol/4407)
-  has some suggestions on how to incrementally implement this.
+- The
+  [Git clone protocol walkthrough](https://forum.codecrafters.io/t/step-for-git-clone-implementing-the-git-protocol/4407)
+  suggests ways to approach the implementation incrementally.
 - You'll need to use Git's
   [Smart HTTP transfer protocol](https://www.git-scm.com/docs/http-protocol) for
   this.

@@ -1,7 +1,7 @@
-You can read directory entries from a tree. In this stage, implement
-`write-tree` to store the current directory as a tree and print its hash.
-Together with its referenced blobs and subtrees, this object represents a
-directory snapshot.
+You can read directory entries from a tree. Together with its referenced blobs
+and subtrees, a tree represents a directory snapshot. In this stage, you'll
+implement `write-tree` to store the current directory as a tree and print its
+hash.
 
 ### Tree object storage (recap)
 
@@ -25,13 +25,10 @@ format has no such separators. A raw hash may itself contain a newline byte.
 
 - The file begins with `tree <size>\0`. The decimal size counts the entry bytes
   after the null byte, excluding the header.
-- After the header, the file contains several entries. Each entry follows the
-  format `<mode> <name>\0<sha>`:
-  - `<mode>` shows the type and permissions of the file or directory.
-  - `<name>` is the name of the file or directory.
-  - `\0` represents a null byte.
-  - `<20_byte_sha>` is the raw 20-byte SHA-1 identifier of the referenced blob
-    or tree object.
+- After the header, entries follow the format `<mode> <name>\0<sha>`. The mode
+  gives the entry's type and permissions, followed by its name and a null byte.
+- `<20_byte_sha>` is the raw 20-byte SHA-1 identifier of the referenced blob or
+  tree object.
 
 As with blobs, the object's hash covers the header and uncompressed content. The
 file under `.git/objects` contains that same sequence compressed with zlib.
@@ -48,8 +45,8 @@ values include:
 Store directory mode as `40000`. Git commands such as `git ls-tree` display it
 as `040000`. Modes are written as ASCII octal digits in the object.
 
-You can read more about the internal format of a tree object
-[here](https://stackoverflow.com/questions/14790681/what-is-the-internal-format-of-a-git-tree-object).
+Read more about
+[the internal format of a tree object](https://stackoverflow.com/questions/14790681/what-is-the-internal-format-of-a-git-tree-object).
 
 ### The `git write-tree` command
 
@@ -57,8 +54,8 @@ The `git write-tree` command creates a tree object from the current state of the
 "staging area". The staging area is a place where changes go when you run
 `git add`.
 
-For this challenge, you will not implement a staging area. Instead, assume that
-all files in the working directory are already staged.
+This challenge treats all files in the working directory as staged. You won't
+implement a separate staging area.
 
 Here's an example of using `git write-tree`:
 
@@ -119,8 +116,8 @@ Write the working directory's snapshot and print the root tree's 40-character
 SHA-1 hash to stdout. `<tree_sha>` above is a placeholder for that result. File
 contents and names vary between tests.
 
-The tester will verify that the output of your program matches the SHA-1 hash of
-the tree object that the official `git` implementation would write.
+The tester will verify that your program prints the same SHA-1 hash as Git for
+the same directory contents.
 
 ### Notes
 
