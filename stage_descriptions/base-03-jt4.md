@@ -1,60 +1,71 @@
-In this stage, you'll implement support for creating a blob using the [`git
-hash-object`](https://git-scm.com/docs/git-hash-object) command.
+You can now read stored file contents. In this stage, you'll implement
+[`hash-object -w`](https://git-scm.com/docs/git-hash-object) to store a file as
+a blob and print its object hash.
 
 ### The `git hash-object` command
 
 <details>
   <summary>Click to expand/collapse</summary>
 
-  `git hash-object` is used to compute the SHA-1 hash of a Git object. When used with the `-w` flag, it
-  also writes the object to the `.git/objects` directory.
+`git hash-object` is used to compute the SHA-1 hash of a Git object. When used
+with the `-w` flag, it also writes the object to the `.git/objects` directory.
+The same bytes must produce the same identifier as Git.
 
-  Here's an example of using `git hash-object`:
+Here's an example of using `git hash-object`:
 
-  ```bash
-  # Create a file with some content
-  $ echo -n "hello world" > test.txt
+```bash
+# Create a file with some content
+$ echo -n "hello world" > test.txt
 
-  # Compute the SHA-1 hash of the file + write it to .git/objects
-  $ git hash-object -w test.txt
-  95d09f2b10159347eece71399a7e2e907ea3df4f
+# Compute the SHA-1 hash of the file + write it to .git/objects
+$ git hash-object -w test.txt
+95d09f2b10159347eece71399a7e2e907ea3df4f
 
-  # Verify that the file was written to .git/objects
-  $ file .git/objects/95/d09f2b10159347eece71399a7e2e907ea3df4f
-  .git/objects/95/d09f2b10159347eece71399a7e2e907ea3df4f: zlib compressed data
-  ```
+# Verify that the file was written to .git/objects
+$ file .git/objects/95/d09f2b10159347eece71399a7e2e907ea3df4f
+.git/objects/95/d09f2b10159347eece71399a7e2e907ea3df4f: zlib compressed data
+```
 
 </details>
 
-### Blob Object Storage (Recap)
+### Blob object storage (recap)
 
 <details>
   <summary>Click to expand/collapse</summary>
 
-  As mentioned in the previous stage, each Git Blob is stored as a separate file in the `.git/objects` directory. The file
-  contains a header and the contents of the blob object, compressed using Zlib.
+As with blob reading, a loose blob is stored as a separate file in
+`.git/objects`. The file contains a header and the contents of the blob object,
+compressed using Zlib.
 
-  The format of a blob object file looks like this (after Zlib decompression):
+The format of a blob object file looks like this (after Zlib decompression):
 
-  ```
-  blob <size>\0<content>
-  ```
+```
+blob <size>\0<content>
+```
 
-  - `<size>` is the size of the content (in bytes)
-  - `\0` is a null byte
-  - `<content>` is the actual content of the file
+- `<size>` is the size of the content in bytes, written as decimal text and
+  excluding the header
+- `\0` is a null byte
+- `<content>` is the actual content of the file
 
-  For example, if the contents of a file are `hello world`, the blob object file would look like this (after Zlib decompression):
+For example, if the contents of a file are `hello world`, the blob object file
+would look like this (after Zlib decompression):
 
-  ```
-  blob 11\0hello world
-  ```
+```
+blob 11\0hello world
+```
+
+Calculate the SHA-1 hash over this entire uncompressed sequence, including
+`blob <size>\0`. Store the zlib-compressed sequence under
+`.git/objects/<first two hash characters>/<remaining 38 characters>`.
+Compression changes the stored bytes but leaves the object identifier based on
+the uncompressed representation.
 
 </details>
 
 ### Tests
 
-The tester will first initialize a new git repository using your program:
+The tester will first initialize a new Git repository using your program:
 
 ```bash
 $ mkdir test_dir && cd test_dir
@@ -77,17 +88,17 @@ $ ./your_program.sh hash-object -w test.txt
 The tester will verify that:
 
 - Your program prints a 40-character SHA-1 hash to stdout
-- The file written to `.git/objects` matches what the official `git` implementation would write
+- The stored object decompresses to the same header and content as Git's object,
+  and its hash is correct
 
 ### Notes
 
-- Although the object file is stored with zlib compression, the SHA-1 hash needs to be computed over
-  the "uncompressed" contents of the file, not the compressed version.
-- The input for the SHA-1 hash is the header (`blob <size>\0`) + the actual contents of the file,
-  not just the contents of the file.
-{{#lang_is_c}}
-- You can use `#include <openssl/sha.h>` to access OpenSSL’s [SHA1()](https://www.openssl.org/docs/man3.0/man3/SHA1.html) hashing function.
-{{/lang_is_c}}
-{{#lang_is_cpp}}
-- You can use `#include <openssl/sha.h>` to access OpenSSL’s [SHA1()](https://www.openssl.org/docs/man3.0/man3/SHA1.html) hashing function.
-{{/lang_is_cpp}}
+- Preserve the file's bytes, including any trailing newline. The first example
+  uses `echo -n`, while the test example uses `echo`, so their content lengths
+  and hashes differ. {{#lang_is_c}}
+- You can use `#include <openssl/sha.h>` to access OpenSSL's
+  [SHA1()](https://www.openssl.org/docs/man3.0/man3/SHA1.html) hashing function.
+  {{/lang_is_c}} {{#lang_is_cpp}}
+- You can use `#include <openssl/sha.h>` to access OpenSSL's
+  [SHA1()](https://www.openssl.org/docs/man3.0/man3/SHA1.html) hashing function.
+  {{/lang_is_cpp}}

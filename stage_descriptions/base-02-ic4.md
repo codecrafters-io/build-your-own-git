@@ -1,72 +1,79 @@
-In this stage, you'll add support for reading a blob using the `git cat-file` command.
+Your repository now has an object directory. In this stage, you'll implement
+`cat-file -p` to read a blob object and print the file contents it stores.
 
 ### Git objects
 
 <details>
   <summary>Click to expand/collapse</summary>
 
-  In this challenge, we'll deal with three [Git
-  objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects):
+In this challenge, we'll deal with three
+[Git objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects):
 
-  - Blobs (**This stage**)
-    - These are used to store file data.
-    - Blobs only store the contents of a file, not its name or permissions.
-  - Trees (Future stages)
-    - These are used to store directory structures.
-    - The information stored can include things like what files/directories are in a tree, their names and permissions.
-  - Commits (Future stages)
-    - These are used to store commit data.
-    - The information stored can include things like the commit message, author, committer, parent commit(s) and more.
+- Blobs store file contents. You'll read one in this stage. Names and
+  permissions belong to tree entries.
+- Trees store directory structures, including entries' names, permissions, and
+  object hashes. You'll work with them in later stages.
+- Commits link a snapshot's tree to parent commits and record a message, author,
+  and committer. They also come in later stages.
 
+This challenge uses Git's SHA-1 object format. Each object has a 20-byte
+identifier, usually written as 40 hexadecimal characters and called its "object
+hash". The identifier is calculated from the object's type, size, and contents.
 
-  All Git objects are identifiable by a 40-character SHA-1 hash, also known as the "object hash".
+Here's an example of an object hash: `e88f7a929cd70b0274c4ea33b209c97fa845fdbc`.
 
-  Here's an example of an object hash: `e88f7a929cd70b0274c4ea33b209c97fa845fdbc`.
 </details>
 
-### Git Object Storage
+### Git object storage
 
 <details>
   <summary>Click to expand/collapse</summary>
 
-  Git objects are stored in the `.git/objects` directory. The path to an object is derived from its hash.
+An object stored in its own file is called a loose object. These files live in
+`.git/objects`, at paths derived from their hashes.
 
-  The path for the object with the hash `e88f7a929cd70b0274c4ea33b209c97fa845fdbc` would be:
+The path for the object with the hash `e88f7a929cd70b0274c4ea33b209c97fa845fdbc`
+would be:
 
-  ```bash
-  .git/objects/e8/8f7a929cd70b0274c4ea33b209c97fa845fdbc
-  ```
+```bash
+.git/objects/e8/8f7a929cd70b0274c4ea33b209c97fa845fdbc
+```
 
-  You'll see that the file isn't placed directly in the `.git/objects` directory. Instead, it's placed in a directory named with the
-  first two characters of the object's hash. The remaining 38 characters are used as the file name.
+The first two characters of the object's hash name a subdirectory of
+`.git/objects`. The remaining 38 characters name the file inside it.
 
-  Each Git object has its own format for storage. We'll look at how Blobs are stored in this stage, and we'll cover
-  other objects in future stages.
+Each Git object has its own format for storage. We'll look at how blobs are
+stored in this stage, and we'll cover other objects in future stages.
+
 </details>
 
-### Blob Object Storage
+### Blob object storage
 
 <details>
   <summary>Click to expand/collapse</summary>
 
-  Each Git Blob is stored as a separate file in the `.git/objects` directory. The file contains a header and the contents of
-  the blob object, compressed using Zlib.
+A loose blob file contains a header followed by the file's bytes. The whole
+sequence is compressed using zlib.
 
-  The format of a blob object file looks like this (after Zlib decompression):
+The format of a blob object file looks like this (after Zlib decompression):
 
-  ```
-  blob <size>\0<content>
-  ```
+```
+blob <size>\0<content>
+```
 
-  - `<size>` is the size of the content (in bytes)
-  - `\0` is a null byte
-  - `<content>` is the actual content of the file
+- `<size>` is the size of the content in bytes, written as decimal text. It
+  excludes the header.
+- `\0` represents one null byte (`0x00`). The two printed characters are only
+  notation.
+- `<content>` is the actual content of the file
 
-  For example, if the contents of a file are `hello world`, the blob object file would look like this (after Zlib decompression):
+For example, if the contents of a file are `hello world`, the blob object file
+would look like this (after Zlib decompression):
 
-  ```
-  blob 11\0hello world
-  ```
+```
+blob 11\0hello world
+```
+
 </details>
 
 ### The cat-file command
@@ -74,30 +81,28 @@ In this stage, you'll add support for reading a blob using the `git cat-file` co
 <details>
   <summary>Click to expand/collapse</summary>
 
-  In this stage, you'll read a blob from a git repository by reading its contents from the `.git/objects` directory.
+`cat-file` is the first of several
+["plumbing" commands](https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain)
+in this challenge. These commands expose Git's internal objects and operations.
 
-  You'll do this using the first of multiple ["plumbing" commands](https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain)
-  we'll encounter in this challenge: [`git cat-file`](https://git-scm.com/docs/git-cat-file).
+[`git cat-file`](https://git-scm.com/docs/git-cat-file) can display an object's
+type, size, or content. Example usage:
 
-  `git cat-file` is used to view the type of an object, its size, and its content. Example usage:
+```bash
+$ git cat-file -p <blob_sha>
+hello world
+```
 
-  ```bash
-  $ git cat-file -p <blob_sha>
-  hello world # This is the contents of the blob
-  ```
-
-  To implement this, you'll need to:
-
-  - Read the contents of the blob object file from the `.git/objects` directory
-  - Decompress the contents using Zlib
-  - Extract the actual "content" from the decompressed data
-  - Write the content to stdout
+For `cat-file -p <blob_sha>`, stdout must contain the blob's content bytes
+exactly. The object header and compressed representation stay out of the output.
+Other `cat-file` options and object types are outside this stage.
 
 </details>
 
 ### Tests
 
-The tester will first initialize a new git repository using your program, and then insert a blob with random contents into the `.git/objects` directory:
+The tester will first initialize a new Git repository using your program, and
+then insert a blob with random contents into the `.git/objects` directory:
 
 ```bash
 $ mkdir /tmp/test_dir && cd /tmp/test_dir
@@ -114,50 +119,49 @@ $ /path/to/your_program.sh cat-file -p 3b18e512dba79e4c8300dd08aeb37f8e728b8dad
 hello world
 ```
 
-The tester will verify that the output of your program matches the contents of the blob.
+The tester will verify that your program exits successfully and that stdout
+matches the blob's contents. The string and object hash vary between tests.
 
 ### Notes
 
-- In many programming languages the default print function (like [`fmt.Println`](https://pkg.go.dev/fmt#example-Println))
-  will append a newline to the output. The output of `cat-file` must not contain a
-  newline at the end, so you might need to use a different function to print the output.
+- Many print functions, such as
+  [`fmt.Println`](https://pkg.go.dev/fmt#example-Println), append a newline. Do
+  not add one to the blob's contents. Preserve a newline when it is already part
+  of the blob, as in the `echo` example above.
+- Keep diagnostics on stderr so they do not change the content on stdout.
 
 {{#lang_is_python}}
+
 - Keep in mind that Git uses [Zlib](https://en.wikipedia.org/wiki/Zlib) to
   compress objects. You can use Python's built-in
   [zlib](https://docs.python.org/3/library/zlib.html) library to read these
-  compressed files.
-{{/lang_is_python}}
+  compressed files. {{/lang_is_python}}
 
 {{#lang_is_ruby}}
+
 - Keep in mind that Git uses [Zlib](https://en.wikipedia.org/wiki/Zlib) to
   compress objects. You can use Ruby's built-in
-  [Zlib](https://ruby-doc.org/stdlib-2.7.0/libdoc/zlib/rdoc/Zlib.html)
-  library to read these compressed files.
-{{/lang_is_ruby}}
+  [Zlib](https://ruby-doc.org/stdlib-2.7.0/libdoc/zlib/rdoc/Zlib.html) library
+  to read these compressed files. {{/lang_is_ruby}}
 
 {{#lang_is_go}}
+
 - Keep in mind that Git uses [Zlib](https://en.wikipedia.org/wiki/Zlib) to
   compress objects. You can use Go's built-in
-  [compress/zlib](https://golang.org/pkg/compress/zlib/) package to read
- these compressed files.
-{{/lang_is_go}}
+  [compress/zlib](https://golang.org/pkg/compress/zlib/) package to read these
+  compressed files. {{/lang_is_go}}
 
 {{#lang_is_rust}}
-- Keep in mind that Git uses [Zlib](https://en.wikipedia.org/wiki/Zlib) to
-  compress objects. You can use the
-  [flate2](https://crates.io/crates/flate2) crate to read these compressed
-  files, we've included it in the `Cargo.toml` file.
-{{/lang_is_rust}}
 
-{{^lang_is_python}}
-{{^lang_is_ruby}}
-{{^lang_is_go}}
-{{^lang_is_rust}}
 - Keep in mind that Git uses [Zlib](https://en.wikipedia.org/wiki/Zlib) to
-  compress objects. Many languages have utils for dealing with zlib data in their standard library. If not,
-  you might need to use a third-party library to read these compressed files.
-{{/lang_is_rust}}
-{{/lang_is_go}}
-{{/lang_is_ruby}}
-{{/lang_is_python}}
+  compress objects. You can use the [flate2](https://crates.io/crates/flate2)
+  crate to read these compressed files, we've included it in the `Cargo.toml`
+  file. {{/lang_is_rust}}
+
+{{^lang_is_python}} {{^lang_is_ruby}} {{^lang_is_go}} {{^lang_is_rust}}
+
+- Keep in mind that Git uses [Zlib](https://en.wikipedia.org/wiki/Zlib) to
+  compress objects. Many languages have utils for dealing with zlib data in
+  their standard library. If not, you might need to use a third-party library to
+  read these compressed files. {{/lang_is_rust}} {{/lang_is_go}}
+  {{/lang_is_ruby}} {{/lang_is_python}}
