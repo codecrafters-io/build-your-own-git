@@ -1,17 +1,18 @@
-All the data for a Git repository — from its commit history to its configuration — lives inside a hidden folder called `.git`. It’s created when you initialize a new repository with `git init`. In this stage, you’ll implement that command yourself.
-
-<!--
+In this stage, you'll implement `init` to create the `.git` directory. This
+gives your Git implementation a place to store repository objects and references
+separately from the files you edit.
 
 ### The `git init` command
 
 <details>
   <summary>Click to expand/collapse</summary>
 
-  `git init` initializes a Git repository by creating a `.git` directory with some files
-  & directories inside it.
+`git init` initializes a Git repository by creating a `.git` directory with some
+files and directories inside it.
 
-  You can learn more about what's inside the `.git` folder [here](https://blog.meain.io/2023/what-is-in-dot-git/). We've
-  included a description of the files & directores we'll be dealing with in this stage below.
+You can learn more about what's inside the `.git` folder
+[here](https://blog.meain.io/2023/what-is-in-dot-git/). We've included the files
+and directories required for this stage below.
 
 </details>
 
@@ -20,26 +21,32 @@ All the data for a Git repository — from its commit history to its configurati
 <details>
   <summary>Click to expand/collapse</summary>
 
-  At a bare minimum, a `.git` directory should contain the following files & directories:
+Create this layout in the current working directory:
 
-  ```
-  - .git/
-    - objects/
-    - refs/
-    - HEAD (should contain "ref: refs/heads/main\n" for a new repository)
-  ```
+```
+- .git/
+  - objects/
+  - refs/
+  - HEAD (should contain "ref: refs/heads/main\n" for a new repository)
+```
 
-  - `objects/`
-    - This directory contains [Git objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects).
-    - We'll learn more about what Git objects are in later stages.
-  - `refs/`
-    - This directory contains [Git references](https://git-scm.com/book/en/v2/Git-Internals-Git-References).
-    - We'll deal with this in later stages too.
-  - `HEAD`
-    - This file contains a reference to the currently checked out branch.
-    - For a new repository, it's contents will be `ref: refs/heads/main\n`.
+- `objects/`
+  - This directory will hold
+    [Git objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects), the
+    stored contents and history of the repository. It starts empty.
+- `refs/`
+  - [Git references](https://git-scm.com/book/en/v2/Git-Internals-Git-References)
+    give names, such as branch names, to commits. This directory also starts
+    empty.
+- `HEAD`
+  - This file contains a reference to the currently checked out branch.
+  - Use the contents `ref: refs/heads/main\n`. Here `\n` means one newline byte
+    at the end. The branch does not point to a commit yet, so you don't need to
+    create a branch file.
 
-  You can learn more about these in detail [here](https://blog.meain.io/2023/what-is-in-dot-git/).
+You can learn more about these in detail
+[here](https://blog.meain.io/2023/what-is-in-dot-git/).
+
 </details>
 
 ### Tests
@@ -54,7 +61,9 @@ $ mkdir test_dir && cd test_dir
 $ /path/to/your_program.sh init
 ```
 
-It'll then check if the `.git` directory and its contents are created correctly.
+The command must exit successfully and create the directories and `HEAD` file
+shown above. The tester checks the filesystem, so printing a success message
+alone is insufficient.
 
 ```bash
 # Check if .git directory exists
@@ -75,10 +84,8 @@ $ cat .git/HEAD
 
 ### Notes
 
-- Git actually creates more files & directories than the ones mentioned above when you run `git init`. We've only included the ones
-  that are absolutely necessary for Git to function properly.
+- Git creates additional files and directories during a normal `git init`. This
+  stage requires only the small layout above.
 - The `.git/HEAD` file has a newline at the end.
-- The `.git/HEAD` file can contain either `ref: refs/heads/main\n` or `ref: refs/heads/master\n`, the tester will
-  work with either of these.
-
--->
+- The `.git/HEAD` file can contain either `ref: refs/heads/main\n` or
+  `ref: refs/heads/master\n`, the tester will work with either of these.

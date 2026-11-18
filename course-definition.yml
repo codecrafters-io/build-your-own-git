@@ -18,10 +18,12 @@ release_status: "live"
 # >
 # > Along the way, you'll learn about TCP servers, the Redis Protocol and more.
 description_md: |-
-  Git is a version control system used to track changes in source code. In this challenge, you'll build your own Git implementation that
-  is capable of cloning a public repository from GitHub.
+  How does Git turn a directory of files into a snapshot it can identify by a hash?
 
-  Along the way, you'll learn about the .git directory, Git objects, plumbing commands and more.
+  Git stores file contents as objects and connects them through directory and commit objects. Each object's contents determine its identifier.
+  You'll build commands that read and write these objects, create commits, and clone a public repository from GitHub into a working directory.
+
+  You'll practice content-addressed storage, binary file formats, compression, and the transfer protocol that moves a repository's objects between machines.
 
 # Keep this under 70 characters
 short_description_md: |-
